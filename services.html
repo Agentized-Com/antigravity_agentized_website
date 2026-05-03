@@ -47,6 +47,63 @@
             object-fit: contain;
         }
 
+        /* ── Hero overlay cards (desktop only) ── */
+        .hero-cards-left, .hero-cards-right {
+            display: none;
+        }
+        @media (min-width: 769px) {
+            .hero-cards-left, .hero-cards-right {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                position: absolute;
+                top: 8%;
+                bottom: 16%;
+                width: 22%;
+                z-index: 1;
+            }
+            .hero-cards-left { left: 1.5%; }
+            .hero-cards-right { right: 1.5%; }
+            .hero-card {
+                background: rgba(255,255,255,0.97);
+                border-radius: 10px;
+                padding: 12px 14px;
+                display: flex;
+                align-items: flex-start;
+                gap: 11px;
+                box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+            }
+            .hero-card-icon {
+                color: #f59e0b;
+                font-size: 1.2rem;
+                flex-shrink: 0;
+                margin-top: 2px;
+            }
+            .hero-card-body h4 {
+                font-size: 0.68rem;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.4px;
+                color: #111;
+                margin: 0 0 4px;
+                line-height: 1.3;
+            }
+            .hero-card-body p {
+                font-size: 0.65rem;
+                color: #555;
+                line-height: 1.45;
+                margin: 0;
+            }
+            .hero-card-body::after {
+                content: '';
+                display: block;
+                width: 22px;
+                height: 2px;
+                background: #f59e0b;
+                margin-top: 6px;
+            }
+        }
+
         @media (max-width: 768px) {
             .image-hero {
                 overflow: hidden;
@@ -849,6 +906,20 @@
     <!-- Image Hero -->
     <div class="image-hero">
         <img src="HERO.png" alt="Intelligent agent support for financial operations">
+        <div class="hero-cards-left">
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-receipt"></i></div><div class="hero-card-body"><h4>Bookkeeping Automation</h4><p>Automate bank feeds, categorization, reconciliations, and more.</p></div></div>
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-chart-line"></i></div><div class="hero-card-body"><h4>Financial Reporting</h4><p>Real-time P&amp;L, balance sheets, cash flow, and custom reports.</p></div></div>
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-shield-halved"></i></div><div class="hero-card-body"><h4>Risk &amp; Fraud Monitoring</h4><p>Monitor anomalies and surface risks early with AI.</p></div></div>
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-users"></i></div><div class="hero-card-body"><h4>Vendor &amp; Bill Operations</h4><p>Streamline approvals, payments, and vendor communications.</p></div></div>
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-chart-pie"></i></div><div class="hero-card-body"><h4>Expense Management</h4><p>Track, categorize, and optimize company spending.</p></div></div>
+        </div>
+        <div class="hero-cards-right">
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-arrow-trend-up"></i></div><div class="hero-card-body"><h4>Forecasting &amp; Planning</h4><p>AI-powered forecasts to guide smarter financial decisions.</p></div></div>
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-building-columns"></i></div><div class="hero-card-body"><h4>Cash Flow Visibility</h4><p>Gain real-time visibility into cash flow and liquidity.</p></div></div>
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-bullseye"></i></div><div class="hero-card-body"><h4>Opportunity Analysis</h4><p>Evaluate opportunities and prioritize what drives value.</p></div></div>
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-lock"></i></div><div class="hero-card-body"><h4>Compliance &amp; Audit Support</h4><p>Stay audit-ready with automated logs and documentation.</p></div></div>
+            <div class="hero-card"><div class="hero-card-icon"><i class="fas fa-circle-nodes"></i></div><div class="hero-card-body"><h4>Operations &amp; Data Consolidation</h4><p>Consolidate operations and data across systems and functions.</p></div></div>
+        </div>
     </div>
 
     <!-- Intro -->
