@@ -17,4 +17,5 @@ def remove_border(image_path):
         print(f"Error: {e}")
 
 if __name__ == "__main__":
-    remove_border("future_city.png")
+    remove_border("future_city.png") 
+    print("hello")
