@@ -36,6 +36,18 @@
             object-fit: contain;
         }
 
+        @media (max-width: 768px) {
+            .image-hero {
+                overflow: hidden;
+            }
+            .image-hero img {
+                width: 233.33%;
+                max-width: 233.33%;
+                margin-left: -66.67%;
+                object-fit: unset;
+            }
+        }
+
         /* ── Intro section ── */
         .intro-section {
             background: #fef9f0;
@@ -363,6 +375,18 @@
             font-size: 0.875rem;
             color: #555;
             line-height: 1.6;
+        }
+
+        @media (max-width: 860px) {
+            .use-case-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+            .uc-card { padding: 22px 18px; }
+            .uc-icon { font-size: 1.3rem; margin-bottom: 10px; }
+            .uc-card h3 { font-size: 0.9rem; }
+            .uc-card p { font-size: 0.82rem; }
+        }
+        @media (max-width: 480px) {
+            .use-case-grid { grid-template-columns: 1fr; gap: 12px; }
+            .uc-card { padding: 18px 16px; }
         }
 
         /* ── Testimonial ── */
@@ -813,7 +837,7 @@
 
     <!-- Image Hero -->
     <div class="image-hero">
-        <img src="HERO.png" alt="We build AI systems that run your business">
+        <img src="HERO.png" alt="Intelligent agent support for financial operations">
     </div>
 
     <!-- What We Do -->
@@ -821,9 +845,9 @@
         <div class="container">
             <div class="intro-split">
                 <div class="intro-split-text">
-                    <span class="eyebrow">AI Automation for Financial Services</span>
-                    <h2>Your Back-Office Runs Itself.<br>Your Team Focuses on What Matters.</h2>
-                    <p>We build custom AI agents for financial firms: hedge funds, private equity, family offices, and asset managers. The operational overhead slowing your team down, regulatory inquiries, tax notices, reporting, compliance workflows, we automate it end-to-end.</p>
+                    <span class="eyebrow">Intelligent Agent Support for Financial Services</span>
+                    <h2>Intelligent Agents Built to Make<br>Finance Operations Easier.</h2>
+                    <p>We build custom AI agents that support financial firms: hedge funds, private equity, family offices, and asset managers. The operational overhead slowing your team down, regulatory inquiries, tax notices, reporting, compliance workflows, we automate it so your team can focus on higher-value work.</p>
                     <p>Production-quality. Deployed fast. No bloated retainers.</p>
                 </div>
                 <div class="intro-split-img">
@@ -1028,7 +1052,7 @@
                     <div class="system-io-sublabel">Operational Friction</div>
                     <div class="system-io-items">
                         <div class="system-io-item"><i class="fas fa-envelope"></i><span>Tax Notices &amp; Regulatory Inquiries</span></div>
-                        <div class="system-io-item"><i class="fas fa-file-lines"></i><span>Manual Reporting &amp; Data Consolidation</span></div>
+                        <div class="system-io-item"><i class="fas fa-file-lines"></i><span>Operational Reporting &amp; Data Management</span></div>
                         <div class="system-io-item"><i class="fas fa-shield-halved"></i><span>Compliance &amp; Due Diligence Workflows</span></div>
                         <div class="system-io-item"><i class="fas fa-folder"></i><span>Investor &amp; Fund Communications</span></div>
                         <div class="system-io-item"><i class="fas fa-gear"></i><span>Other Repetitive Back-Office Tasks</span></div>
@@ -1157,8 +1181,8 @@
                     <h3>Colton Fidelman</h3>
                     <p class="team-role">Engineering & Build</p>
                     <ul class="team-creds">
-                        <li>UCLA Student</li>
-                        <li>Founder, Meridian Prospects</li>
+                        <li>UCLA Cognitive Science Student</li>
+                        <li>Founder, Meridian</li>
                         <li>Multi-agent systems & full-stack AI</li>
                         <li>Lead Engineer, Agentized Services</li>
                     </ul>
