@@ -53,29 +53,38 @@
         }
         @media (min-width: 769px) {
             .hero-cards-left, .hero-cards-right {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
                 position: absolute;
                 top: 0;
-                bottom: 14%;
+                bottom: 0;
                 width: 23%;
                 z-index: 1;
-                background: rgba(248,248,248,0.96);
-                padding: 14px 10px;
-                border-radius: 0 0 12px 12px;
             }
-            .hero-cards-left { left: 0; }
-            .hero-cards-right { right: 0; }
+            .hero-cards-left { left: 0.5%; }
+            .hero-cards-right { right: 0.5%; }
             .hero-card {
+                position: absolute;
+                width: 100%;
+                height: 17%;
                 background: rgba(255,255,255,0.97);
                 border-radius: 10px;
                 padding: 12px 14px;
                 display: flex;
-                align-items: flex-start;
+                align-items: center;
                 gap: 11px;
                 box-shadow: 0 2px 14px rgba(0,0,0,0.09);
+                overflow: hidden;
+                box-sizing: border-box;
             }
+            .hero-cards-left .hero-card:nth-child(1) { top: 7%; }
+            .hero-cards-left .hero-card:nth-child(2) { top: 26%; }
+            .hero-cards-left .hero-card:nth-child(3) { top: 45%; }
+            .hero-cards-left .hero-card:nth-child(4) { top: 63%; }
+            .hero-cards-left .hero-card:nth-child(5) { top: 76%; }
+            .hero-cards-right .hero-card:nth-child(1) { top: 7%; }
+            .hero-cards-right .hero-card:nth-child(2) { top: 26%; }
+            .hero-cards-right .hero-card:nth-child(3) { top: 44%; }
+            .hero-cards-right .hero-card:nth-child(4) { top: 62%; }
+            .hero-cards-right .hero-card:nth-child(5) { top: 76%; }
             .hero-card-icon {
                 color: #f59e0b;
                 font-size: 1.2rem;
