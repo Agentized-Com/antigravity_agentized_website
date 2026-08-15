@@ -1,5 +1,15 @@
 {
   "rewrites": [
-    { "source": "/services", "destination": "/services.html" }
+    { "source": "/consulting", "destination": "/consulting.html" },
+    { "source": "/assessment", "destination": "/assessment.html" },
+    { "source": "/platform", "destination": "/platform.html" },
+    { "source": "/governance", "destination": "/governance.html" },
+    { "source": "/book", "destination": "/book.html" },
+    { "source": "/speaking", "destination": "/speaking.html" },
+    { "source": "/about", "destination": "/about.html" },
+    { "source": "/contact", "destination": "/contact.html" }
+  ],
+  "redirects": [
+    { "source": "/services", "destination": "/consulting", "permanent": true }
   ]
 }

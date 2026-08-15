@@ -10,30 +10,32 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=3">
     <style>
         .page-content {
-            padding-top: 120px;
-            max-width: 800px;
+            padding-top: 40px;
+            max-width: 760px;
             margin: 0 auto;
-            color: var(--text-secondary);
-            font-size: 1.1rem;
+            color: var(--slate);
+            font-size: 1.05rem;
         }
 
         .page-content h1 {
-            color: var(--text-primary);
-            font-size: 3rem;
+            color: var(--agentized-ink);
+            font-size: clamp(2rem, 3.6vw, 2.8rem);
             margin-bottom: 1rem;
         }
 
         .page-content h2 {
-            color: var(--accent-primary);
-            font-size: 1.5rem;
+            color: var(--agent-blue-deep);
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 2rem;
         }
 
         .page-content p {
             margin-bottom: 1.5rem;
+            max-width: none;
         }
 
         .page-content ul {
@@ -49,7 +51,7 @@
         .back-link {
             display: inline-block;
             margin-bottom: 2rem;
-            color: var(--accent-primary);
+            color: var(--agent-blue-deep);
             font-weight: 600;
         }
     </style>
@@ -57,23 +59,25 @@
 
 <body>
 
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
-            <a href="index.html" class="logo">AGENTIZED<span class="dot">.</span></a>
+            <a href="/" class="logo"><span class="agent">AGENT</span><span class="ized">IZED</span></a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
             <ul class="nav-links">
-                <li><a href="index.html#problem">The Shift</a></li>
-                <li><a href="index.html#audience">For You</a></li>
-                <li><a href="index.html#toc">Chapters</a></li>
-                <li><a href="index.html#authors">Authors</a></li>
-                <li><a href="index.html#preorder" class="btn btn-primary">Pre-Order</a></li>
+                <li><a href="/book">Book</a></li>
+                <li><a href="/consulting">Consulting</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="nav-cta-mobile"><a href="/contact#briefing" class="btn btn-primary">Request Executive Briefing</a></li>
             </ul>
+            <a href="/contact#briefing" class="btn btn-primary nav-cta">Request Executive Briefing</a>
         </div>
     </nav>
 
-    <section class="section">
+    <section class="section bg-white">
         <div class="container page-content">
-            <a href="index.html" class="back-link">← Back to Home</a>
+            <a href="/book" class="back-link">&larr; Back to the Book</a>
 
             <h1>Introduction: The Dawn of the Agentized Era</h1>
             <h2>A clear, executive-ready opening that blends narrative drive with strategic logic</h2>
@@ -175,11 +179,15 @@
     </section>
 
     <footer>
-        <div class="container text-center">
-            <p>&copy; 2025 Agentized. All rights reserved.</p>
+        <div class="container">
+            <div class="footer-bottom">
+                <span>Copyright 2026 Agentized. All rights reserved.</span>
+                <span></span>
+            </div>
         </div>
     </footer>
 
+    <script src="script.js?v=3"></script>
 </body>
 
 </html>

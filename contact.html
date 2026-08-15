@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Agentized</title>
+    <meta name="description"
+        content="Assessment, speaking, corporate book, media and partnership inquiries are routed separately so the right person can respond with context.">
+    <link rel="canonical" href="https://agentized.com/contact">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3">
+</head>
+
+<body>
+
+    <div class="announcement-bar">
+        <a href="/assessment">From the authors of AGENTIZED: Private executive briefings for mid-market leadership teams are now available.</a>
+        <button class="announcement-close" aria-label="Dismiss announcement">&times;</button>
+    </div>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo"><span class="agent">AGENT</span><span class="ized">IZED</span></a>
+            <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="/consulting">Consulting</a></li>
+                <li><a href="/platform">Platform</a></li>
+                <li><a href="/governance">Governance</a></li>
+                <li><a href="/book">Book</a></li>
+                <li><a href="/speaking">Speaking</a></li>
+                <li><a href="/about">About</a></li>
+                <li class="nav-cta-mobile"><a href="/contact#briefing" class="btn btn-primary">Request Executive Briefing</a></li>
+            </ul>
+            <a href="/contact#briefing" class="btn btn-primary nav-cta">Request Executive Briefing</a>
+        </div>
+    </nav>
+
+    <header class="page-hero bg-warm">
+        <div class="container-narrow">
+            <span class="eyebrow">Contact Agentized</span>
+            <h1 style="font-size: clamp(2.1rem, 3.8vw, 3.2rem);">Choose the conversation that matches your
+                objective.</h1>
+            <p class="lead">Assessment, speaking, corporate book, media and partnership inquiries are routed
+                separately so the right person can respond with context.</p>
+        </div>
+    </header>
+
+    <section class="section bg-white" data-reveal>
+        <div class="container-narrow">
+            <div class="route-list">
+                <div class="route-item">
+                    <div><h3>Consulting and implementation</h3><p>Start the paid Agentic Value Assessment application.</p></div>
+                    <a href="/assessment" class="btn btn-secondary">Apply for an Agentic Value Assessment</a>
+                </div>
+                <div class="route-item">
+                    <div><h3>Speaking</h3><p>Request Jas Dhillon and Mark Fidelman for a keynote, board briefing or workshop.</p></div>
+                    <a href="/speaking#inquiry" class="btn btn-secondary">Request Availability</a>
+                </div>
+                <div class="route-item">
+                    <div><h3>Corporate book orders</h3><p>Executive team, off-site, conference, board or university packages.</p></div>
+                    <a href="/book#corporate-orders" class="btn btn-secondary">Request Corporate Pricing</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-cool" id="briefing" data-reveal>
+        <div class="container-narrow">
+            <span class="eyebrow">Private executive briefing</span>
+            <h2>Request a private executive briefing.</h2>
+            <p class="lead" style="margin-bottom: var(--space-5);">A short conversation to confirm executive
+                sponsorship, business urgency, scope and investment fit — including governance briefings.</p>
+            <div class="form-card">
+                <form data-lead-form action="https://formsubmit.co/jdhillon@pivotalvc.com" method="POST">
+                    <input type="hidden" name="_subject" value="New executive briefing request">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://agentized.com/thanks.html">
+                    <input type="hidden" name="form_name" value="briefing_request">
+                    <div class="form-row">
+                        <div class="form-group"><label for="br-name">Name *</label><input type="text" id="br-name" name="name" required></div>
+                        <div class="form-group"><label for="br-email">Work email *</label><input type="email" id="br-email" name="email" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label for="br-title">Title *</label><input type="text" id="br-title" name="title" required></div>
+                        <div class="form-group"><label for="br-company">Company *</label><input type="text" id="br-company" name="company" required></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="br-topic">What would you like to discuss? *</label>
+                        <select id="br-topic" name="topic" required>
+                            <option value="">Select…</option>
+                            <option>General executive briefing</option>
+                            <option>Governance briefing</option>
+                            <option>Product briefing (Agentized Command)</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label for="br-notes">Context</label><textarea id="br-notes" name="notes"></textarea></div>
+                    <button type="submit" class="btn btn-primary">Request Executive Briefing</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-white" id="partnership" data-reveal>
+        <div class="container-narrow">
+            <span class="eyebrow">Partnerships</span>
+            <h2>Discuss a design partnership or partnership inquiry.</h2>
+            <div class="form-card">
+                <form data-lead-form action="https://formsubmit.co/jdhillon@pivotalvc.com" method="POST">
+                    <input type="hidden" name="_subject" value="New partnership inquiry">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://agentized.com/thanks.html">
+                    <input type="hidden" name="form_name" value="partnership_inquiry">
+                    <div class="form-row">
+                        <div class="form-group"><label for="pt-name">Name *</label><input type="text" id="pt-name" name="name" required></div>
+                        <div class="form-group"><label for="pt-email">Email *</label><input type="email" id="pt-email" name="email" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label for="pt-company">Company *</label><input type="text" id="pt-company" name="company" required></div>
+                        <div class="form-group">
+                            <label for="pt-type">Interest *</label>
+                            <select id="pt-type" name="product_interest" required>
+                                <option value="">Select…</option>
+                                <option>Agentized Command design partnership</option>
+                                <option>Technology / implementation partnership</option>
+                                <option>Other partnership</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group"><label for="pt-notes">Tell us more</label><textarea id="pt-notes" name="notes"></textarea></div>
+                    <button type="submit" class="btn btn-primary">Discuss Partnership</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-cool" id="media" data-reveal>
+        <div class="container-narrow">
+            <span class="eyebrow">Media</span>
+            <h2>Contact the media team.</h2>
+            <div class="form-card">
+                <form data-lead-form action="https://formsubmit.co/jdhillon@pivotalvc.com" method="POST">
+                    <input type="hidden" name="_subject" value="New media inquiry">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://agentized.com/thanks.html">
+                    <input type="hidden" name="form_name" value="media_inquiry">
+                    <div class="form-row">
+                        <div class="form-group"><label for="md-name">Name *</label><input type="text" id="md-name" name="name" required></div>
+                        <div class="form-group"><label for="md-email">Email *</label><input type="email" id="md-email" name="email" required></div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group"><label for="md-outlet">Outlet *</label><input type="text" id="md-outlet" name="outlet" required></div>
+                        <div class="form-group"><label for="md-deadline">Deadline</label><input type="date" id="md-deadline" name="deadline"></div>
+                    </div>
+                    <div class="form-group"><label for="md-notes">What's this about? *</label><textarea id="md-notes" name="notes" required></textarea></div>
+                    <button type="submit" class="btn btn-primary">Contact Media Team</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-white" id="general" data-reveal>
+        <div class="container-narrow">
+            <span class="eyebrow">General</span>
+            <h2>Send a general inquiry.</h2>
+            <div class="form-card">
+                <form data-lead-form action="https://formsubmit.co/jdhillon@pivotalvc.com" method="POST">
+                    <input type="hidden" name="_subject" value="New general inquiry">
+                    <input type="hidden" name="_captcha" value="true">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://agentized.com/thanks.html">
+                    <input type="hidden" name="form_name" value="general_inquiry">
+                    <div class="form-row">
+                        <div class="form-group"><label for="gn-name">Name *</label><input type="text" id="gn-name" name="name" required></div>
+                        <div class="form-group"><label for="gn-email">Email *</label><input type="email" id="gn-email" name="email" required></div>
+                    </div>
+                    <div class="form-group"><label for="gn-notes">Message *</label><textarea id="gn-notes" name="notes" required></textarea></div>
+                    <button type="submit" class="btn btn-primary">Send General Inquiry</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="/" class="logo"><span class="agent">AGENT</span><span class="ized">IZED</span></a>
+                    <p>Agentic Business Transformation for the Mid-Market.</p>
+                </div>
+                <div><h4>Company</h4><ul><li><a href="/consulting">Consulting</a></li><li><a href="/platform">Platform</a></li><li><a href="/governance">Governance</a></li><li><a href="/about">About</a></li></ul></div>
+                <div><h4>Authority</h4><ul><li><a href="/book">Book</a></li><li><a href="/speaking">Speaking</a></li></ul></div>
+                <div><h4>Get in touch</h4><ul><li><a href="/assessment">Agentic Value Assessment</a></li><li><a href="/contact">Contact</a></li></ul></div>
+            </div>
+            <div class="footer-bottom">
+                <span>Copyright 2026 Agentized. All rights reserved.</span>
+                <span></span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js?v=3"></script>
+</body>
+
+</html>

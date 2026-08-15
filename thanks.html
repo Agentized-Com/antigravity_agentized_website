@@ -4,53 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You - Agentized</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap"
-        rel="stylesheet">
-    <style>
-        body {
-            background-color: #0a0a0a;
-            color: #ffffff;
-            font-family: 'Inter', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            text-align: center;
-        }
-
-        h1 {
-            font-family: 'Outfit', sans-serif;
-            color: #00f2ff;
-            margin-bottom: 20px;
-        }
-
-        p {
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-            color: #ccc;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            background: linear-gradient(45deg, #00f2ff, #7000ff);
-            border: none;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-    </style>
+    <title>Request received | Agentized</title>
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=3">
 </head>
 
 <body>
-    <h1>Welcome to the Movement.</h1>
-    <p>Your details have been received. We'll be in touch soon.</p>
-    <a href="index.html" class="btn">Return to Site</a>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo"><span class="agent">AGENT</span><span class="ized">IZED</span></a>
+        </div>
+    </nav>
+
+    <header class="page-hero bg-ink text-center">
+        <div class="container-narrow">
+            <span class="eyebrow">Request received</span>
+            <h1 style="font-size: clamp(2rem, 4vw, 3rem);">Thank you. Your request is with our team.</h1>
+            <p class="lead" style="margin: 0 auto var(--space-3);">A member of the team reviews every submission
+                personally. Qualified assessment applications and briefing requests receive a response within one
+                business day.</p>
+            <p style="color: rgba(247,245,240,0.6); margin-bottom: var(--space-6);">In the meantime, the book and
+                our latest thinking are good places to start.</p>
+            <div class="cta-row" style="justify-content: center;">
+                <a href="/" class="btn btn-primary">Return to Agentized.com</a>
+                <a href="/book" class="btn btn-secondary">Explore the Book</a>
+            </div>
+        </div>
+    </header>
+
+    <footer>
+        <div class="container">
+            <div class="footer-bottom">
+                <span>Copyright 2026 Agentized. All rights reserved.</span>
+                <span></span>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

@@ -1,150 +1,100 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Mobile Menu Toggle
-    const mobileBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (mobileBtn) {
-        mobileBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            // Animate hamburger to X
-            const spans = mobileBtn.querySelectorAll('span');
-            if (navLinks.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(5px, 6px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(5px, -6px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-    }
-
-    // Smooth Scrolling for Navigation Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Tab Switching Logic (Audience Section)
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class from all buttons and contents
-            tabBtns.forEach(b => b.classList.remove('active'));
-            tabContents.forEach(c => c.classList.remove('active'));
-
-            // Add active class to clicked button
-            btn.classList.add('active');
-
-            // Show corresponding content
-            const target = btn.getAttribute('data-target');
-            document.getElementById(target).classList.add('active');
-        });
-    });
-
-    // Accordion Logic (TOC Section)
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
-
-    accordionHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            const item = header.parentElement;
-            const isActive = item.classList.contains('active');
-
-            // Close all other items
-            document.querySelectorAll('.accordion-item').forEach(i => {
-                i.classList.remove('active');
-            });
-
-            // Toggle current item
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        });
-    });
-
-    // Navbar Scroll Effect
-    const navbar = document.querySelector('.navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.background = 'rgba(10, 10, 10, 0.95)';
-            navbar.style.boxShadow = '0 2px 10px rgba(0,0,0,0.3)';
-        } else {
-            navbar.style.background = 'rgba(10, 10, 10, 0.8)';
-            navbar.style.boxShadow = 'none';
+    /* ---------- Announcement bar dismissal (30-day localStorage) ---------- */
+    const announcement = document.querySelector('.announcement-bar');
+    if (announcement) {
+        const DISMISS_KEY = 'agentized_announcement_dismissed_at';
+        const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
+        const dismissedAt = localStorage.getItem(DISMISS_KEY);
+        if (dismissedAt && (Date.now() - Number(dismissedAt) < THIRTY_DAYS)) {
+            announcement.style.display = 'none';
         }
-    });
-
-    // Intersection Observer for Fade-in Animations
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    // Apply animation styles initially to sections
-    document.querySelectorAll('.section').forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
-        observer.observe(section);
-    });
-
-    // Modal Logic
-    const modal = document.getElementById('lead-modal');
-    const closeBtn = document.querySelector('.close-modal');
-    // Select all buttons with the open-modal-btn class
-    const modalBtns = document.querySelectorAll('.open-modal-btn');
-
-    if (modal) {
-        modalBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                modal.style.display = 'flex';
-            });
-        });
-
+        const closeBtn = announcement.querySelector('.announcement-close');
         if (closeBtn) {
             closeBtn.addEventListener('click', () => {
-                modal.style.display = 'none';
+                announcement.style.display = 'none';
+                localStorage.setItem(DISMISS_KEY, String(Date.now()));
             });
         }
+    }
 
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
+    /* ---------- Mobile menu toggle ---------- */
+    const mobileBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    if (mobileBtn && navLinks) {
+        mobileBtn.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('active');
+            mobileBtn.setAttribute('aria-expanded', String(isOpen));
+            const spans = mobileBtn.querySelectorAll('span');
+            spans[0].style.transform = isOpen ? 'rotate(45deg) translate(4px, 5px)' : 'none';
+            spans[1].style.opacity = isOpen ? '0' : '1';
+            spans[2].style.transform = isOpen ? 'rotate(-45deg) translate(4px, -5px)' : 'none';
+        });
+    }
+
+    /* ---------- Sticky header surface after hero ---------- */
+    const navbar = document.querySelector('.navbar');
+    const hero = document.querySelector('.hero, .page-hero');
+    if (navbar) {
+        const applyScrollState = () => {
+            if (window.scrollY > 40) {
+                navbar.classList.add('is-scrolled');
+            } else {
+                navbar.classList.remove('is-scrolled');
+            }
+        };
+        applyScrollState();
+        window.addEventListener('scroll', applyScrollState, { passive: true });
+    }
+
+    /* ---------- Accordion (used for offer detail / FAQ style blocks) ---------- */
+    document.querySelectorAll('.accordion-header').forEach((header) => {
+        header.addEventListener('click', () => {
+            const item = header.closest('.accordion-item');
+            const isActive = item.classList.contains('active');
+            item.parentElement.querySelectorAll('.accordion-item').forEach((i) => i.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
+        });
+    });
+
+    /* ---------- Section reveal (respects prefers-reduced-motion) ---------- */
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+    } else {
+        document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-visible'));
+    }
+
+    /* ---------- Play the hero handoff animation once ---------- */
+    const handoff = document.querySelector('.handoff-svg');
+    if (handoff && !prefersReducedMotion) {
+        const playOnce = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('handoff-anim');
+                    playOnce.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+        playOnce.observe(handoff);
+    }
+
+    /* ---------- Simple submit-state UX for lead forms (FormSubmit-backed) ---------- */
+    document.querySelectorAll('form[data-lead-form]').forEach((form) => {
+        form.addEventListener('submit', () => {
+            const btn = form.querySelector('button[type="submit"]');
+            if (btn) {
+                btn.textContent = 'Submitting…';
+                btn.disabled = true;
             }
         });
-    }
-
-    // Form Submission (Handled by FormSubmit.co)
-    const leadForm = document.querySelector('.lead-form');
-    if (leadForm) {
-        leadForm.addEventListener('submit', (e) => {
-            const btn = leadForm.querySelector('button[type="submit"]');
-            if (btn) btn.innerText = 'Submitting...';
-            // Allow default submission
-        });
-    }
+    });
 });
