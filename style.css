@@ -244,6 +244,7 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 .nav-links a.active { border-bottom: 2px solid var(--human-orange); }
 
 .nav-cta { flex-shrink: 0; }
+.nav-cta-mobile { display: none; }
 
 .mobile-menu-btn {
     display: none;
