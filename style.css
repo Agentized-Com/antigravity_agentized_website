@@ -337,7 +337,7 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
     align-items: center;
 }
 
-.hero-copy h1 { margin-bottom: var(--space-4); }
+.hero-copy h1 { color: var(--white); margin-bottom: var(--space-4); }
 .hero-copy .lead { color: rgba(247, 245, 240, 0.82); margin-bottom: var(--space-6); font-size: 1.15rem; }
 
 .hero-strip {
