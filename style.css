@@ -360,7 +360,7 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
    the SVG collapse to the 300px replaced-element default). */
 .hero .container {
     width: 100%;
-    max-width: 1760px;
+    max-width: 1560px;
 }
 
 .hero-grid {
