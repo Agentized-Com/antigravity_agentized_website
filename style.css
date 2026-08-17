@@ -355,7 +355,7 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 
 .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 50%) 1fr;
+    grid-template-columns: minmax(0, 46%) 1fr;
     gap: var(--space-7);
     align-items: center;
 }
