@@ -354,8 +354,12 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 .hero .hero-grid { position: relative; z-index: 1; }
 
 /* The hero gets its own, much wider container so the diagram isn't
-   squeezed into the standard 1280px content width on large screens. */
+   squeezed into the standard 1280px content width on large screens.
+   width:100% is REQUIRED: .hero is display:flex, so this container is a
+   flex item and would otherwise shrink-wrap to its content (which made
+   the SVG collapse to the 300px replaced-element default). */
 .hero .container {
+    width: 100%;
     max-width: 1760px;
 }
 
