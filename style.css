@@ -324,21 +324,21 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
     min-height: 760px;
     display: flex;
     align-items: center;
-    background-image:
-        linear-gradient(rgba(7,24,43,0.94), rgba(7,24,43,0.98)),
-        repeating-linear-gradient(0deg, rgba(16,169,244,0.05) 0px, transparent 1px, transparent 48px),
-        repeating-linear-gradient(90deg, rgba(16,169,244,0.05) 0px, transparent 1px, transparent 48px);
 }
 
 .hero-grid {
     display: grid;
-    grid-template-columns: 46% 1fr;
-    gap: var(--space-8);
+    grid-template-columns: minmax(0, 50%) 1fr;
+    gap: var(--space-7);
     align-items: center;
 }
 
 .hero-copy h1 { color: var(--white); margin-bottom: var(--space-4); }
 .hero-copy .lead { color: rgba(247, 245, 240, 0.82); margin-bottom: var(--space-6); font-size: 1.15rem; }
+@media (min-width: 768px) {
+    .hero-copy .cta-row { flex-wrap: nowrap; gap: var(--space-3); }
+    .hero-copy .cta-row .btn { padding: 12px 18px; font-size: 0.9rem; white-space: nowrap; }
+}
 
 .hero-strip {
     margin-top: var(--space-7);
