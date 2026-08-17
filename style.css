@@ -353,10 +353,16 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 }
 .hero .hero-grid { position: relative; z-index: 1; }
 
+/* The hero gets its own, much wider container so the diagram isn't
+   squeezed into the standard 1280px content width on large screens. */
+.hero .container {
+    max-width: 1760px;
+}
+
 .hero-grid {
     display: grid;
-    grid-template-columns: minmax(0, 46%) 1fr;
-    gap: var(--space-7);
+    grid-template-columns: minmax(420px, 560px) 1fr;
+    gap: var(--space-8);
     align-items: center;
 }
 
