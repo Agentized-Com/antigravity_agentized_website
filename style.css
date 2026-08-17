@@ -324,7 +324,34 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
     min-height: 760px;
     display: flex;
     align-items: center;
+    position: relative;
+    overflow: hidden;
 }
+
+/* soft decorative rings bleeding in from the bottom-left corner */
+.hero::before {
+    content: '';
+    position: absolute;
+    left: -220px;
+    bottom: -260px;
+    width: 620px;
+    height: 620px;
+    border-radius: 50%;
+    border: 1px solid rgba(16, 169, 244, 0.16);
+    pointer-events: none;
+}
+.hero::after {
+    content: '';
+    position: absolute;
+    left: -120px;
+    bottom: -160px;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    border: 1px solid rgba(16, 169, 244, 0.22);
+    pointer-events: none;
+}
+.hero .hero-grid { position: relative; z-index: 1; }
 
 .hero-grid {
     display: grid;

@@ -1,8 +1,14 @@
 {
   "rewrites": [
+    { "source": "/solutions", "destination": "/solutions.html" },
+    { "source": "/solutions/revenue", "destination": "/solutions-revenue.html" },
+    { "source": "/solutions/margin-capacity", "destination": "/solutions-margin-capacity.html" },
+    { "source": "/solutions/speed-delivery", "destination": "/solutions-speed-delivery.html" },
     { "source": "/consulting", "destination": "/consulting.html" },
     { "source": "/assessment", "destination": "/assessment.html" },
     { "source": "/platform", "destination": "/platform.html" },
+    { "source": "/results", "destination": "/results.html" },
+    { "source": "/insights", "destination": "/insights.html" },
     { "source": "/governance", "destination": "/governance.html" },
     { "source": "/book", "destination": "/book.html" },
     { "source": "/speaking", "destination": "/speaking.html" },
