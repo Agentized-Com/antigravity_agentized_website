@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=11">
+    <link rel="stylesheet" href="style.css?v=12">
 </head>
 
 <body>
@@ -65,6 +65,22 @@
 
     <!-- H03 Hero -->
     <header class="hero">
+        <!-- ambient background field: grid + breathing glows + pulsing markers, bled across the full hero -->
+        <div class="hero-field" aria-hidden="true">
+            <div class="hero-field-grid"></div>
+            <div class="hero-glow hero-glow-left"></div>
+            <div class="hero-glow hero-glow-right"></div>
+            <span class="hero-marker" style="top:10%; left:6%; animation-delay:0s;"></span>
+            <span class="hero-marker" style="top:24%; left:33%; animation-delay:.6s;"></span>
+            <span class="hero-marker" style="top:64%; left:16%; animation-delay:1.2s;"></span>
+            <span class="hero-marker" style="top:80%; left:44%; animation-delay:1.8s;"></span>
+            <span class="hero-marker" style="top:14%; left:61%; animation-delay:2.4s;"></span>
+            <span class="hero-marker" style="top:40%; left:87%; animation-delay:.3s;"></span>
+            <span class="hero-marker" style="top:70%; left:74%; animation-delay:1.5s;"></span>
+            <span class="hero-marker" style="top:88%; left:93%; animation-delay:2.1s;"></span>
+            <span class="hero-marker" style="top:6%; left:91%; animation-delay:.9s;"></span>
+            <span class="hero-marker" style="top:52%; left:4%; animation-delay:1.9s;"></span>
+        </div>
         <div class="container hero-grid">
             <div class="hero-copy">
                 <span class="eyebrow">Agentic Business Transformation</span>
@@ -705,7 +721,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=11"></script>
+    <script src="script.js?v=12"></script>
 </body>
 
 </html>
