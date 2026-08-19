@@ -683,3 +683,147 @@ footer a:hover { color: var(--white); }
     .footer-grid { grid-template-columns: 1fr; }
     .cta-row .btn { width: 100%; }
 }
+
+
+/* ============================================================
+   CHAOS DIAGRAM COMPONENT (H05 before/after) — vector SVG, no raster image
+   ============================================================ */
+.preview-note { font-family: var(--font-mono); font-size: 0.75rem; color: var(--slate); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ============================================================
+   CHAOS DIAGRAM — scoped component styles
+   ============================================================ */
+.cvad {
+    --cvad-bg: #0A1626;
+    --cvad-panel: #0E1E33;
+    --cvad-line: rgba(255,255,255,0.10);
+    --cvad-text-dim: rgba(255,255,255,0.55);
+    background: var(--cvad-bg);
+    border-radius: 20px;
+    padding: 36px 40px 30px;
+    color: #fff;
+    font-family: var(--font-body);
+    position: relative;
+    overflow: hidden;
+}
+.cvad-icon { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* --- 01 Title block --- */
+.cvad-title-block { text-align: center; margin-bottom: 26px; }
+.cvad-title { font-size: clamp(1.4rem, 2.6vw, 2.05rem); font-weight: 800; margin: 0 0 6px; letter-spacing: -0.01em; }
+.cvad-title sup { font-size: 0.5em; top: -0.8em; }
+.cvad-subtitle { font-size: 0.95rem; color: var(--cvad-text-dim); margin: 0; }
+
+/* --- 02 Two-column grid --- */
+.cvad-grid { display: grid; grid-template-columns: 1fr 46px 1fr; gap: 0 6px; align-items: stretch; }
+.cvad-col { display: flex; flex-direction: column; }
+
+/* --- 03 Column headers --- */
+.cvad-col-header { margin-bottom: 16px; }
+.cvad-col-header .tag { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; }
+.cvad-col.today .tag { color: var(--human-orange); background: rgba(255,104,0,0.12); }
+.cvad-col.after .tag { color: var(--agent-blue); background: rgba(16,169,244,0.12); }
+.cvad-col-header h3 { font-size: 1.02rem; font-weight: 700; margin: 0 0 3px; }
+.cvad-col-header p { font-size: 0.78rem; color: var(--cvad-text-dim); margin: 0; }
+
+/* --- 04 Department row (both columns) --- */
+.cvad-dept-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 10px; }
+.cvad-dept { background: rgba(255,255,255,0.05); border: 1px solid var(--cvad-line); border-radius: 8px; padding: 8px 4px; text-align: center; }
+.cvad-dept .cvad-icon-wrap { width: 26px; height: 26px; margin: 0 auto 5px; border-radius: 6px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); }
+.cvad-dept .cvad-icon { width: 14px; height: 14px; color: #fff; }
+.cvad-dept span { display: block; font-size: 0.58rem; font-weight: 700; letter-spacing: 0.03em; color: rgba(255,255,255,0.85); }
+
+/* --- 05 Chaos: scattered tool-icon clusters --- */
+.cvad-tool-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 8px; }
+.cvad-tool-cluster { background: rgba(255,255,255,0.03); border: 1px dashed var(--cvad-line); border-radius: 8px; padding: 6px; display: flex; flex-wrap: wrap; gap: 4px; justify-content: center; align-items: center; min-height: 46px; }
+.cvad-tool-chip { width: 17px; height: 17px; border-radius: 4px; display: flex; align-items: center; justify-content: center; }
+.cvad-tool-chip .cvad-icon { width: 9px; height: 9px; color: #fff; stroke-width: 2.4; }
+.chip-blue { background: #2563EB; } .chip-purple { background: #7C3AED; } .chip-green { background: #059669; }
+.chip-pink { background: #DB2777; } .chip-orange { background: var(--human-orange); } .chip-teal { background: #0D9488; }
+.chip-red { background: #DC2626; } .chip-cyan { background: var(--agent-blue); }
+
+/* --- 06 Chaos: manual handoff row + connector lines --- */
+.cvad-handoff-area { position: relative; margin-bottom: 6px; padding-top: 14px; }
+.cvad-handoff-row { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 2; padding: 0 2px; }
+.cvad-person { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--human-orange); display: flex; align-items: center; justify-content: center; background: var(--cvad-bg); }
+.cvad-person .cvad-icon { width: 12px; height: 12px; color: var(--human-orange); }
+.cvad-handoff-glyph { color: rgba(255,255,255,0.35); font-size: 0.7rem; }
+.cvad-handoff-label { text-align: center; font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.06em; color: var(--cvad-text-dim); margin-top: 8px; }
+
+/* --- 07 Chaos: X-list --- */
+.cvad-x-panel { margin-top: 12px; background: rgba(255,255,255,0.03); border: 1px solid var(--cvad-line); border-radius: 8px; padding: 10px 14px; flex: 1; }
+.cvad-x-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 14px; }
+.cvad-x-item { display: flex; align-items: center; gap: 6px; font-size: 0.72rem; color: rgba(255,255,255,0.8); }
+.cvad-x-item .cvad-icon { width: 11px; height: 11px; color: #EF4444; flex-shrink: 0; }
+
+/* --- 08 Center arrow --- */
+.cvad-center-arrow { display: flex; align-items: center; justify-content: center; }
+.cvad-center-arrow .cvad-icon { width: 30px; height: 30px; color: var(--agent-blue); stroke-width: 2.5; }
+
+/* --- 09 Agentized side: agent boxes under each dept --- */
+.cvad-agent-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin-bottom: 8px; }
+.cvad-agent-box { background: rgba(16,169,244,0.08); border: 1px solid rgba(16,169,244,0.3); border-radius: 8px; padding: 8px 5px; text-align: center; min-height: 46px; display: flex; flex-direction: column; justify-content: center; }
+.cvad-agent-box span { font-size: 0.56rem; font-weight: 600; line-height: 1.25; color: rgba(255,255,255,0.9); }
+.cvad-agent-box .cvad-icon-wrap { width: 20px; height: 20px; margin: 0 auto 4px; border-radius: 50%; background: var(--agent-blue); display: flex; align-items: center; justify-content: center; }
+.cvad-agent-box .cvad-icon { width: 11px; height: 11px; color: #fff; }
+
+/* --- 10 Agentized: connector down to orchestration --- */
+.cvad-drop-lines { height: 12px; position: relative; }
+.cvad-drop-lines svg { width: 100%; height: 100%; overflow: visible; }
+
+/* --- 11 Layered stack (orchestration / governance / systems) --- */
+.cvad-layer { border-radius: 8px; padding: 8px 12px; margin-bottom: 6px; }
+.cvad-layer-label { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 6px; display: block; }
+.cvad-layer.orchestration { background: rgba(16,169,244,0.14); border: 1px solid rgba(16,169,244,0.4); }
+.cvad-layer.orchestration .cvad-layer-label { color: var(--agent-blue); }
+.cvad-orch-items { display: flex; gap: 12px; flex-wrap: wrap; font-size: 0.68rem; color: rgba(255,255,255,0.85); }
+.cvad-orch-items span::before { content: '•'; margin-right: 5px; color: var(--agent-blue); }
+
+.cvad-layer.governance { background: rgba(255,255,255,0.04); border: 1px solid var(--cvad-line); }
+.cvad-layer.governance .cvad-layer-label { color: rgba(255,255,255,0.7); }
+.cvad-gov-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 5px; }
+.cvad-gov-item { text-align: center; padding: 5px 2px; border-radius: 6px; }
+.cvad-gov-item .cvad-icon-wrap { width: 22px; height: 22px; margin: 0 auto 3px; border-radius: 6px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; }
+.cvad-gov-item .cvad-icon { width: 12px; height: 12px; color: #fff; }
+.cvad-gov-item span { font-size: 0.55rem; color: rgba(255,255,255,0.75); }
+.cvad-gov-item.highlight { background: rgba(255,104,0,0.12); border: 1px solid var(--human-orange); }
+.cvad-gov-item.highlight .cvad-icon-wrap { background: var(--human-orange); }
+.cvad-gov-item.highlight span { color: var(--human-orange); font-weight: 700; }
+
+.cvad-layer.systems { background: rgba(255,255,255,0.04); border: 1px solid var(--cvad-line); }
+.cvad-layer.systems .cvad-layer-label { color: rgba(255,255,255,0.7); }
+.cvad-sys-row { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+.cvad-sys-item { text-align: center; padding: 5px 2px; }
+.cvad-sys-item .cvad-icon-wrap { width: 20px; height: 20px; margin: 0 auto 3px; border-radius: 6px; background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center; }
+.cvad-sys-item .cvad-icon { width: 11px; height: 11px; color: rgba(255,255,255,0.8); }
+.cvad-sys-item span { font-size: 0.52rem; color: rgba(255,255,255,0.6); }
+
+/* --- 12 Right sidebar: measurable outcomes --- */
+.cvad-after-body { display: flex; gap: 8px; }
+.cvad-after-main { flex: 1; }
+.cvad-outcomes { width: 108px; background: rgba(255,255,255,0.04); border: 1px solid var(--cvad-line); border-radius: 8px; padding: 8px; display: flex; flex-direction: column; }
+.cvad-outcomes-label { font-family: var(--font-mono); font-size: 0.54rem; letter-spacing: 0.04em; color: var(--cvad-text-dim); margin-bottom: 8px; text-align: center; }
+.cvad-outcome-item { display: flex; align-items: center; gap: 5px; font-size: 0.62rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+.cvad-outcome-item .cvad-icon-wrap { width: 18px; height: 18px; border-radius: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.cvad-outcome-item .cvad-icon { width: 10px; height: 10px; color: #fff; }
+.oc-revenue .cvad-icon-wrap { background: #059669; } .oc-margin .cvad-icon-wrap { background: var(--agent-blue); }
+.oc-capacity .cvad-icon-wrap { background: #7C3AED; } .oc-speed .cvad-icon-wrap { background: var(--human-orange); }
+
+/* --- 13 Bottom FROM/TO bar --- */
+.cvad-bottom-bar { margin-top: 22px; border: 1px solid var(--cvad-line); border-radius: 10px; padding: 10px 22px; display: flex; align-items: center; gap: 18px; background: rgba(255,255,255,0.02); flex-wrap: wrap; }
+.cvad-badge-a { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.9rem; flex-shrink: 0; }
+.cvad-bottom-bar .from-label, .cvad-bottom-bar .to-label { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.04em; }
+.cvad-bottom-bar .from-label { color: var(--human-orange); }
+.cvad-bottom-bar .to-label { color: var(--agent-blue); }
+.cvad-bottom-bar .from-items, .cvad-bottom-bar .to-items { font-size: 0.72rem; color: rgba(255,255,255,0.75); }
+.cvad-bottom-bar .divider { color: rgba(255,255,255,0.25); }
+
+@media (max-width: 860px) {
+    .cvad-grid { grid-template-columns: 1fr; }
+    .cvad-center-arrow { transform: rotate(90deg); margin: 10px 0; }
+    .cvad-dept-row, .cvad-tool-row, .cvad-agent-row { grid-template-columns: repeat(3, 1fr); }
+    .cvad-gov-row { grid-template-columns: repeat(3, 1fr); }
+    .cvad-sys-row { grid-template-columns: repeat(4, 1fr); }
+    .cvad-outcomes { width: auto; }
+    .cvad-after-body { flex-direction: column; }
+}
