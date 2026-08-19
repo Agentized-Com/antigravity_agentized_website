@@ -11,6 +11,8 @@
     { "source": "/insights", "destination": "/insights.html" },
     { "source": "/governance", "destination": "/governance.html" },
     { "source": "/book", "destination": "/book.html" },
+    { "source": "/introduction", "destination": "/introduction.html" },
+    { "source": "/resources", "destination": "/resources.html" },
     { "source": "/speaking", "destination": "/speaking.html" },
     { "source": "/about", "destination": "/about.html" },
     { "source": "/contact", "destination": "/contact.html" }
