@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=17">
+    <link rel="stylesheet" href="style.css?v=18">
 </head>
 
 <body>
@@ -67,7 +67,10 @@
     <header class="hero">
         <!-- ambient background field: grid + breathing glows + randomized blinking cells/streaks, bled across the full hero -->
         <div class="hero-field" aria-hidden="true">
-            <div class="hero-field-grid"></div>
+            <!-- populated by script.js: one real <line> per grid line, drawn from the
+                 same coordinate model spawnCell/spawnStreak read from — not a CSS
+                 background pattern guessed into alignment separately -->
+            <svg class="hero-field-grid" aria-hidden="true"></svg>
             <div class="hero-glow hero-glow-left"></div>
             <div class="hero-glow hero-glow-right"></div>
 
@@ -726,7 +729,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=17"></script>
+    <script src="script.js?v=18"></script>
 </body>
 
 </html>

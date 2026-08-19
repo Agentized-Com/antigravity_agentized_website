@@ -358,24 +358,23 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
    part of a larger field instead of a boxed-in graphic. Sits behind
    .hero-grid (z-index:0 vs 1 above), purely decorative (aria-hidden). */
 .hero-field { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+/* Real <line> elements, drawn by script.js from the exact same grid model
+   (grid.verticalLines / grid.horizontalLines) that spawnCell()/spawnStreak()
+   read their coordinates from. A "grid square" is just the physical overlap
+   of one vertical and one horizontal line from that shared model — not a
+   separate background pattern that has to be kept in sync by hand. */
 .hero-field-grid {
     position: absolute;
-    /* inset:0 — must share the exact same origin as .hero-field, since
-       script.js places .hero-cell/.hero-streak squares at x/y = multiples of
-       34px measured from .hero-field's own top-left corner. Any offset here
-       (this used to be inset:-40px) puts the pattern out of sync with where
-       the squares actually land. */
     inset: 0;
-    background-image:
-        linear-gradient(rgba(16, 169, 244, 0.09) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(16, 169, 244, 0.09) 1px, transparent 1px);
-    background-size: 34px 34px;
+    width: 100%;
+    height: 100%;
     /* lines near the center stay crisp; anything farther out visibly thins to
        almost nothing well before the hero's edge, instead of holding steady
        most of the way across */
     mask-image: radial-gradient(ellipse 70% 78% at 50% 42%, #000 15%, rgba(0,0,0,0.35) 45%, transparent 78%);
     -webkit-mask-image: radial-gradient(ellipse 70% 78% at 50% 42%, #000 15%, rgba(0,0,0,0.35) 45%, transparent 78%);
 }
+.hero-field-grid line { stroke: rgba(16, 169, 244, 0.16); stroke-width: 1; }
 /* .hero-cell and .hero-streak elements are spawned one at a time by script.js
    at randomized grid-aligned positions with randomized durations — each plays
    this blink-on / hold / blink-off animation exactly once, then removes itself. */
