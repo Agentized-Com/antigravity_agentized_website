@@ -710,7 +710,7 @@ footer a:hover { color: var(--white); }
 
 /* --- 01 Title block --- */
 .cvad-title-block { text-align: center; margin-bottom: 26px; }
-.cvad-title { font-size: clamp(1.4rem, 2.6vw, 2.05rem); font-weight: 800; margin: 0 0 6px; letter-spacing: -0.01em; }
+.cvad-title { color: #fff; font-size: clamp(1.4rem, 2.6vw, 2.05rem); font-weight: 800; margin: 0 0 6px; letter-spacing: -0.01em; }
 .cvad-title sup { font-size: 0.5em; top: -0.8em; }
 .cvad-subtitle { font-size: 0.95rem; color: var(--cvad-text-dim); margin: 0; }
 
@@ -723,7 +723,7 @@ footer a:hover { color: var(--white); }
 .cvad-col-header .tag { display: inline-block; font-family: var(--font-mono); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; padding: 2px 8px; border-radius: 4px; margin-bottom: 6px; }
 .cvad-col.today .tag { color: var(--human-orange); background: rgba(255,104,0,0.12); }
 .cvad-col.after .tag { color: var(--agent-blue); background: rgba(16,169,244,0.12); }
-.cvad-col-header h3 { font-size: 1.02rem; font-weight: 700; margin: 0 0 3px; }
+.cvad-col-header h3 { color: #fff; font-size: 1.02rem; font-weight: 700; margin: 0 0 3px; }
 .cvad-col-header p { font-size: 0.78rem; color: var(--cvad-text-dim); margin: 0; }
 
 /* --- 04 Department row (both columns) --- */
