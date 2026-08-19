@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=12">
+    <link rel="stylesheet" href="style.css?v=13">
 </head>
 
 <body>
@@ -70,6 +70,23 @@
             <div class="hero-field-grid"></div>
             <div class="hero-glow hero-glow-left"></div>
             <div class="hero-glow hero-glow-right"></div>
+
+            <!-- occasional grid cells filling with translucent blue, one at a time -->
+            <span class="hero-cell" style="top:8%; left:20%; width:68px; height:68px; animation-delay:0s;"></span>
+            <span class="hero-cell" style="top:58%; left:10%; width:102px; height:68px; animation-delay:1.8s;"></span>
+            <span class="hero-cell" style="top:30%; left:48%; width:68px; height:102px; animation-delay:3.6s;"></span>
+            <span class="hero-cell" style="top:72%; left:38%; width:68px; height:68px; animation-delay:5.4s;"></span>
+            <span class="hero-cell" style="top:14%; left:70%; width:102px; height:68px; animation-delay:2.4s;"></span>
+            <span class="hero-cell" style="top:80%; left:82%; width:68px; height:68px; animation-delay:4.2s;"></span>
+            <span class="hero-cell" style="top:44%; left:92%; width:68px; height:102px; animation-delay:6s;"></span>
+
+            <!-- thin glowing light streaks running through the grid -->
+            <span class="hero-streak hero-streak-v" style="left:15%; animation-delay:0s;"></span>
+            <span class="hero-streak hero-streak-v" style="left:52%; animation-delay:2.2s;"></span>
+            <span class="hero-streak hero-streak-v" style="left:83%; animation-delay:4.4s;"></span>
+            <span class="hero-streak hero-streak-h" style="top:18%; animation-delay:1.1s;"></span>
+            <span class="hero-streak hero-streak-h" style="top:66%; animation-delay:3.3s;"></span>
+
             <span class="hero-marker" style="top:10%; left:6%; animation-delay:0s;"></span>
             <span class="hero-marker" style="top:24%; left:33%; animation-delay:.6s;"></span>
             <span class="hero-marker" style="top:64%; left:16%; animation-delay:1.2s;"></span>
@@ -99,28 +116,27 @@
             <div class="hero-visual">
                 <svg class="handoff-svg" viewBox="0 0 980 520" role="img" aria-label="The Agentized Handoff: a human objective on the left fans out to research, proposal and compliance agents in the center, which converge into a human approval gate on the right, resolving in a measured outcome, with a governance layer visible throughout. Illustrative workflow, not client data.">
                     <defs>
-                        <pattern id="hfGrid" width="34" height="34" patternUnits="userSpaceOnUse">
-                            <path d="M 34 0 L 0 0 0 34" fill="none" stroke="#10A9F4" stroke-opacity="0.22" stroke-width="1"/>
-                        </pattern>
-                        <radialGradient id="hfGlow" cx="490" cy="220" r="260" gradientUnits="userSpaceOnUse" gradientTransform="translate(490 220) scale(1.55 1) translate(-490 -220)">
-                            <stop offset="0%" stop-color="#10A9F4" stop-opacity="0.4"/>
-                            <stop offset="45%" stop-color="#10A9F4" stop-opacity="0.16"/>
-                            <stop offset="100%" stop-color="#10A9F4" stop-opacity="0"/>
-                        </radialGradient>
-                        <radialGradient id="hfFade" cx="490" cy="220" r="330" gradientUnits="userSpaceOnUse" gradientTransform="translate(490 220) scale(1.55 1) translate(-490 -220)">
-                            <stop offset="0%" stop-color="#07182B" stop-opacity="0"/>
-                            <stop offset="55%" stop-color="#07182B" stop-opacity="0.35"/>
-                            <stop offset="100%" stop-color="#07182B" stop-opacity="0.96"/>
-                        </radialGradient>
+                        <!-- diagram has no background of its own now — the ambient .hero-field grid
+                             behind the whole hero shows through it. This filter just makes the connector
+                             lines glow: a blurred, thicker copy is painted behind the crisp lines. -->
+                        <filter id="lineGlow" x="-60%" y="-60%" width="220%" height="220%">
+                            <feGaussianBlur stdDeviation="5"/>
+                        </filter>
                     </defs>
 
-                    <!-- background grid, with an oval blue glow at center fading out to dark ink at the edges -->
-                    <rect x="0" y="0" width="980" height="520" fill="url(#hfGrid)"/>
-                    <rect x="0" y="0" width="980" height="520" fill="url(#hfGlow)"/>
-                    <rect x="0" y="0" width="980" height="520" fill="url(#hfFade)"/>
-
-                    <!-- connecting lines -->
-                    <g fill="none" stroke="#10A9F4" stroke-width="1.8" opacity="0.55">
+                    <!-- connecting lines: soft blurred glow layer first, crisp lines painted on top -->
+                    <g fill="none" stroke="#10A9F4" stroke-width="5" opacity="0.45" filter="url(#lineGlow)">
+                        <path d="M320,76 C355,76 355,64 390,64" />
+                        <path d="M320,76 C355,76 355,188 390,188" />
+                        <path d="M320,76 C355,76 355,312 390,312" />
+                        <path d="M660,64 H680" />
+                        <path d="M660,188 H680" />
+                        <path d="M660,312 H680" />
+                        <path d="M680,64 V312" />
+                        <path d="M680,188 H700" />
+                        <path d="M830,243 V263" />
+                    </g>
+                    <g fill="none" stroke="#10A9F4" stroke-width="1.8" opacity="0.7">
                         <!-- objective fans out to each agent -->
                         <path class="hf-line l1" d="M320,76 C355,76 355,64 390,64" />
                         <path class="hf-line l1" d="M320,76 C355,76 355,188 390,188" />
@@ -721,7 +737,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=12"></script>
+    <script src="script.js?v=13"></script>
 </body>
 
 </html>
