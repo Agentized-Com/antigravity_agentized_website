@@ -365,38 +365,56 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
         linear-gradient(rgba(16, 169, 244, 0.09) 1px, transparent 1px),
         linear-gradient(90deg, rgba(16, 169, 244, 0.09) 1px, transparent 1px);
     background-size: 34px 34px;
-    mask-image: radial-gradient(ellipse 78% 90% at 50% 45%, #000 35%, transparent 95%);
-    -webkit-mask-image: radial-gradient(ellipse 78% 90% at 50% 45%, #000 35%, transparent 95%);
+    /* lines near the center stay crisp; anything farther out visibly thins to
+       almost nothing well before the hero's edge, instead of holding steady
+       most of the way across */
+    mask-image: radial-gradient(ellipse 70% 78% at 50% 42%, #000 15%, rgba(0,0,0,0.35) 45%, transparent 78%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 78% at 50% 42%, #000 15%, rgba(0,0,0,0.35) 45%, transparent 78%);
 }
+/* .hero-cell and .hero-streak elements are spawned one at a time by script.js
+   at randomized grid-aligned positions with randomized durations — each plays
+   this blink-on / hold / blink-off animation exactly once, then removes itself. */
 .hero-cell {
     position: absolute;
     background: rgba(16, 169, 244, 0.16);
-    border: 1px solid rgba(16, 169, 244, 0.25);
+    border: 1px solid rgba(16, 169, 244, 0.28);
     opacity: 0;
-    animation: heroCellFill 7.2s ease-in-out infinite;
+    pointer-events: none;
+    animation-name: heroCellBlink;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
-@keyframes heroCellFill {
-    0%, 60%, 100% { opacity: 0; }
-    75% { opacity: 1; }
-    90% { opacity: 0.3; }
+@keyframes heroCellBlink {
+    0% { opacity: 0; }
+    35% { opacity: 1; }
+    70% { opacity: 0.35; }
+    100% { opacity: 0; }
 }
 .hero-streak {
     position: absolute;
-    background: linear-gradient(to bottom, transparent, rgba(16, 169, 244, 0.7) 45%, rgba(16, 169, 244, 0.7) 55%, transparent);
     opacity: 0;
-    animation: heroStreak 5.5s ease-in-out infinite;
+    pointer-events: none;
+    animation-name: heroStreakBlink;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
 }
-.hero-streak-v { top: 0; width: 1px; height: 100%; }
+.hero-streak-v {
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(16, 169, 244, 0.7) 45%, rgba(16, 169, 244, 0.7) 55%, transparent);
+}
 .hero-streak-h {
     left: 0;
     width: 100%;
     height: 1px;
     background: linear-gradient(to right, transparent, rgba(16, 169, 244, 0.7) 45%, rgba(16, 169, 244, 0.7) 55%, transparent);
 }
-@keyframes heroStreak {
-    0%, 40%, 100% { opacity: 0; }
-    55% { opacity: 1; }
-    75% { opacity: 0; }
+@keyframes heroStreakBlink {
+    0% { opacity: 0; }
+    30% { opacity: 1; }
+    70% { opacity: 1; }
+    100% { opacity: 0; }
 }
 .hero-glow {
     position: absolute;
@@ -406,25 +424,14 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 }
 .hero-glow-left { width: 480px; height: 480px; left: -180px; top: 18%; background: rgba(16, 169, 244, 0.35); }
 .hero-glow-right { width: 560px; height: 560px; right: -220px; bottom: -8%; background: rgba(255, 104, 0, 0.16); animation-delay: 3s; }
-.hero-marker {
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background: var(--agent-blue);
-    border-radius: 1px;
-    animation: heroMarkerPulse 3.4s ease-in-out infinite;
-}
 @keyframes heroFieldBreathe {
     0%, 100% { opacity: 0.45; transform: scale(1); }
     50% { opacity: 0.8; transform: scale(1.1); }
 }
-@keyframes heroMarkerPulse {
-    0%, 100% { opacity: 0.15; box-shadow: 0 0 0 rgba(16, 169, 244, 0.7); }
-    50% { opacity: 1; box-shadow: 0 0 8px 2px rgba(16, 169, 244, 0.75); }
-}
 @media (prefers-reduced-motion: reduce) {
-    .hero-glow, .hero-marker, .hero-cell, .hero-streak { animation: none; }
-    .hero-cell { opacity: 0.5; }
+    /* .hero-cell/.hero-streak are never spawned by script.js under reduced motion,
+       this just covers the .hero-glow element that's static in HTML */
+    .hero-glow { animation: none; }
 }
 
 /* The hero gets its own, much wider container so the diagram isn't
