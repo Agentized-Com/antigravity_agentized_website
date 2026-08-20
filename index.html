@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=44">
+    <link rel="stylesheet" href="style.css?v=45">
 </head>
 
 <body>
@@ -110,11 +110,12 @@
                     <defs>
                         <!-- clips each node's hex-tile mosaic to that node's own rounded-rect
                              silhouette, so tiles never poke out past the box's edges/corners -->
-
-
-
-
-
+                        <clipPath id="clip-n1"><rect x="20" y="26" width="300" height="100" rx="12"/></clipPath>
+                        <clipPath id="clip-n2"><rect x="390" y="26" width="270" height="76" rx="10"/></clipPath>
+                        <clipPath id="clip-n3"><rect x="390" y="150" width="270" height="76" rx="10"/></clipPath>
+                        <clipPath id="clip-n4"><rect x="390" y="274" width="270" height="76" rx="10"/></clipPath>
+                        <clipPath id="clip-n5"><rect x="700" y="257" width="260" height="110" rx="10"/></clipPath>
+                        <clipPath id="clip-n6"><rect x="700" y="387" width="260" height="130" rx="10"/></clipPath>
                     </defs>
                     <g fill="none" stroke="#10A9F4" stroke-width="2" opacity="0.85">
                         <!-- objective fans out to each agent — each gets its own class so the
@@ -871,7 +872,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=44"></script>
+    <script src="script.js?v=45"></script>
 </body>
 
 </html>

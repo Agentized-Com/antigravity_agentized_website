@@ -117,9 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!node) return;
             const content = node.querySelector('.hf-node-content');
 
-            // 1. hexagons roll in one after another, covering the box
+            // 1. hexagons roll in one after another, covering the box —
+            // clipped to that node's own shape so tiles never spill past
+            // the box's edges/corners
             const group = document.createElementNS(SVG_NS, 'g');
             group.setAttribute('class', 'hf-tile-group');
+            group.setAttribute('clip-path', 'url(#clip-' + nodeClass + ')');
             handoff.insertBefore(group, node);
             const centers = tileCenters(x, y, w, h, tr);
             const spawnSpread = 280; // ms across which tiles land
