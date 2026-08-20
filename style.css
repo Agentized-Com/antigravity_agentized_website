@@ -679,12 +679,13 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 .handoff-node-stroke { stroke: rgba(16,169,244,0.5); }
 
 /* This one-time hero intro (plays once, when the diagram scrolls into view)
-   is driven by script.js. Plain fade — no hex-tile texture; that was tried
-   a few different ways and didn't land. Each node just fades in as a
-   whole, in flow order, with a line fading in between. */
+   is driven by script.js: for each block, a rolling cascade of hex tiles
+   flips in one after another covering the box, then that mosaic resolves
+   into the real, full solid block. */
+
 /* the block's rect starts scaled down to nothing at its own center, then
-   scales up to full size right as the hex seed (below) fades out — reads
-   as the hexagon expanding into the block, not two unrelated animations */
+   scales up to full size right as the hex mosaic (below) fades out — reads
+   as the tiles resolving into the block, not two unrelated animations */
 .handoff-anim .hf-node rect {
     transform-box: fill-box;
     transform-origin: center;
@@ -701,20 +702,20 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 .handoff-anim .hf-node-content.is-in,
 .handoff-anim .hf-line.is-in { opacity: 1; transition: opacity 0.25s ease; }
 
-/* the single hexagon "seed" each block starts from */
-.hf-seed-hex {
+/* the rolling hex-tile cascade — each tile flips in on arrival; the whole
+   group (script.js: .hf-tile-group) fades out once the real block appears */
+.hf-tile-group.is-out { animation: hfTileGroupOut 0.3s ease forwards; }
+@keyframes hfTileGroupOut { to { opacity: 0; } }
+.hf-tile-live {
+    opacity: 0;
     transform-box: fill-box;
     transform-origin: center;
-    opacity: 0;
-    animation: hfSeedIn 0.26s cubic-bezier(.22,.85,.3,1.1) forwards;
+    animation: hfTileFlip 0.3s cubic-bezier(.22,.85,.3,1.1) forwards;
 }
-.hf-seed-hex.is-out { animation: hfSeedOut 0.3s ease forwards; }
-@keyframes hfSeedIn {
-    0%   { opacity: 0; transform: scale(0) rotate(15deg); }
+@keyframes hfTileFlip {
+    0%   { opacity: 0; transform: scale(0) rotate(18deg); }
+    60%  { opacity: 1; transform: scale(1.15) rotate(-5deg); }
     100% { opacity: 1; transform: scale(1) rotate(0deg); }
-}
-@keyframes hfSeedOut {
-    to { opacity: 0; transform: scale(1.6); }
 }
 
 .diagram-caption { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); text-align: right; margin-top: var(--space-2); }

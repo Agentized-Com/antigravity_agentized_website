@@ -78,9 +78,10 @@ document.addEventListener('DOMContentLoaded', () => {
        sequence that conveys the actual flow order (unlike the looping
        ambient background effects below, which do respect that setting).
 
-       Each node starts as a single small hexagon at the box's center, then
-       that hexagon expands/fades into the full solid block — the hex is a
-       brief seed, not a permanent texture. */
+       Each block starts as a rolling cascade of small hexagons flipping in
+       one after another, covering the box — then that hex mosaic resolves
+       into the full solid block (mosaic fades out right as the real block
+       fades in on top of it). */
     const handoff = document.querySelector('.handoff-svg');
     if (handoff) {
         const SVG_NS = 'http://www.w3.org/2000/svg';
@@ -95,29 +96,53 @@ document.addEventListener('DOMContentLoaded', () => {
             return pts.join(' ');
         };
 
-        const revealNode = async (nodeClass, cx, cy, color) => {
+        // hex centers tiling a box (x,y,w,h) at tile radius tr, slightly
+        // overflowing the edges (fine — the whole mosaic is transient)
+        const tileCenters = (x, y, w, h, tr) => {
+            const hexw = Math.sqrt(3) * tr, hexh = 2 * tr, vstep = hexh * 0.75;
+            const centers = [];
+            let row = 0, yy = y - hexh / 2;
+            while (yy < y + h + hexh / 2) {
+                const xoff = (row % 2) ? hexw / 2 : 0;
+                let xx = x - hexw / 2 + xoff;
+                while (xx < x + w + hexw / 2) { centers.push([xx, yy]); xx += hexw; }
+                yy += vstep;
+                row++;
+            }
+            return centers;
+        };
+
+        const revealNode = async (nodeClass, x, y, w, h, tr, color) => {
             const node = handoff.querySelector('.hf-node.' + nodeClass);
             if (!node) return;
             const content = node.querySelector('.hf-node-content');
 
-            // 1. a single hexagon seed pops in at the box's center
-            const seed = document.createElementNS(SVG_NS, 'polygon');
-            seed.setAttribute('points', hexPoints(cx, cy, 30));
-            seed.setAttribute('fill', color);
-            seed.setAttribute('class', 'hf-seed-hex');
-            handoff.insertBefore(seed, node);
-            await wait(260);
+            // 1. hexagons roll in one after another, covering the box
+            const group = document.createElementNS(SVG_NS, 'g');
+            group.setAttribute('class', 'hf-tile-group');
+            handoff.insertBefore(group, node);
+            const centers = tileCenters(x, y, w, h, tr);
+            const spawnSpread = 280; // ms across which tiles land
+            centers.forEach(([cx, cy], i) => {
+                setTimeout(() => {
+                    const poly = document.createElementNS(SVG_NS, 'polygon');
+                    poly.setAttribute('points', hexPoints(cx, cy, tr));
+                    poly.setAttribute('fill', color);
+                    poly.setAttribute('class', 'hf-tile-live');
+                    group.appendChild(poly);
+                }, (i / Math.max(centers.length - 1, 1)) * spawnSpread);
+            });
+            await wait(spawnSpread + 320); // last tile spawned + its own flip duration
 
-            // 2. the seed fades out as the real block scales up from its
-            // own center to full size — reads as the hex "becoming" the box
-            seed.classList.add('is-out');
+            // 2. the mosaic resolves into the real, solid block
+            group.classList.add('is-out');
             node.classList.add('is-in');
-            await wait(320);
-            seed.remove();
+            await wait(300);
+            group.remove();
 
-            // 3. icon/text fades in once the block has finished expanding
+            // 3. icon/text fades in once the block is fully solid
             if (content) content.classList.add('is-in');
-            await wait(200);
+            await wait(150);
         };
 
         const revealLine = async (lineClass) => {
@@ -128,17 +153,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const playSequence = async () => {
             handoff.classList.add('handoff-anim');
-            await revealNode('n1', 170, 76, '#FF6800');
+            await revealNode('n1', 20, 26, 300, 100, 26, '#FF6800');
             await revealLine('to-r');
-            await revealNode('n2', 525, 64, '#10A9F4');
+            await revealNode('n2', 390, 26, 270, 76, 22, '#10A9F4');
             await revealLine('to-p');
-            await revealNode('n3', 525, 188, '#10A9F4');
+            await revealNode('n3', 390, 150, 270, 76, 22, '#10A9F4');
             await revealLine('to-c');
-            await revealNode('n4', 525, 312, '#10A9F4');
+            await revealNode('n4', 390, 274, 270, 76, 22, '#10A9F4');
             await revealLine('to-gate');
-            await revealNode('n5', 830, 312, '#FF6800');
+            await revealNode('n5', 700, 257, 260, 110, 24, '#FF6800');
             await revealLine('to-outcome');
-            await revealNode('n6', 830, 452, '#10A9F4');
+            await revealNode('n6', 700, 387, 260, 130, 26, '#10A9F4');
         };
 
         const playOnce = new IntersectionObserver((entries) => {
