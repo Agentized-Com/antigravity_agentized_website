@@ -124,12 +124,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // rounded-rect shape, so nothing pokes past the corners) at full
         // opacity and STAY — every box's permanent surface is the hex
         // mosaic itself, not a flourish that resolves into a flat fill.
-        const assembleNode = async (nodeClass, x, y, w, h, tr, color, grout) => {
+        const assembleNode = async (nodeClass, x, y, w, h, tr, strokeColor) => {
             const node = handoff.querySelector('.hf-node.' + nodeClass);
             if (!node) return;
+            const rect = node.querySelector('rect');
             const content = node.querySelector('.hf-node-content');
             const group = node.querySelector('.hf-tile-slot.' + nodeClass + '-slot');
             if (!group) return;
+
+            if (rect) rect.classList.add('is-in'); // border appears right as this node's build starts
 
             const centers = tileCenters(x, y, w, h, tr);
             const spawnSpread = 260; // ms across which tiles land
@@ -137,8 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     const poly = document.createElementNS(SVG_NS, 'polygon');
                     poly.setAttribute('points', hexPoints(cx, cy, tr));
-                    poly.setAttribute('fill', color);
-                    poly.setAttribute('class', 'hf-tile-live ' + grout);
+                    poly.setAttribute('stroke', strokeColor);
+                    poly.setAttribute('class', 'hf-tile-live');
                     group.appendChild(poly);
                 }, (i / Math.max(centers.length - 1, 1)) * spawnSpread);
             });
@@ -155,17 +158,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const playSequence = async () => {
             handoff.classList.add('handoff-anim');
-            await assembleNode('n1', 20, 26, 300, 100, 26, '#FF6800', 'grout-light');
+            await assembleNode('n1', 20, 26, 300, 100, 26, '#FF6800');
             await revealLine('to-r');
-            await assembleNode('n2', 390, 26, 270, 76, 22, '#10A9F4', 'grout-light');
+            await assembleNode('n2', 390, 26, 270, 76, 22, '#10A9F4');
             await revealLine('to-p');
-            await assembleNode('n3', 390, 150, 270, 76, 22, '#10A9F4', 'grout-light');
+            await assembleNode('n3', 390, 150, 270, 76, 22, '#10A9F4');
             await revealLine('to-c');
-            await assembleNode('n4', 390, 274, 270, 76, 22, '#10A9F4', 'grout-light');
+            await assembleNode('n4', 390, 274, 270, 76, 22, '#10A9F4');
             await revealLine('to-gate');
-            await assembleNode('n5', 700, 257, 260, 110, 24, '#FF6800', 'grout-light');
+            await assembleNode('n5', 700, 257, 260, 110, 24, '#FF6800');
             await revealLine('to-outcome');
-            await assembleNode('n6', 700, 387, 260, 130, 26, '#EFEBE3', 'grout-dark');
+            await assembleNode('n6', 700, 387, 260, 130, 26, '#B9C6D2');
         };
 
         const playOnce = new IntersectionObserver((entries) => {

@@ -680,28 +680,33 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 
 /* This one-time hero intro (plays once, when the diagram scrolls into view)
    is driven entirely by script.js — real DOM elements get created on a
-   timer, same technique as the .hero-cell background squares. The box
-   outline (rect) and hex-tile mosaic are always present/visible — only the
-   icon+text (.hf-node-content) waits for the tiles to finish before it
-   fades in, so text never renders on top of an unfinished mosaic. */
+   timer, same technique as the .hero-cell background squares. Nothing about
+   a node is visible — not even its border — until that node's turn in the
+   sequence starts; the border and the hex tiles appear together, then the
+   icon+text fades in once the mosaic finishes building. */
+.handoff-anim .hf-node rect,
 .handoff-anim .hf-node-content,
 .handoff-anim .hf-line { opacity: 0; }
+.handoff-anim .hf-node rect.is-in,
 .handoff-anim .hf-node-content.is-in,
-.handoff-anim .hf-line.is-in { opacity: 1; transition: opacity 0.35s ease; }
+.handoff-anim .hf-line.is-in { opacity: 1; transition: opacity 0.2s ease; }
 
 /* one tile per polygon JS creates. Every node's mosaic is now permanent —
    full opacity, never faded or removed, IS the block's surface. A thin
    grout-line stroke keeps the honeycomb pattern visible as a pattern
    instead of adjacent same-color tiles blending into one flat block. */
+/* outline-only hexagons — a solid fill made every tile in a box blend into
+   one flat color block regardless of the grout line; an open honeycomb
+   line actually reads as a hexagon pattern. JS sets `stroke` per node's
+   accent color and leaves `fill: none`. */
 .hf-tile-live {
     opacity: 0;
-    stroke-width: 1;
+    fill: none;
+    stroke-width: 1.5;
     transform-box: fill-box;
     transform-origin: center;
     animation: hfTileFlip 0.3s cubic-bezier(.22,.85,.3,1.1) forwards;
 }
-.hf-tile-live.grout-light { stroke: rgba(255,255,255,0.28); }
-.hf-tile-live.grout-dark { stroke: rgba(7,24,43,0.16); }
 @keyframes hfTileFlip {
     0%   { opacity: 0; transform: scale(0) rotate(18deg); }
     60%  { opacity: 1; transform: scale(1.15) rotate(-5deg); }
