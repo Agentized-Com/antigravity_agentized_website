@@ -78,18 +78,46 @@ document.addEventListener('DOMContentLoaded', () => {
        sequence that conveys the actual flow order (unlike the looping
        ambient background effects below, which do respect that setting).
 
-       Plain solid boxes, no hex-tile texture — that was tried (a few ways)
-       and didn't land, so this is back to simple: each node just fades in,
-       in flow order, with a line fading in between each one. */
+       Each node starts as a single small hexagon at the box's center, then
+       that hexagon expands/fades into the full solid block — the hex is a
+       brief seed, not a permanent texture. */
     const handoff = document.querySelector('.handoff-svg');
     if (handoff) {
+        const SVG_NS = 'http://www.w3.org/2000/svg';
         const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-        const revealNode = async (nodeClass) => {
+        const hexPoints = (cx, cy, r) => {
+            const pts = [];
+            for (let i = 0; i < 6; i++) {
+                const ang = (Math.PI / 180) * (60 * i - 30);
+                pts.push((cx + r * Math.cos(ang)).toFixed(1) + ',' + (cy + r * Math.sin(ang)).toFixed(1));
+            }
+            return pts.join(' ');
+        };
+
+        const revealNode = async (nodeClass, cx, cy, color) => {
             const node = handoff.querySelector('.hf-node.' + nodeClass);
             if (!node) return;
+            const content = node.querySelector('.hf-node-content');
+
+            // 1. a single hexagon seed pops in at the box's center
+            const seed = document.createElementNS(SVG_NS, 'polygon');
+            seed.setAttribute('points', hexPoints(cx, cy, 30));
+            seed.setAttribute('fill', color);
+            seed.setAttribute('class', 'hf-seed-hex');
+            handoff.insertBefore(seed, node);
+            await wait(260);
+
+            // 2. the seed fades out as the real block scales up from its
+            // own center to full size — reads as the hex "becoming" the box
+            seed.classList.add('is-out');
             node.classList.add('is-in');
-            await wait(350);
+            await wait(320);
+            seed.remove();
+
+            // 3. icon/text fades in once the block has finished expanding
+            if (content) content.classList.add('is-in');
+            await wait(200);
         };
 
         const revealLine = async (lineClass) => {
@@ -100,17 +128,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const playSequence = async () => {
             handoff.classList.add('handoff-anim');
-            await revealNode('n1');
+            await revealNode('n1', 170, 76, '#FF6800');
             await revealLine('to-r');
-            await revealNode('n2');
+            await revealNode('n2', 525, 64, '#10A9F4');
             await revealLine('to-p');
-            await revealNode('n3');
+            await revealNode('n3', 525, 188, '#10A9F4');
             await revealLine('to-c');
-            await revealNode('n4');
+            await revealNode('n4', 525, 312, '#10A9F4');
             await revealLine('to-gate');
-            await revealNode('n5');
+            await revealNode('n5', 830, 312, '#FF6800');
             await revealLine('to-outcome');
-            await revealNode('n6');
+            await revealNode('n6', 830, 452, '#10A9F4');
         };
 
         const playOnce = new IntersectionObserver((entries) => {
