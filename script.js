@@ -266,6 +266,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    /* ---------- Three-outcomes diagram: hexagon icon badges that flip in ----------
+       Wraps every bare .mbb-icon svg in a .mbb-icon-hex badge (so the HTML doesn't
+       need ~50 manual wrapper divs), then staggers each one's flip-in delay in
+       document order. The actual animation plays via CSS once #outcomes gets
+       .is-visible from the data-reveal observer above — this just sets up the
+       wrappers and delays ahead of time. */
+    document.querySelectorAll('.mbb .mbb-icon').forEach((icon, i) => {
+        if (icon.closest('.mbb-icon-circle')) {
+            icon.closest('.mbb-icon-circle').style.setProperty('--hex-delay', (i * 0.03) + 's');
+            return;
+        }
+        const wrap = document.createElement('span');
+        wrap.className = 'mbb-icon-hex';
+        wrap.style.setProperty('--hex-delay', (i * 0.03) + 's');
+        icon.parentNode.insertBefore(wrap, icon);
+        wrap.appendChild(icon);
+    });
+
     /* ---------- Simple submit-state UX for lead forms (FormSubmit-backed) ---------- */
     document.querySelectorAll('form[data-lead-form]').forEach((form) => {
         form.addEventListener('submit', () => {

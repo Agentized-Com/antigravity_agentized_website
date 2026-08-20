@@ -960,3 +960,118 @@ footer a:hover { color: var(--white); }
     .cvad-outcomes { width: auto; }
     .cvad-after-body { flex-direction: column; }
 }
+
+/* ============================================================
+   THREE-OUTCOMES DIAGRAM (H06) — vector, mirrors the .mbb-col cards above it.
+   Reuses the icon symbols already defined in the .cvad component earlier in
+   the page (ic-users, ic-person, ic-doc, ic-database, etc.) plus a handful
+   of new ones (target, search, edit, filter, clock, warning, rocket).
+   ============================================================ */
+.mbb {
+    background: #0A1626;
+    border-radius: 20px;
+    padding: 32px 28px 24px;
+    color: #fff;
+    font-family: var(--font-body);
+}
+.mbb-icon { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+
+/* head */
+.mbb-head { text-align: center; margin-bottom: 24px; }
+.mbb-head h3 { color: #fff; font-size: clamp(1.2rem, 2.2vw, 1.7rem); font-weight: 800; margin: 0 0 4px; }
+.mbb-head p { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin: 0; }
+
+/* columns */
+.mbb-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: stretch; }
+.mbb-col { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; }
+.mbb-col-head { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+.mbb-num { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7); }
+.mbb-col-head.orange .mbb-num { background: rgba(255,104,0,0.18); color: var(--human-orange); }
+.mbb-col-head.blue .mbb-num { background: rgba(16,169,244,0.18); color: var(--agent-blue); }
+.mbb-col-head h4 { color: #fff; font-size: 0.92rem; font-weight: 700; margin: 0; }
+
+/* shared node/chip styling */
+.mbb-node, .mbb-chip {
+    display: flex; align-items: center; gap: 7px;
+    background: rgba(16,169,244,0.08); border: 1px solid rgba(16,169,244,0.3);
+    border-radius: 7px; padding: 7px 9px; font-size: 0.72rem; color: rgba(255,255,255,0.9);
+}
+.mbb-node.highlight, .mbb-chip.highlight { background: rgba(255,104,0,0.14); border-color: var(--human-orange); color: #FFD9B3; font-weight: 600; }
+.mbb-node.sm, .mbb-chip.sm { font-size: 0.66rem; padding: 6px 8px; }
+.mbb-node.end { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
+
+/* ===== Column 1: vertical signal -> chain ===== */
+.mbb-signal { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 10px; font-size: 0.68rem; color: rgba(255,255,255,0.7); }
+.mbb-icon-circle {
+    width: 32px; height: 32px;
+    background: rgba(255,104,0,0.18);
+    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
+    display: flex; align-items: center; justify-content: center;
+}
+.mbb-icon-circle .mbb-icon { color: var(--human-orange); width: 15px; height: 15px; }
+
+/* icon badges: hexagon-clipped, and "folded in" with a 3D flip the moment
+   the diagram's section scrolls into view (script.js wraps every .mbb-icon
+   in one of these and staggers the delay) */
+.mbb-icon-hex, .mbb-icon-circle {
+    perspective: 300px;
+    transform-style: preserve-3d;
+    opacity: 0;
+    transform: rotateY(-100deg) scale(0.5);
+}
+.mbb-icon-hex {
+    width: 22px; height: 22px;
+    background: rgba(16,169,244,0.16);
+    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.mbb-node.highlight .mbb-icon-hex, .mbb-chip.highlight .mbb-icon-hex { background: rgba(255,104,0,0.22); }
+.mbb-node.highlight .mbb-icon-hex .mbb-icon, .mbb-chip.highlight .mbb-icon-hex .mbb-icon { color: var(--human-orange); }
+#outcomes.is-visible .mbb-icon-hex,
+#outcomes.is-visible .mbb-icon-circle {
+    animation: mbbHexFlip 0.65s cubic-bezier(.22,.85,.3,1.1) forwards;
+    animation-delay: var(--hex-delay, 0s);
+}
+@keyframes mbbHexFlip {
+    0%   { opacity: 0; transform: rotateY(-100deg) scale(0.45); }
+    55%  { opacity: 1; transform: rotateY(18deg) scale(1.08); }
+    100% { opacity: 1; transform: rotateY(0deg) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .mbb-icon-hex, .mbb-icon-circle { opacity: 1; transform: none; animation: none; }
+}
+.mbb-chain { position: relative; display: flex; flex-direction: column; gap: 6px; padding-left: 14px; margin-bottom: 12px; }
+.mbb-chain::before { content: ''; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 1px; background: rgba(16,169,244,0.3); }
+.mbb-chain .mbb-node { position: relative; }
+.mbb-chain .mbb-node::before { content: ''; position: absolute; left: -14px; top: 50%; width: 10px; height: 1px; background: rgba(16,169,244,0.3); transform: translateY(-50%); }
+
+/* ===== Column 2: inputs -> agents -> exception ===== */
+.mbb-grid-flow { display: flex; gap: 8px; margin-bottom: 12px; flex: 1; }
+.mbb-inputs { display: flex; flex-direction: column; gap: 5px; flex: 0 0 34%; }
+.mbb-inputs div { display: flex; align-items: center; gap: 6px; font-size: 0.62rem; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.04); border-radius: 5px; padding: 5px 7px; }
+.mbb-agents { display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.mbb-exception { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex: 0 0 30%; border-left: 1px dashed rgba(255,104,0,0.35); padding-left: 8px; }
+.mbb-exception-label { display: flex; align-items: center; gap: 4px; font-size: 0.6rem; color: var(--human-orange); font-family: var(--font-mono); }
+
+/* ===== Column 3: sequential vs parallel ===== */
+.mbb-compare-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.5); margin: 8px 0 6px; text-transform: uppercase; }
+.mbb-row-flow { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 4px; }
+.mbb-row-flow .mbb-chip { flex: 1 1 auto; justify-content: center; text-align: center; }
+.mbb-parallel { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
+.mbb-parallel-agents { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+
+/* ===== bottom stat strips (all columns) ===== */
+.mbb-stats { display: flex; flex-wrap: wrap; gap: 5px 10px; margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); }
+.mbb-stats div { display: flex; align-items: center; gap: 5px; font-size: 0.62rem; color: rgba(255,255,255,0.55); }
+
+/* ===== footer wave bar ===== */
+.mbb-footer {
+    margin-top: 20px; text-align: center; padding: 14px 0; border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.6);
+}
+.mbb-dot { color: var(--agent-blue); margin: 0 10px; }
+
+@media (max-width: 900px) {
+    .mbb-cols { grid-template-columns: 1fr; }
+}
