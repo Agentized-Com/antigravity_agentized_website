@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=50">
+    <link rel="stylesheet" href="style.css?v=51">
 </head>
 
 <body>
@@ -99,6 +99,69 @@
                 </div>
             </div>
             <div class="hero-visual">
+                <!-- ============================================================
+                     MOBILE-ONLY: a fully vertical rebuild of the diagram below,
+                     shown only under the 767px breakpoint (see .hero-mobile-diagram
+                     in style.css). Not a shrunk copy of the desktop SVG — this is
+                     built to actually fit and read on a phone screen: one column,
+                     top to bottom, same content and order as the desktop version.
+                     ============================================================ -->
+                <div class="hero-mobile-diagram">
+                    <svg width="0" height="0" style="position:absolute">
+                        <defs>
+                            <symbol id="hmd-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></symbol>
+                            <symbol id="hmd-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m21 21-4.35-4.35"/></symbol>
+                            <symbol id="hmd-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></symbol>
+                            <symbol id="hmd-shield" viewBox="0 0 24 24"><path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5Z"/><path d="m9 12 2 2 4-4"/></symbol>
+                            <symbol id="hmd-check" viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><path d="m16 11 2 2 4-4"/></symbol>
+                            <symbol id="hmd-key" viewBox="0 0 24 24"><circle cx="8" cy="15" r="4"/><path d="m10.5 12.5 9-9M17 6l2 2M14 9l2 2"/></symbol>
+                        </defs>
+                    </svg>
+
+                    <div class="mbb-node highlight">
+                        <svg class="mbb-icon"><use href="#hmd-target"/></svg>
+                        <div><strong>Human Objective</strong><span class="hmd-sub">Increase proposal win rate — Owner: Chief Revenue Officer</span></div>
+                    </div>
+                    <span class="mbb-arrow-down">↓</span>
+
+                    <div class="mbb-node">
+                        <svg class="mbb-icon"><use href="#hmd-search"/></svg>
+                        <div><strong>Research Agent</strong><span class="hmd-sub">Account research</span></div>
+                    </div>
+                    <span class="mbb-arrow-down">↓</span>
+
+                    <div class="mbb-node">
+                        <svg class="mbb-icon"><use href="#hmd-doc"/></svg>
+                        <div><strong>Proposal Agent</strong><span class="hmd-sub">Draft + assemble</span></div>
+                    </div>
+                    <span class="mbb-arrow-down">↓</span>
+
+                    <div class="mbb-node">
+                        <svg class="mbb-icon"><use href="#hmd-shield"/></svg>
+                        <div><strong>Compliance Agent</strong><span class="hmd-sub">Review + flag</span></div>
+                    </div>
+                    <span class="mbb-arrow-down">↓</span>
+
+                    <div class="mbb-node highlight">
+                        <svg class="mbb-icon"><use href="#hmd-check"/></svg>
+                        <div><strong>Human Gate</strong><span class="hmd-sub">Final approval — exceptions escalate</span></div>
+                    </div>
+                    <span class="mbb-arrow-down">↓</span>
+
+                    <div class="mbb-node end">
+                        <svg class="mbb-icon"><use href="#hmd-target"/></svg>
+                        <div><strong>Measured Outcome</strong><span class="hmd-sub">Faster. Better. — cycle time / quality / win rate</span></div>
+                        <span class="mbb-node-tag">outcome</span>
+                    </div>
+                    <span class="mbb-arrow-down">↓</span>
+
+                    <div class="mbb-node system">
+                        <svg class="mbb-icon"><use href="#hmd-key"/></svg>
+                        <div><strong>Governance Layer</strong><span class="hmd-sub">Identity / permissions / logs / policy / audit</span></div>
+                        <span class="mbb-node-tag">system</span>
+                    </div>
+                </div>
+
                 <svg class="handoff-svg" viewBox="0 0 980 650" role="img" aria-label="The Agentized Handoff: a human objective on the left fans out to research, proposal and compliance agents in the center, which converge into a human approval gate on the right at the compliance agent's level, resolving in a measured outcome below it, with a governance layer visible throughout. Illustrative workflow, not client data.">
                     <!-- diagram has no background of its own — the ambient .hero-field layer
                          behind the whole hero (grid + focused glow) shows through it. No blurred
@@ -918,7 +981,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=50"></script>
+    <script src="script.js?v=51"></script>
 </body>
 
 </html>

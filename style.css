@@ -521,6 +521,19 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 
 .hero-visual { position: relative; flex: 1 1 0%; min-width: 0; }
 
+/* mobile-only vertical rebuild of the hero diagram — hidden by default,
+   swapped in for .handoff-svg under the 767px breakpoint (see Responsive
+   section). Reuses the same .mbb-node/.mbb-arrow-down language already
+   established for the other diagrams on this page. */
+.hero-mobile-diagram { display: none; flex-direction: column; gap: 2px; width: 100%; }
+.hero-mobile-diagram .mbb-node { align-items: flex-start; padding: 10px 12px; gap: 9px; }
+.hero-mobile-diagram .mbb-node .mbb-icon { margin-top: 2px; width: 15px; height: 15px; }
+.hero-mobile-diagram .mbb-node > div { display: flex; flex-direction: column; gap: 2px; }
+.hero-mobile-diagram .mbb-node strong { font-size: 0.85rem; font-weight: 700; }
+.hero-mobile-diagram .hmd-sub { font-size: 0.72rem; color: rgba(255,255,255,0.6); line-height: 1.4; }
+.hero-mobile-diagram .mbb-node.highlight .hmd-sub { color: rgba(255,217,179,0.85); }
+.hero-mobile-diagram .mbb-node-tag { align-self: flex-start; margin-left: 0; margin-top: 2px; }
+
 /* Page hero (secondary pages, less tall than homepage) */
 .page-hero { padding: 80px 0 72px; }
 .page-hero h1 { margin-bottom: var(--space-4); }
@@ -831,13 +844,14 @@ footer a:hover { color: var(--white); }
     .footer-grid { grid-template-columns: 1fr; }
     .cta-row .btn { width: 100%; }
 
-    /* The hero handoff diagram has fixed-size text baked into its SVG
-       viewBox — shrinking the whole thing to fit a ~335px phone width
-       (from a 980-unit-wide diagram) renders that text at a few pixels
-       tall, illegible. Same fix as the data tables: let it scroll
-       horizontally at a real, readable size instead of shrinking to fit. */
-    .hero-visual { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
-    .handoff-svg { width: 640px; max-width: none; }
+    /* The hero handoff diagram is a 3-column SVG with fixed-size text baked
+       into its viewBox — no amount of shrinking makes that legible on a
+       phone. Below this breakpoint, swap it for .hero-mobile-diagram: a
+       separate, genuinely vertical rebuild (same content/order, one column,
+       real HTML so it reflows and stays legible), instead of scaling or
+       scrolling the desktop version. */
+    .handoff-svg { display: none; }
+    .hero-mobile-diagram { display: flex; }
 
     /* Chaos-diagram and three-outcomes diagram: cut the side padding, which
        was eating a third of the available width on a phone screen */
