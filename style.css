@@ -686,25 +686,58 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
        animation finished. A fade can't do that: every path is either fully
        drawn or not, never partially. */
     .handoff-anim .hf-node,
-    .handoff-anim .hf-line { opacity: 0; animation: hfIn 0.4s ease forwards; }
+    .handoff-anim .hf-line { opacity: 0; animation: hfIn 0.35s ease forwards; }
 
-    /* one true sequence, in flow order: Objective, then the line to Research,
-       then Research itself, then the line to Proposal, then Proposal, then
-       the line to Compliance, then Compliance — then all three converge into
-       the Gate at once, then Gate, then the line to Outcome, then Outcome. */
-    .handoff-anim .hf-node.n1        { animation-delay: 0.1s; }  /* Human Objective */
-    .handoff-anim .hf-line.to-r      { animation-delay: 0.5s; }
-    .handoff-anim .hf-node.n2        { animation-delay: 0.9s; }  /* Research Agent */
-    .handoff-anim .hf-line.to-p      { animation-delay: 1.3s; }
-    .handoff-anim .hf-node.n3        { animation-delay: 1.7s; }  /* Proposal Agent */
-    .handoff-anim .hf-line.to-c      { animation-delay: 2.1s; }
-    .handoff-anim .hf-node.n4        { animation-delay: 2.5s; }  /* Compliance Agent */
-    .handoff-anim .hf-line.to-gate   { animation-delay: 2.9s; }
-    .handoff-anim .hf-node.n5        { animation-delay: 3.3s; }  /* Human Gate */
-    .handoff-anim .hf-line.to-outcome { animation-delay: 3.7s; }
-    .handoff-anim .hf-node.n6        { animation-delay: 4.1s; }  /* Measured Outcome */
+    /* one true sequence, in flow order: Objective assembles from hex tiles,
+       then the line to Research, then Research assembles, then the line to
+       Proposal, then Proposal, then the line to Compliance, then Compliance
+       — then all three converge into the Gate at once, then Gate assembles,
+       then the line to Outcome, then Outcome assembles. Each node's "slot"
+       is 1.2s (tiles flip in, then the real box fades in as the tiles fade
+       out); each line's slot is 0.4s. */
+    .handoff-anim .hf-node.n1        { animation-delay: 0.55s; }  /* Human Objective */
+    .handoff-anim .hf-line.to-r      { animation-delay: 1.0s; }
+    .handoff-anim .hf-node.n2        { animation-delay: 1.75s; }  /* Research Agent */
+    .handoff-anim .hf-line.to-p      { animation-delay: 2.2s; }
+    .handoff-anim .hf-node.n3        { animation-delay: 2.95s; }  /* Proposal Agent */
+    .handoff-anim .hf-line.to-c      { animation-delay: 3.4s; }
+    .handoff-anim .hf-node.n4        { animation-delay: 4.15s; }  /* Compliance Agent */
+    .handoff-anim .hf-line.to-gate   { animation-delay: 4.6s; }
+    .handoff-anim .hf-node.n5        { animation-delay: 5.35s; }  /* Human Gate */
+    .handoff-anim .hf-line.to-outcome { animation-delay: 5.8s; }
+    .handoff-anim .hf-node.n6        { animation-delay: 6.55s; }  /* Measured Outcome */
+
+    /* each node "builds" from a mosaic of small hexagon tiles that flip into
+       place (scale+rotate from nothing), then the whole tile mosaic fades
+       out right as the real, detailed box (icons/text) fades in underneath —
+       one node materializes, then the next, following the same sequence as
+       the nodes/lines above */
+    .handoff-anim .hf-tile {
+        animation: hfTileFlip 0.35s cubic-bezier(.22,.85,.3,1.1) forwards;
+        animation-delay: calc(var(--group-delay, 0s) + var(--tile-delay, 0s));
+    }
+    .handoff-anim .n1-tiles .hf-tile { --group-delay: 0.1s; }
+    .handoff-anim .n2-tiles .hf-tile { --group-delay: 1.3s; }
+    .handoff-anim .n3-tiles .hf-tile { --group-delay: 2.5s; }
+    .handoff-anim .n4-tiles .hf-tile { --group-delay: 3.7s; }
+    .handoff-anim .n5-tiles .hf-tile { --group-delay: 4.9s; }
+    .handoff-anim .n6-tiles .hf-tile { --group-delay: 6.1s; }
+    .handoff-anim .hf-tiles { animation: hfTilesOut 0.25s ease forwards; }
+    .handoff-anim .n1-tiles { animation-delay: 0.55s; }
+    .handoff-anim .n2-tiles { animation-delay: 1.75s; }
+    .handoff-anim .n3-tiles { animation-delay: 2.95s; }
+    .handoff-anim .n4-tiles { animation-delay: 4.15s; }
+    .handoff-anim .n5-tiles { animation-delay: 5.35s; }
+    .handoff-anim .n6-tiles { animation-delay: 6.55s; }
 }
 @keyframes hfIn { to { opacity: 1; } }
+.hf-tile { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(0); }
+@keyframes hfTileFlip {
+    0%   { opacity: 0; transform: scale(0) rotate(18deg); }
+    60%  { opacity: 1; transform: scale(1.15) rotate(-5deg); }
+    100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes hfTilesOut { to { opacity: 0; } }
 
 .diagram-caption { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); text-align: right; margin-top: var(--space-2); }
 .bg-ink .diagram-caption, .bg-midnight .diagram-caption { color: rgba(247,245,240,0.4); }
