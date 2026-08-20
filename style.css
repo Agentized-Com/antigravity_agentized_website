@@ -328,29 +328,6 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
     overflow: hidden;
 }
 
-/* soft decorative rings bleeding in from the bottom-left corner */
-.hero::before {
-    content: '';
-    position: absolute;
-    left: -220px;
-    bottom: -260px;
-    width: 620px;
-    height: 620px;
-    border-radius: 50%;
-    border: 1px solid rgba(16, 169, 244, 0.16);
-    pointer-events: none;
-}
-.hero::after {
-    content: '';
-    position: absolute;
-    left: -120px;
-    bottom: -160px;
-    width: 360px;
-    height: 360px;
-    border-radius: 50%;
-    border: 1px solid rgba(16, 169, 244, 0.22);
-    pointer-events: none;
-}
 .hero .hero-grid { position: relative; z-index: 1; }
 
 /* ambient background field: bleeds a grid + breathing glows + pulsing
@@ -479,8 +456,7 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
     filter: blur(70px);
     animation: heroFieldBreathe 9s ease-in-out infinite;
 }
-/* kept small, dim, and pinned to the bottom-left corner — same corner as the
-   existing .hero::before/::after decorative rings — so it sits below the
+/* kept small, dim, and pinned to the bottom-left corner so it sits below the
    headline/body copy instead of glowing through it */
 .hero-glow-left { width: 340px; height: 340px; left: -160px; bottom: -140px; top: auto; background: rgba(16, 169, 244, 0.12); }
 .hero-glow-right { width: 560px; height: 560px; right: -220px; bottom: -8%; background: rgba(255, 104, 0, 0.16); animation-delay: 3s; }
