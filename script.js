@@ -116,9 +116,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return centers;
     };
 
-    const initHandoffAnimation = (svgSelector, steps) => {
+    const initHandoffAnimation = (svgSelector, steps, clipPrefix) => {
         const svg = document.querySelector(svgSelector);
         if (!svg) return;
+        clipPrefix = clipPrefix || 'clip-';
 
         const revealNode = async (nodeClass, x, y, w, h, tr, color) => {
             const node = svg.querySelector('.hf-node.' + nodeClass);
@@ -127,10 +128,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // 1. hexagons roll in one after another, covering the box —
             // clipped to that node's own shape so tiles never spill past
-            // the box's edges/corners
+            // the box's edges/corners. clipPrefix distinguishes the desktop
+            // SVG's clip-nX ids from the mobile SVG's clip-mob-nX ids —
+            // both exist in the same document, so a bare "clip-n1" would
+            // otherwise resolve to whichever one happens to be first.
             const group = document.createElementNS(SVG_NS, 'g');
             group.setAttribute('class', 'hf-tile-group');
-            group.setAttribute('clip-path', 'url(#clip-' + nodeClass + ')');
+            group.setAttribute('clip-path', 'url(#' + clipPrefix + nodeClass + ')');
             svg.insertBefore(group, node);
             const centers = tileCenters(x, y, w, h, tr);
             const spawnSpread = 280; // ms across which tiles land
@@ -212,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { type: 'node', id: 'n6', x: 10, y: 592, w: 320, h: 106, tr: 24, color: '#B9C6D2' },
         { type: 'line', id: 'l6' },
         { type: 'node', id: 'n7', x: 10, y: 732, w: 320, h: 78, tr: 20, color: '#10A9F4' },
-    ]);
+    ], 'clip-mob-');
 
     /* ---------- Hero ambient field ----------
        Builds an explicit grid model — a labeled object per vertical line, per
