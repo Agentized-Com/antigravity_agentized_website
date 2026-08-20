@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=24">
+    <link rel="stylesheet" href="style.css?v=25">
 </head>
 
 <body>
@@ -108,19 +108,20 @@
                          together, reading as a disconnected fuzzy patch instead of a glow. Crisp
                          lines only, and they carry a bit more contrast to compensate. -->
                     <g fill="none" stroke="#10A9F4" stroke-width="2" opacity="0.85">
-                        <!-- objective fans out to each agent — straight elbow connectors:
-                             out from the box edge, turn, straight into the next box edge -->
-                        <path class="hf-line l1" d="M320,76 H355 V64 H390" />
-                        <path class="hf-line l1" d="M320,76 H355 V188 H390" />
-                        <path class="hf-line l1" d="M320,76 H355 V312 H390" />
-                        <!-- agents converge into the human gate on the right via a shared trunk (no crossing) -->
-                        <path class="hf-line l2" d="M660,64 H680" />
-                        <path class="hf-line l2" d="M660,188 H680" />
-                        <path class="hf-line l2" d="M660,312 H680" />
-                        <path class="hf-line l2" d="M680,64 V312" />
-                        <path class="hf-line l2" d="M680,188 H700" />
+                        <!-- objective fans out to each agent — each gets its own class so the
+                             reveal animation can sequence them: to-r, then to-p, then to-c -->
+                        <path class="hf-line to-r" d="M320,76 H355 V64 H390" />
+                        <path class="hf-line to-p" d="M320,76 H355 V188 H390" />
+                        <path class="hf-line to-c" d="M320,76 H355 V312 H390" />
+                        <!-- agents converge into the human gate via a shared trunk (no crossing) —
+                             appears together, once, after all three agents are on screen -->
+                        <path class="hf-line to-gate" d="M660,64 H680" />
+                        <path class="hf-line to-gate" d="M660,188 H680" />
+                        <path class="hf-line to-gate" d="M660,312 H680" />
+                        <path class="hf-line to-gate" d="M680,64 V312" />
+                        <path class="hf-line to-gate" d="M680,188 H700" />
                         <!-- gate to measured outcome -->
-                        <path class="hf-line l3" d="M830,243 V263" />
+                        <path class="hf-line to-outcome" d="M830,243 V263" />
                     </g>
 
                     <!-- Human Objective: bullseye instead of a plain plus -->
@@ -713,7 +714,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=24"></script>
+    <script src="script.js?v=25"></script>
 </body>
 
 </html>
