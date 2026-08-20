@@ -360,33 +360,37 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 /* hexagons, not squares — clipped to a hex, tiled loosely over the square
    grid. .hero-field needs perspective for the rotateY flip below to read as
    3D instead of just squashing flat. */
-.hero-field { perspective: 600px; }
 .hero-cell {
     position: absolute;
     width: 34px;
     height: 34px;
-    clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0% 50%);
-    background: rgba(16, 169, 244, 0.32);
+    background: rgba(16, 169, 244, 0.3);
     opacity: 0;
     pointer-events: none;
-    transform-style: preserve-3d;
     /* --peak is set per-cell by script.js, based on how far the cell sits
        from the field's center — the same falloff the background grid/mask
-       already fades on, so peripheral hexes max out dimmer instead of
+       already fades on, so peripheral squares max out dimmer instead of
        hitting the same full brightness as central ones */
     --peak: 1;
-    animation-name: heroCellFlip;
-    animation-timing-function: cubic-bezier(.22,.85,.3,1.1);
+    animation-name: heroCellBlink;
+    animation-timing-function: linear;
     animation-fill-mode: forwards;
 }
-/* flips in edge-on like a tile rotating into place (Advanced Warfare
-   loading-screen style), overshoots slightly, settles, holds, drops out */
-@keyframes heroCellFlip {
-    0%   { opacity: 0; transform: rotateY(-100deg) scale(0.4); }
-    35%  { opacity: var(--peak); transform: rotateY(20deg) scale(1.08); }
-    55%  { transform: rotateY(0deg) scale(1); }
-    82%  { opacity: var(--peak); }
-    100% { opacity: 0; transform: scale(0.85); }
+/* old-fluorescent-tube startup: a couple of stuttering flickers, then a slow
+   climb up to fully lit (fully lit = --peak, not always 1), a hold, then it
+   drops off */
+@keyframes heroCellBlink {
+    0%   { opacity: 0; }
+    4%   { opacity: calc(var(--peak) * 0.55); }
+    7%   { opacity: calc(var(--peak) * 0.05); }
+    11%  { opacity: calc(var(--peak) * 0.45); }
+    15%  { opacity: calc(var(--peak) * 0.05); }
+    21%  { opacity: calc(var(--peak) * 0.65); }
+    27%  { opacity: calc(var(--peak) * 0.1); }
+    32%  { opacity: calc(var(--peak) * 0.2); }
+    65%  { opacity: var(--peak); }
+    88%  { opacity: var(--peak); }
+    100% { opacity: 0; }
 }
 /* a short comet-like segment that sweeps the FULL length of its line, fast —
    script.js sets --travel to the line's actual pixel length and starts the

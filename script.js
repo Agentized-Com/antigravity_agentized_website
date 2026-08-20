@@ -195,11 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 return 0.1; // floor so far-edge squares still faintly show, rather than spawning invisibly
             };
 
-            // one hex flips in, then 1–2 of its neighbors flip in shortly after,
-            // and THEIR neighbors after that (capped depth) — a small cluster
-            // grows outward from the origin tile instead of every hex being an
-            // independent, isolated pick
-            const renderHex = (cell) => {
+            const spawnCell = () => {
+                if (!grid.cells.length) return;
+                const cell = pick(grid.cells);
                 const el = document.createElement('span');
                 el.className = 'hero-cell';
                 el.dataset.cellId = cell.id;
@@ -209,29 +207,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.style.animationDuration = rand(3.5, 5.5) + 's';
                 el.addEventListener('animationend', () => el.remove());
                 heroField.appendChild(el);
-            };
-            const NEIGHBOR_OFFSETS = [[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[1,1]];
-            const spawnCluster = (cell, depth, visited) => {
-                renderHex(cell);
-                if (depth >= 2) return;
-                const spreadCount = randInt(1, 2);
-                const offsets = [...NEIGHBOR_OFFSETS].sort(() => Math.random() - 0.5);
-                let spread = 0;
-                for (const [dx, dy] of offsets) {
-                    if (spread >= spreadCount) break;
-                    const key = (cell.col + dx) + ',' + (cell.row + dy);
-                    if (visited.has(key)) continue;
-                    const neighbor = grid.cellByKey.get(key);
-                    if (!neighbor) continue;
-                    visited.add(key);
-                    spread++;
-                    setTimeout(() => spawnCluster(neighbor, depth + 1, visited), rand(140, 260));
-                }
-            };
-            const spawnCell = () => {
-                if (!grid.cells.length) return;
-                const origin = pick(grid.cells);
-                spawnCluster(origin, 0, new Set([origin.col + ',' + origin.row]));
             };
 
             // short segments, not full-length lines — travel along a random
@@ -276,7 +251,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const scheduleCell = () => {
                 spawnCell();
-                setTimeout(scheduleCell, rand(700, 1700));
+                setTimeout(scheduleCell, rand(450, 1300));
             };
             const scheduleStreak = () => {
                 spawnStreak();
