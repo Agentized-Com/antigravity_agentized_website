@@ -73,9 +73,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-reveal]').forEach((el) => el.classList.add('is-visible'));
     }
 
-    /* ---------- Play the hero handoff animation once ---------- */
+    /* ---------- Play the hero handoff animation once ----------
+       Deliberately runs even under prefers-reduced-motion: it's a one-shot,
+       ~7s sequence that conveys the actual flow order (unlike the looping
+       ambient background effects below, which do respect that setting). */
     const handoff = document.querySelector('.handoff-svg');
-    if (handoff && !prefersReducedMotion) {
+    if (handoff) {
         const playOnce = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
