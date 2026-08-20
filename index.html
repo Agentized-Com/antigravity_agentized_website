@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=47">
+    <link rel="stylesheet" href="style.css?v=48">
 </head>
 
 <body>
@@ -556,17 +556,35 @@
                             <div class="mbb-col-head orange"><span class="mbb-num">01</span><h4>Grow Revenue</h4></div>
                             <p class="mbb-col-caption">A signal starts the chain. Five agents build the pitch. A
                                 person approves it before it reaches the CRM.</p>
-                            <div class="mbb-signal"><div class="mbb-icon-circle"><svg class="mbb-icon"><use href="#ic-target"/></svg></div><span>Market Signal</span></div>
+                            <div class="mbb-stage">
+                                <span class="mbb-stage-label">1 · A signal fires</span>
+                                <div class="mbb-signal"><div class="mbb-icon-circle"><svg class="mbb-icon"><use href="#ic-target"/></svg></div><span>Market Signal</span></div>
+                            </div>
                             <div class="mbb-drop-arrow">↓</div>
-                            <div class="mbb-chain">
-                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
-                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-users"/></svg>Account Intelligence Agent</div>
-                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-person"/></svg>Personalization Agent</div>
-                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Sales Agent</div>
-                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Proposal Agent</div>
-                                <div class="mbb-node highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Approval</div>
-                                <div class="mbb-node system"><svg class="mbb-icon"><use href="#ic-database"/></svg>CRM<span class="mbb-node-tag">system</span></div>
-                                <div class="mbb-node end"><svg class="mbb-icon"><use href="#ic-users"/></svg>Customer / Revenue<span class="mbb-node-tag">outcome</span></div>
+                            <div class="mbb-stage">
+                                <span class="mbb-stage-label">2 · Five agents build the pitch, in order</span>
+                                <div class="mbb-chain">
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-users"/></svg>Account Intelligence Agent</div>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-person"/></svg>Personalization Agent</div>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Sales Agent</div>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Proposal Agent</div>
+                                </div>
+                            </div>
+                            <div class="mbb-drop-arrow">↓</div>
+                            <div class="mbb-stage">
+                                <span class="mbb-stage-label">3 · A person approves it</span>
+                                <div class="mbb-chain">
+                                    <div class="mbb-node highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Approval</div>
+                                </div>
+                            </div>
+                            <div class="mbb-drop-arrow">↓</div>
+                            <div class="mbb-stage">
+                                <span class="mbb-stage-label">4 · Logged as a result</span>
+                                <div class="mbb-chain">
+                                    <div class="mbb-node system"><svg class="mbb-icon"><use href="#ic-database"/></svg>CRM<span class="mbb-node-tag">system</span></div>
+                                    <div class="mbb-node end"><svg class="mbb-icon"><use href="#ic-users"/></svg>Customer / Revenue<span class="mbb-node-tag">outcome</span></div>
+                                </div>
                             </div>
                             <div class="mbb-stats">
                                 <div><svg class="mbb-icon"><use href="#ic-filter"/></svg>Pipeline</div>
@@ -881,7 +899,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=47"></script>
+    <script src="script.js?v=48"></script>
 </body>
 
 </html>

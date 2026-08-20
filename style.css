@@ -882,7 +882,7 @@ footer a:hover { color: var(--white); }
 .cvad-title-block { text-align: center; margin-bottom: 26px; }
 .cvad-title { color: #fff; font-size: clamp(1.4rem, 2.6vw, 2.05rem); font-weight: 800; margin: 0 0 6px; letter-spacing: -0.01em; }
 .cvad-title sup { font-size: 0.5em; top: -0.8em; }
-.cvad-subtitle { font-size: 0.95rem; color: var(--cvad-text-dim); margin: 0; }
+.cvad-subtitle { font-size: 0.95rem; color: var(--cvad-text-dim); margin: 0 auto; }
 
 /* --- 02 Two-column grid --- */
 .cvad-grid { display: grid; grid-template-columns: 1fr 46px 1fr; gap: 0 6px; align-items: stretch; }
@@ -1016,7 +1016,10 @@ footer a:hover { color: var(--white); }
 /* head */
 .mbb-head { text-align: center; margin-bottom: 24px; }
 .mbb-head h3 { color: #fff; font-size: clamp(1.2rem, 2.2vw, 1.7rem); font-weight: 800; margin: 0 0 4px; }
-.mbb-head p { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin: 0; }
+/* the global `p { max-width: 68ch }` rule constrains this paragraph's box
+   but doesn't center that box — text-align:center only centers text INSIDE
+   it, so without margin:auto the whole box (and its text) sits flush left */
+.mbb-head p { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin: 0 auto; }
 
 /* one shared key for what every icon/box color means, so all three columns
    below read with the same visual grammar instead of each needing to be
@@ -1045,6 +1048,16 @@ footer a:hover { color: var(--white); }
 .mbb-col-head h4 { color: #fff; font-size: 0.92rem; font-weight: 700; margin: 0; }
 .mbb-col-caption { color: rgba(255,255,255,0.6); font-size: 0.72rem; line-height: 1.5; margin: 0 0 14px; }
 .mbb-drop-arrow { text-align: center; color: var(--human-orange); opacity: 0.6; font-size: 0.85rem; margin-bottom: 4px; }
+
+/* each stage gets a plain-English label naming what happens in it, so the
+   chain below reads as a story (signal → agents build → person approves →
+   logged) instead of eight unlabeled boxes stacked with no explanation */
+.mbb-stage { margin-bottom: 2px; }
+.mbb-stage-label {
+    display: block; font-family: var(--font-mono); font-size: 0.6rem;
+    letter-spacing: 0.03em; text-transform: uppercase; color: rgba(255,255,255,0.4);
+    margin-bottom: 6px;
+}
 
 /* shared node/chip styling */
 .mbb-node, .mbb-chip {
