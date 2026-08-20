@@ -102,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const randInt = (min, max) => Math.floor(rand(min, max + 1));
         const pick = (arr) => arr[randInt(0, arr.length - 1)];
 
-        let grid = { verticalLines: [], horizontalLines: [], cells: [] };
+        let grid = { verticalLines: [], horizontalLines: [], cells: [], width: 0, height: 0 };
 
         // Draws the actual <line> objects the grid is made of, then derives
         // every cell as the overlap of one vertical + one horizontal line —
@@ -153,7 +153,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            grid = { verticalLines, horizontalLines, cells };
+            // a small plus-mark drawn at every line intersection
+            const CROSS = 3;
+            for (let col = 0; col <= cols; col++) {
+                for (let row = 0; row <= rows; row++) {
+                    const x = col * CELL, y = row * CELL;
+                    const crossEl = document.createElementNS(SVG_NS, 'path');
+                    crossEl.setAttribute('class', 'hero-field-cross');
+                    crossEl.setAttribute('d',
+                        'M' + (x - CROSS) + ',' + y + ' H' + (x + CROSS) +
+                        ' M' + x + ',' + (y - CROSS) + ' V' + (y + CROSS));
+                    crossEl.dataset.atLines = 'v' + col + '+h' + row;
+                    heroGridSvg.appendChild(crossEl);
+                }
+            }
+
+            grid = { verticalLines, horizontalLines, cells, width: rect.width, height: rect.height };
         };
         buildGrid();
         window.addEventListener('resize', buildGrid);
@@ -161,22 +176,25 @@ document.addEventListener('DOMContentLoaded', () => {
         // the grid lines above are drawn either way (they're static, not
         // motion) — only the blinking cell/streak spawners are gated here
         if (!prefersReducedMotion) {
+            // every cell is the same fixed size (CELL x CELL); duration is
+            // deliberately long so the flicker-then-slow-on keyframe (see
+            // heroCellBlink in style.css) has room to play out
             const spawnCell = () => {
                 if (!grid.cells.length) return;
                 const cell = pick(grid.cells);
-                const span = randInt(1, 2); // occasionally a 2x2 block, mostly single cells
                 const el = document.createElement('span');
                 el.className = 'hero-cell';
                 el.dataset.cellId = cell.id;
                 el.style.left = cell.x + 'px';
                 el.style.top = cell.y + 'px';
-                el.style.width = (span * CELL) + 'px';
-                el.style.height = (span * CELL) + 'px';
-                el.style.animationDuration = rand(1.6, 3) + 's';
+                el.style.animationDuration = rand(3.5, 5.5) + 's';
                 el.addEventListener('animationend', () => el.remove());
                 heroField.appendChild(el);
             };
 
+            // short segments, not full-length lines — travel along a random
+            // line but only cover STREAK_LEN px of it, at a random offset
+            const STREAK_LEN = 90;
             const spawnStreak = () => {
                 const vertical = Math.random() < 0.55;
                 const line = vertical ? pick(grid.verticalLines) : pick(grid.horizontalLines);
@@ -184,12 +202,33 @@ document.addEventListener('DOMContentLoaded', () => {
                 const el = document.createElement('span');
                 el.className = 'hero-streak ' + (vertical ? 'hero-streak-v' : 'hero-streak-h');
                 el.dataset.lineId = line.id;
+                el.style.animationDuration = rand(0.6, 1.1) + 's';
                 if (vertical) {
                     el.style.left = line.x + 'px';
+                    el.style.height = STREAK_LEN + 'px';
+                    el.style.top = rand(0, Math.max(0, grid.height - STREAK_LEN)) + 'px';
                 } else {
                     el.style.top = line.y + 'px';
+                    el.style.width = STREAK_LEN + 'px';
+                    el.style.left = rand(0, Math.max(0, grid.width - STREAK_LEN)) + 'px';
                 }
-                el.style.animationDuration = rand(1.8, 3.4) + 's';
+                el.addEventListener('animationend', () => el.remove());
+                heroField.appendChild(el);
+            };
+
+            // small blinking lights sitting exactly on a random line
+            // intersection — picked straight from the same vertical/
+            // horizontal line objects, so it's always a real intersection
+            const spawnLight = () => {
+                if (!grid.verticalLines.length || !grid.horizontalLines.length) return;
+                const vLine = pick(grid.verticalLines);
+                const hLine = pick(grid.horizontalLines);
+                const el = document.createElement('span');
+                el.className = 'hero-light';
+                el.dataset.atLines = vLine.id + '+' + hLine.id;
+                el.style.left = vLine.x + 'px';
+                el.style.top = hLine.y + 'px';
+                el.style.animationDuration = rand(0.9, 1.8) + 's';
                 el.addEventListener('animationend', () => el.remove());
                 heroField.appendChild(el);
             };
@@ -200,10 +239,15 @@ document.addEventListener('DOMContentLoaded', () => {
             };
             const scheduleStreak = () => {
                 spawnStreak();
-                setTimeout(scheduleStreak, rand(700, 1900));
+                setTimeout(scheduleStreak, rand(350, 900));
+            };
+            const scheduleLight = () => {
+                spawnLight();
+                setTimeout(scheduleLight, rand(150, 500));
             };
             scheduleCell();
             scheduleStreak();
+            scheduleLight();
         }
     }
 

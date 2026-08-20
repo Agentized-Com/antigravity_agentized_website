@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=18">
+    <link rel="stylesheet" href="style.css?v=21">
 </head>
 
 <body>
@@ -73,6 +73,10 @@
             <svg class="hero-field-grid" aria-hidden="true"></svg>
             <div class="hero-glow hero-glow-left"></div>
             <div class="hero-glow hero-glow-right"></div>
+            <!-- focused light behind where the diagram sits — lives here in the
+                 ambient field (behind everything) instead of inside the
+                 diagram's own svg, so it never sits on top of the crisp lines -->
+            <div class="hero-glow hero-glow-diagram"></div>
 
             <!-- hero-cell (grid squares) and hero-streak (grid lines) elements are spawned
                  here at runtime by script.js from an explicit grid model (exact line/cell
@@ -82,7 +86,6 @@
         </div>
         <div class="container hero-grid">
             <div class="hero-copy">
-                <span class="eyebrow">Agentic Business Transformation</span>
                 <h1>AI agents that move the P&amp;L.</h1>
                 <p class="lead">Agentized helps mid-market companies redesign high-value revenue and operating
                     workflows around governed AI agents. We identify where value exists, build and integrate the
@@ -98,26 +101,19 @@
             <div class="hero-visual">
                 <svg class="handoff-svg" viewBox="0 0 980 520" role="img" aria-label="The Agentized Handoff: a human objective on the left fans out to research, proposal and compliance agents in the center, which converge into a human approval gate on the right, resolving in a measured outcome, with a governance layer visible throughout. Illustrative workflow, not client data.">
                     <defs>
-                        <!-- diagram has no background of its own now — the ambient .hero-field grid
-                             behind the whole hero shows through it. This filter makes the connector
-                             lines glow: a blurred, thicker copy is painted behind the crisp lines. -->
+                        <!-- diagram has no background of its own — the ambient .hero-field layer
+                             behind the whole hero (grid + focused glow) shows through it. This
+                             filter makes the connector lines glow: a blurred, thicker copy is
+                             painted behind the crisp lines. The focused light patch itself now
+                             lives OUTSIDE this svg, in .hero-field, so it never sits on top of
+                             (and washes out) the crisp lines. -->
                         <filter id="lineGlow" x="-80%" y="-80%" width="260%" height="260%">
-                            <feGaussianBlur stdDeviation="9"/>
+                            <feGaussianBlur stdDeviation="6"/>
                         </filter>
-                        <!-- a concentrated soft light specifically behind the line cluster, so the
-                             wiring reads as lit-from-within rather than floating on the flat field -->
-                        <radialGradient id="hfLineFocus" cx="560" cy="188" r="260" gradientUnits="userSpaceOnUse">
-                            <stop offset="0%" stop-color="#10A9F4" stop-opacity="0.55"/>
-                            <stop offset="55%" stop-color="#10A9F4" stop-opacity="0.2"/>
-                            <stop offset="100%" stop-color="#10A9F4" stop-opacity="0"/>
-                        </radialGradient>
                     </defs>
 
-                    <!-- soft focused light behind the whole line cluster -->
-                    <rect x="260" y="-40" width="620" height="460" fill="url(#hfLineFocus)"/>
-
                     <!-- connecting lines: soft blurred glow layer first, crisp lines painted on top -->
-                    <g fill="none" stroke="#10A9F4" stroke-width="6" opacity="0.6" filter="url(#lineGlow)">
+                    <g fill="none" stroke="#10A9F4" stroke-width="4" opacity="0.5" filter="url(#lineGlow)">
                         <path d="M320,76 C355,76 355,64 390,64" />
                         <path d="M320,76 C355,76 355,188 390,188" />
                         <path d="M320,76 C355,76 355,312 390,312" />
@@ -729,7 +725,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=18"></script>
+    <script src="script.js?v=21"></script>
 </body>
 
 </html>

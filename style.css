@@ -374,26 +374,39 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
     mask-image: radial-gradient(ellipse 70% 78% at 50% 42%, #000 15%, rgba(0,0,0,0.35) 45%, transparent 78%);
     -webkit-mask-image: radial-gradient(ellipse 70% 78% at 50% 42%, #000 15%, rgba(0,0,0,0.35) 45%, transparent 78%);
 }
-.hero-field-grid line { stroke: rgba(16, 169, 244, 0.16); stroke-width: 1; }
+.hero-field-grid line { stroke: rgba(16, 169, 244, 0.16); stroke-width: 1; stroke-dasharray: 1 5; }
+.hero-field-grid .hero-field-cross { stroke: rgba(16, 169, 244, 0.4); stroke-width: 1; }
 /* .hero-cell and .hero-streak elements are spawned one at a time by script.js
    at randomized grid-aligned positions with randomized durations — each plays
    this blink-on / hold / blink-off animation exactly once, then removes itself. */
+/* fixed one-cell size now — script.js no longer varies it */
 .hero-cell {
     position: absolute;
-    background: rgba(16, 169, 244, 0.16);
-    border: 1px solid rgba(16, 169, 244, 0.28);
+    width: 34px;
+    height: 34px;
+    background: rgba(16, 169, 244, 0.3);
     opacity: 0;
     pointer-events: none;
     animation-name: heroCellBlink;
-    animation-timing-function: ease-in-out;
+    animation-timing-function: linear;
     animation-fill-mode: forwards;
 }
+/* old-fluorescent-tube startup: a couple of stuttering flickers, then a slow
+   climb up to fully lit, a hold, then it drops off */
 @keyframes heroCellBlink {
-    0% { opacity: 0; }
-    35% { opacity: 1; }
-    70% { opacity: 0.35; }
+    0%   { opacity: 0; }
+    4%   { opacity: 0.55; }
+    7%   { opacity: 0.05; }
+    11%  { opacity: 0.45; }
+    15%  { opacity: 0.05; }
+    21%  { opacity: 0.65; }
+    27%  { opacity: 0.1; }
+    32%  { opacity: 0.2; }
+    65%  { opacity: 1; }
+    88%  { opacity: 1; }
     100% { opacity: 0; }
 }
+/* short, fast light segments instead of full-length lines */
 .hero-streak {
     position: absolute;
     opacity: 0;
@@ -403,21 +416,39 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
     animation-fill-mode: forwards;
 }
 .hero-streak-v {
-    top: 0;
     width: 1px;
-    height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(16, 169, 244, 0.7) 45%, rgba(16, 169, 244, 0.7) 55%, transparent);
+    background: linear-gradient(to bottom, transparent, rgba(16, 169, 244, 0.85) 50%, transparent);
 }
 .hero-streak-h {
-    left: 0;
-    width: 100%;
     height: 1px;
-    background: linear-gradient(to right, transparent, rgba(16, 169, 244, 0.7) 45%, rgba(16, 169, 244, 0.7) 55%, transparent);
+    background: linear-gradient(to right, transparent, rgba(16, 169, 244, 0.85) 50%, transparent);
 }
 @keyframes heroStreakBlink {
     0% { opacity: 0; }
-    30% { opacity: 1; }
-    70% { opacity: 1; }
+    25% { opacity: 1; }
+    75% { opacity: 1; }
+    100% { opacity: 0; }
+}
+/* small blinking lights sitting right on the grid-line intersections */
+.hero-light {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    margin: -2.5px 0 0 -2.5px; /* centers the dot on its intersection point */
+    border-radius: 50%;
+    background: var(--agent-blue);
+    box-shadow: 0 0 6px 1px rgba(16, 169, 244, 0.85);
+    opacity: 0;
+    pointer-events: none;
+    animation-name: heroLightBlink;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+@keyframes heroLightBlink {
+    0%, 100% { opacity: 0; }
+    15% { opacity: 1; }
+    30% { opacity: 0.2; }
+    45% { opacity: 1; }
     100% { opacity: 0; }
 }
 .hero-glow {
@@ -431,6 +462,9 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
    headline/body copy instead of glowing through it */
 .hero-glow-left { width: 340px; height: 340px; left: -160px; bottom: -140px; top: auto; background: rgba(16, 169, 244, 0.12); }
 .hero-glow-right { width: 560px; height: 560px; right: -220px; bottom: -8%; background: rgba(255, 104, 0, 0.16); animation-delay: 3s; }
+/* sits behind roughly where the diagram's line cluster is, dim enough that
+   it never competes with the crisp lines drawn on top of it in .hero-visual */
+.hero-glow-diagram { width: 620px; height: 460px; right: 6%; top: 30%; background: rgba(16, 169, 244, 0.09); animation-delay: 1.4s; }
 @keyframes heroFieldBreathe {
     0%, 100% { opacity: 0.45; transform: scale(1); }
     50% { opacity: 0.8; transform: scale(1.1); }
