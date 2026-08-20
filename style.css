@@ -689,31 +689,24 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 .handoff-anim .hf-node-content.is-in,
 .handoff-anim .hf-line.is-in { opacity: 1; transition: opacity 0.35s ease; }
 
-/* one tile per polygon JS creates, mid-flip on arrival. Persistent tiles
-   (n1–n5, the process nodes) settle at a translucent resting opacity and
-   STAY — they're the block's permanent surface texture, not a flourish.
-   Transient tiles (n6, the light "result" card, where dark text needs a
-   plain light background to stay legible) settle at full opacity and are
-   removed by script.js once the real card is ready. */
+/* one tile per polygon JS creates. Every node's mosaic is now permanent —
+   full opacity, never faded or removed, IS the block's surface. A thin
+   grout-line stroke keeps the honeycomb pattern visible as a pattern
+   instead of adjacent same-color tiles blending into one flat block. */
 .hf-tile-live {
     opacity: 0;
+    stroke-width: 1;
     transform-box: fill-box;
     transform-origin: center;
     animation: hfTileFlip 0.3s cubic-bezier(.22,.85,.3,1.1) forwards;
 }
-.hf-tile-live.persist { animation-name: hfTileFlipSettle; }
+.hf-tile-live.grout-light { stroke: rgba(255,255,255,0.28); }
+.hf-tile-live.grout-dark { stroke: rgba(7,24,43,0.16); }
 @keyframes hfTileFlip {
     0%   { opacity: 0; transform: scale(0) rotate(18deg); }
     60%  { opacity: 1; transform: scale(1.15) rotate(-5deg); }
     100% { opacity: 1; transform: scale(1) rotate(0deg); }
 }
-@keyframes hfTileFlipSettle {
-    0%   { opacity: 0; transform: scale(0) rotate(18deg); }
-    55%  { opacity: 1; transform: scale(1.15) rotate(-5deg); }
-    80%  { transform: scale(1) rotate(0deg); }
-    100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
-}
-.hf-tile-group { transition: opacity 0.25s ease; }
 
 .diagram-caption { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); text-align: right; margin-top: var(--space-2); }
 .bg-ink .diagram-caption, .bg-midnight .diagram-caption { color: rgba(247,245,240,0.4); }

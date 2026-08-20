@@ -120,24 +120,15 @@ document.addEventListener('DOMContentLoaded', () => {
         // spawns a box's hex-tile mosaic tile by tile, waits for it to
         // finish, fades the tiles out while fading the real node in, removes
         // the tile elements once they're no longer needed
-        // persist=true (n1–n5): tiles land in that node's own .hf-tile-slot
-        // (clipped to its rounded-rect shape, so nothing pokes past the
-        // corners), settle to a translucent resting state, and STAY — they
-        // ARE the block's surface. persist=false (n6): tiles are a one-off
-        // flourish in a temporary group, removed once the plain light card
-        // (needed for its dark text to stay legible) is ready.
-        const assembleNode = async (nodeClass, x, y, w, h, tr, color, persist) => {
+        // tiles land in that node's own .hf-tile-slot (clipped to its
+        // rounded-rect shape, so nothing pokes past the corners) at full
+        // opacity and STAY — every box's permanent surface is the hex
+        // mosaic itself, not a flourish that resolves into a flat fill.
+        const assembleNode = async (nodeClass, x, y, w, h, tr, color, grout) => {
             const node = handoff.querySelector('.hf-node.' + nodeClass);
             if (!node) return;
             const content = node.querySelector('.hf-node-content');
-            const group = persist
-                ? node.querySelector('.hf-tile-slot.' + nodeClass + '-slot')
-                : (() => {
-                    const g = document.createElementNS(SVG_NS, 'g');
-                    g.setAttribute('class', 'hf-tile-group');
-                    handoff.insertBefore(g, node);
-                    return g;
-                })();
+            const group = node.querySelector('.hf-tile-slot.' + nodeClass + '-slot');
             if (!group) return;
 
             const centers = tileCenters(x, y, w, h, tr);
@@ -147,18 +138,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     const poly = document.createElementNS(SVG_NS, 'polygon');
                     poly.setAttribute('points', hexPoints(cx, cy, tr));
                     poly.setAttribute('fill', color);
-                    poly.setAttribute('class', 'hf-tile-live' + (persist ? ' persist' : ''));
+                    poly.setAttribute('class', 'hf-tile-live ' + grout);
                     group.appendChild(poly);
                 }, (i / Math.max(centers.length - 1, 1)) * spawnSpread);
             });
 
             await wait(spawnSpread + 320); // last tile spawned + its own flip duration
             if (content) content.classList.add('is-in');
-            if (!persist) {
-                group.style.opacity = '0';
-                await wait(250);
-                group.remove();
-            }
         };
 
         const revealLine = async (lineClass) => {
@@ -169,17 +155,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const playSequence = async () => {
             handoff.classList.add('handoff-anim');
-            await assembleNode('n1', 20, 26, 300, 100, 26, '#FF6800', true);
+            await assembleNode('n1', 20, 26, 300, 100, 26, '#FF6800', 'grout-light');
             await revealLine('to-r');
-            await assembleNode('n2', 390, 26, 270, 76, 22, '#10A9F4', true);
+            await assembleNode('n2', 390, 26, 270, 76, 22, '#10A9F4', 'grout-light');
             await revealLine('to-p');
-            await assembleNode('n3', 390, 150, 270, 76, 22, '#10A9F4', true);
+            await assembleNode('n3', 390, 150, 270, 76, 22, '#10A9F4', 'grout-light');
             await revealLine('to-c');
-            await assembleNode('n4', 390, 274, 270, 76, 22, '#10A9F4', true);
+            await assembleNode('n4', 390, 274, 270, 76, 22, '#10A9F4', 'grout-light');
             await revealLine('to-gate');
-            await assembleNode('n5', 700, 257, 260, 110, 24, '#FF6800', true);
+            await assembleNode('n5', 700, 257, 260, 110, 24, '#FF6800', 'grout-light');
             await revealLine('to-outcome');
-            await assembleNode('n6', 700, 387, 260, 130, 26, '#10A9F4', false);
+            await assembleNode('n6', 700, 387, 260, 130, 26, '#EFEBE3', 'grout-dark');
         };
 
         const playOnce = new IntersectionObserver((entries) => {
