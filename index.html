@@ -100,31 +100,14 @@
             </div>
             <div class="hero-visual">
                 <svg class="handoff-svg" viewBox="0 0 980 520" role="img" aria-label="The Agentized Handoff: a human objective on the left fans out to research, proposal and compliance agents in the center, which converge into a human approval gate on the right, resolving in a measured outcome, with a governance layer visible throughout. Illustrative workflow, not client data.">
-                    <defs>
-                        <!-- diagram has no background of its own — the ambient .hero-field layer
-                             behind the whole hero (grid + focused glow) shows through it. This
-                             filter makes the connector lines glow: a blurred, thicker copy is
-                             painted behind the crisp lines. The focused light patch itself now
-                             lives OUTSIDE this svg, in .hero-field, so it never sits on top of
-                             (and washes out) the crisp lines. -->
-                        <filter id="lineGlow" x="-80%" y="-80%" width="260%" height="260%">
-                            <feGaussianBlur stdDeviation="6"/>
-                        </filter>
-                    </defs>
-
-                    <!-- connecting lines: soft blurred glow layer first, crisp lines painted on top -->
-                    <g fill="none" stroke="#10A9F4" stroke-width="4" opacity="0.5" filter="url(#lineGlow)">
-                        <path d="M320,76 C355,76 355,64 390,64" />
-                        <path d="M320,76 C355,76 355,188 390,188" />
-                        <path d="M320,76 C355,76 355,312 390,312" />
-                        <path d="M660,64 H680" />
-                        <path d="M660,188 H680" />
-                        <path d="M660,312 H680" />
-                        <path d="M680,64 V312" />
-                        <path d="M680,188 H700" />
-                        <path d="M830,243 V263" />
-                    </g>
-                    <g fill="none" stroke="#10A9F4" stroke-width="1.8" opacity="0.7">
+                    <!-- diagram has no background of its own — the ambient .hero-field layer
+                         behind the whole hero (grid + focused glow) shows through it. No blurred
+                         duplicate line layer any more: at this line density (3 curves fanning
+                         out from one point, converging back into 3 y-targets a few px apart) a
+                         blurred underlay smeared into one blob right where the lines are closest
+                         together, reading as a disconnected fuzzy patch instead of a glow. Crisp
+                         lines only, and they carry a bit more contrast to compensate. -->
+                    <g fill="none" stroke="#10A9F4" stroke-width="2" opacity="0.85">
                         <!-- objective fans out to each agent -->
                         <path class="hf-line l1" d="M320,76 C355,76 355,64 390,64" />
                         <path class="hf-line l1" d="M320,76 C355,76 355,188 390,188" />
