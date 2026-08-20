@@ -517,6 +517,8 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 .hero-copy {
     flex: 0 0 560px;
     max-width: 560px;
+    position: relative;
+    top: -28px;
 }
 
 .hero-copy h1 { color: var(--white); margin-bottom: var(--space-4); }
