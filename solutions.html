@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=29">
+    <link rel="stylesheet" href="style.css?v=31">
 </head>
 
 <body>
@@ -102,8 +102,151 @@
 
     <section class="section bg-cool" data-reveal>
         <div class="container">
-            <img src="Images/diagram-three-business-outcomes_EXCELLENT-matches-homepage.png" alt="Three business outcomes powered by agentic systems: grow revenue, increase margin and capacity, move faster, each with an illustrative agent workflow." style="width: 100%; border-radius: var(--radius-lg); border: 1px solid rgba(23,32,42,0.08);">
-            <p class="diagram-caption" style="color: var(--slate); margin-top: var(--space-3);">Illustrative workflow, not client data</p>
+                <!-- ============================================================
+                     THREE OUTCOMES DIAGRAM — vector, mirrors the three cards above
+                     ============================================================ -->
+                <div class="mbb">
+                    <svg width="0" height="0" style="position:absolute">
+                        <defs>
+                            <symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></symbol>
+                            <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="10" cy="10" r="7"/><path d="m21 21-4.35-4.35"/></symbol>
+                            <symbol id="ic-edit" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></symbol>
+                            <symbol id="ic-filter" viewBox="0 0 24 24"><path d="M4 4h16l-6 8v6l-4 2v-8Z"/></symbol>
+                            <symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></symbol>
+                            <symbol id="ic-warning" viewBox="0 0 24 24"><path d="M12 3 2 20h20Z"/><path d="M12 10v4"/><path d="M12 17h.01"/></symbol>
+                            <symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M12 2c3 2 5 6 5 10 0 2-1 4-2 5l-3-1-3 1c-1-1-2-3-2-5 0-4 2-8 5-10Z"/><path d="M9 15l-3 3M15 15l3 3"/><circle cx="12" cy="9" r="1.5"/></symbol>
+                            <symbol id="ic-trending" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 6h6v6"/></symbol>
+                            <symbol id="ic-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 0 1-4 0v-.09A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.55-1H3a2 2 0 0 1 0-4h.09A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1-1.55V3a2 2 0 0 1 4 0v.09a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9a1.7 1.7 0 0 0 1.55 1H21a2 2 0 0 1 0 4h-.09a1.7 1.7 0 0 0-1.55 1Z"/></symbol>
+                            <symbol id="ic-dollar" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v12M15 9.5c0-1.4-1.3-2.5-3-2.5s-3 1.1-3 2.5 1.3 2 3 2.5 3 1.1 3 2.5-1.3 2.5-3 2.5-3-1.1-3-2.5"/></symbol>
+                            <symbol id="ic-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.3 3.1-6 7-6s7 2.7 7 6"/><circle cx="18" cy="9" r="2.5"/><path d="M16.5 14.2c2.3.4 4.5 1.9 4.5 4.3"/></symbol>
+                            <symbol id="ic-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></symbol>
+                            <symbol id="ic-doc" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/></symbol>
+                            <symbol id="ic-person" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></symbol>
+                            <symbol id="ic-check-user" viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M2 21c0-3.9 3.1-7 7-7s7 3.1 7 7"/><path d="m16 11 2 2 4-4"/></symbol>
+                            <symbol id="ic-file-check" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></symbol>
+                            <symbol id="ic-clipboard" viewBox="0 0 24 24"><rect x="6" y="4" width="12" height="17" rx="1.5"/><rect x="9" y="2" width="6" height="4" rx="1"/></symbol>
+                            <symbol id="ic-eye" viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+                            <symbol id="ic-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+                            <symbol id="ic-box" viewBox="0 0 24 24"><path d="m3 8 9-5 9 5-9 5-9-5Z"/><path d="M3 8v9l9 5 9-5V8"/><path d="M12 13v9"/></symbol>
+                        </defs>
+                    </svg>
+
+                    <div class="mbb-head">
+                        <h3>What should become materially better?</h3>
+                        <p>Three business outcomes, each with an illustrative agent workflow.</p>
+                    </div>
+
+                    <div class="mbb-cols">
+                        <!-- ===== 01 Grow Revenue — a linear chain from signal to revenue ===== -->
+                        <div class="mbb-col">
+                            <div class="mbb-col-head orange"><span class="mbb-num">01</span><h4>Grow Revenue</h4></div>
+                            <p class="mbb-col-caption">A signal starts the chain. Five agents build the pitch. A
+                                person approves it before it reaches the CRM.</p>
+                            <div class="mbb-signal"><div class="mbb-icon-circle"><svg class="mbb-icon"><use href="#ic-target"/></svg></div><span>Market Signal</span></div>
+                            <div class="mbb-drop-arrow">↓</div>
+                            <div class="mbb-chain">
+                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
+                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-users"/></svg>Account Intelligence Agent</div>
+                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-person"/></svg>Personalization Agent</div>
+                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Sales Agent</div>
+                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Proposal Agent</div>
+                                <div class="mbb-node highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Approval</div>
+                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-database"/></svg>CRM</div>
+                                <div class="mbb-node end"><svg class="mbb-icon"><use href="#ic-users"/></svg>Customer / Revenue</div>
+                            </div>
+                            <div class="mbb-stats">
+                                <div><svg class="mbb-icon"><use href="#ic-filter"/></svg>Pipeline</div>
+                                <div><svg class="mbb-icon"><use href="#ic-target"/></svg>Conversion</div>
+                                <div><svg class="mbb-icon"><use href="#ic-clock"/></svg>Sales Cycle</div>
+                                <div><svg class="mbb-icon"><use href="#ic-trending"/></svg>Win Rate</div>
+                                <div><svg class="mbb-icon"><use href="#ic-trending"/></svg>Expansion</div>
+                            </div>
+                        </div>
+
+                        <!-- ===== 02 Increase Margin & Capacity — inputs -> agents -> exception routing ===== -->
+                        <div class="mbb-col">
+                            <div class="mbb-col-head blue"><span class="mbb-num">02</span><h4>Increase Margin &amp; Capacity</h4></div>
+                            <p class="mbb-col-caption">Every input type routes through the same five-agent line.
+                                Whatever an agent can't resolve on its own escalates to a person, instead of
+                                shipping wrong.</p>
+                            <div class="mbb-grid-flow">
+                                <div class="mbb-inputs">
+                                    <div><svg class="mbb-icon"><use href="#ic-doc"/></svg>Documents</div>
+                                    <div><svg class="mbb-icon"><use href="#ic-mail"/></svg>Requests</div>
+                                    <div><svg class="mbb-icon"><use href="#ic-box"/></svg>Cases</div>
+                                    <div><svg class="mbb-icon"><use href="#ic-clipboard"/></svg>Tickets</div>
+                                    <div><svg class="mbb-icon"><use href="#ic-dollar"/></svg>Invoices</div>
+                                    <div><svg class="mbb-icon"><use href="#ic-trending"/></svg>Reports</div>
+                                </div>
+                                <div class="mbb-arrow-col">→</div>
+                                <div class="mbb-agents">
+                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-filter"/></svg>Classification Agent</div>
+                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
+                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-gear"/></svg>Processing Agent</div>
+                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-file-check"/></svg>QA Agent</div>
+                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Reporting Agent</div>
+                                </div>
+                                <div class="mbb-arrow-col">→</div>
+                                <div class="mbb-exception">
+                                    <div class="mbb-node highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Intervention</div>
+                                    <span class="mbb-exception-label"><svg class="mbb-icon"><use href="#ic-warning"/></svg>Exceptions only</span>
+                                </div>
+                            </div>
+                            <div class="mbb-stats">
+                                <div><svg class="mbb-icon"><use href="#ic-clock"/></svg>Throughput</div>
+                                <div><svg class="mbb-icon"><use href="#ic-dollar"/></svg>Lower Cost / Outcome</div>
+                                <div><svg class="mbb-icon"><use href="#ic-warning"/></svg>Exception Handling</div>
+                                <div><svg class="mbb-icon"><use href="#ic-users"/></svg>Higher Capacity</div>
+                            </div>
+                        </div>
+
+                        <!-- ===== 03 Move Faster — sequential vs. parallel, side by side ===== -->
+                        <div class="mbb-col">
+                            <div class="mbb-col-head"><span class="mbb-num">03</span><h4>Move Faster</h4></div>
+                            <p class="mbb-col-caption">Same seven steps, done by four agents at once instead of one
+                                person in sequence. Cycle time compresses; a person still makes the final call.</p>
+                            <div class="mbb-compare-label">Traditional (Sequential) — one step at a time</div>
+                            <div class="mbb-row-flow">
+                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research</div>
+                                <span class="mbb-arrow-row">→</span>
+                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-users"/></svg>Meeting</div>
+                                <span class="mbb-arrow-row">→</span>
+                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Draft</div>
+                                <span class="mbb-arrow-row">→</span>
+                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-eye"/></svg>Review</div>
+                                <span class="mbb-arrow-row">→</span>
+                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-edit"/></svg>Revision</div>
+                                <span class="mbb-arrow-row">→</span>
+                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-check-user"/></svg>Approval</div>
+                                <span class="mbb-arrow-row">→</span>
+                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-box"/></svg>Delivery</div>
+                            </div>
+                            <div class="mbb-compare-label">Agentized (Parallel) — four at once, then one decision</div>
+                            <div class="mbb-parallel">
+                                <div class="mbb-parallel-agents">
+                                    <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
+                                    <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-edit"/></svg>Drafting Agent</div>
+                                    <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Analysis Agent</div>
+                                    <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Preparation Agent</div>
+                                </div>
+                                <span class="mbb-arrow-row">→</span>
+                                <div class="mbb-chip highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Decision</div>
+                                <span class="mbb-arrow-row">→</span>
+                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-box"/></svg>Delivery</div>
+                            </div>
+                            <div class="mbb-stats">
+                                <div><svg class="mbb-icon"><use href="#ic-clock"/></svg>Compressed Cycle Time</div>
+                                <div><svg class="mbb-icon"><use href="#ic-clock"/></svg>Time to Decision</div>
+                                <div><svg class="mbb-icon"><use href="#ic-rocket"/></svg>Time to Launch</div>
+                                <div><svg class="mbb-icon"><use href="#ic-file-check"/></svg>Service Level</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mbb-footer">
+                        <span>Revenue Growth</span><span class="mbb-dot">•</span><span>Margin &amp; Capacity</span><span class="mbb-dot">•</span><span>Execution Speed</span>
+                    </div>
+                </div>
         </div>
     </section>
 
@@ -163,7 +306,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=29"></script>
+    <script src="script.js?v=31"></script>
 </body>
 
 </html>

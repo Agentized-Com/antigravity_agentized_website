@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=29">
+    <link rel="stylesheet" href="style.css?v=31">
 </head>
 
 <body>
@@ -519,7 +519,10 @@
                         <!-- ===== 01 Grow Revenue — a linear chain from signal to revenue ===== -->
                         <div class="mbb-col">
                             <div class="mbb-col-head orange"><span class="mbb-num">01</span><h4>Grow Revenue</h4></div>
+                            <p class="mbb-col-caption">A signal starts the chain. Five agents build the pitch. A
+                                person approves it before it reaches the CRM.</p>
                             <div class="mbb-signal"><div class="mbb-icon-circle"><svg class="mbb-icon"><use href="#ic-target"/></svg></div><span>Market Signal</span></div>
+                            <div class="mbb-drop-arrow">↓</div>
                             <div class="mbb-chain">
                                 <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
                                 <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-users"/></svg>Account Intelligence Agent</div>
@@ -542,6 +545,9 @@
                         <!-- ===== 02 Increase Margin & Capacity — inputs -> agents -> exception routing ===== -->
                         <div class="mbb-col">
                             <div class="mbb-col-head blue"><span class="mbb-num">02</span><h4>Increase Margin &amp; Capacity</h4></div>
+                            <p class="mbb-col-caption">Every input type routes through the same five-agent line.
+                                Whatever an agent can't resolve on its own escalates to a person, instead of
+                                shipping wrong.</p>
                             <div class="mbb-grid-flow">
                                 <div class="mbb-inputs">
                                     <div><svg class="mbb-icon"><use href="#ic-doc"/></svg>Documents</div>
@@ -551,6 +557,7 @@
                                     <div><svg class="mbb-icon"><use href="#ic-dollar"/></svg>Invoices</div>
                                     <div><svg class="mbb-icon"><use href="#ic-trending"/></svg>Reports</div>
                                 </div>
+                                <div class="mbb-arrow-col">→</div>
                                 <div class="mbb-agents">
                                     <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-filter"/></svg>Classification Agent</div>
                                     <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
@@ -558,9 +565,10 @@
                                     <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-file-check"/></svg>QA Agent</div>
                                     <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Reporting Agent</div>
                                 </div>
+                                <div class="mbb-arrow-col">→</div>
                                 <div class="mbb-exception">
                                     <div class="mbb-node highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Intervention</div>
-                                    <span class="mbb-exception-label"><svg class="mbb-icon"><use href="#ic-warning"/></svg>Exceptions</span>
+                                    <span class="mbb-exception-label"><svg class="mbb-icon"><use href="#ic-warning"/></svg>Exceptions only</span>
                                 </div>
                             </div>
                             <div class="mbb-stats">
@@ -574,17 +582,25 @@
                         <!-- ===== 03 Move Faster — sequential vs. parallel, side by side ===== -->
                         <div class="mbb-col">
                             <div class="mbb-col-head"><span class="mbb-num">03</span><h4>Move Faster</h4></div>
-                            <div class="mbb-compare-label">Traditional (Sequential)</div>
+                            <p class="mbb-col-caption">Same seven steps, done by four agents at once instead of one
+                                person in sequence. Cycle time compresses; a person still makes the final call.</p>
+                            <div class="mbb-compare-label">Traditional (Sequential) — one step at a time</div>
                             <div class="mbb-row-flow">
                                 <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research</div>
+                                <span class="mbb-arrow-row">→</span>
                                 <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-users"/></svg>Meeting</div>
+                                <span class="mbb-arrow-row">→</span>
                                 <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Draft</div>
+                                <span class="mbb-arrow-row">→</span>
                                 <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-eye"/></svg>Review</div>
+                                <span class="mbb-arrow-row">→</span>
                                 <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-edit"/></svg>Revision</div>
+                                <span class="mbb-arrow-row">→</span>
                                 <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-check-user"/></svg>Approval</div>
+                                <span class="mbb-arrow-row">→</span>
                                 <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-box"/></svg>Delivery</div>
                             </div>
-                            <div class="mbb-compare-label">Agentized (Parallel)</div>
+                            <div class="mbb-compare-label">Agentized (Parallel) — four at once, then one decision</div>
                             <div class="mbb-parallel">
                                 <div class="mbb-parallel-agents">
                                     <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
@@ -592,7 +608,9 @@
                                     <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Analysis Agent</div>
                                     <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Preparation Agent</div>
                                 </div>
+                                <span class="mbb-arrow-row">→</span>
                                 <div class="mbb-chip highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Decision</div>
+                                <span class="mbb-arrow-row">→</span>
                                 <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-box"/></svg>Delivery</div>
                             </div>
                             <div class="mbb-stats">
@@ -828,7 +846,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=29"></script>
+    <script src="script.js?v=31"></script>
 </body>
 
 </html>

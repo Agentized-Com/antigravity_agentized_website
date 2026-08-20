@@ -357,37 +357,36 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
    at randomized grid-aligned positions with randomized durations — each plays
    this blink-on / hold / blink-off animation exactly once, then removes itself. */
 /* fixed one-cell size now — script.js no longer varies it */
+/* hexagons, not squares — clipped to a hex, tiled loosely over the square
+   grid. .hero-field needs perspective for the rotateY flip below to read as
+   3D instead of just squashing flat. */
+.hero-field { perspective: 600px; }
 .hero-cell {
     position: absolute;
     width: 34px;
     height: 34px;
-    background: rgba(16, 169, 244, 0.3);
+    clip-path: polygon(25% 4%, 75% 4%, 100% 50%, 75% 96%, 25% 96%, 0% 50%);
+    background: rgba(16, 169, 244, 0.32);
     opacity: 0;
     pointer-events: none;
+    transform-style: preserve-3d;
     /* --peak is set per-cell by script.js, based on how far the cell sits
        from the field's center — the same falloff the background grid/mask
-       already fades on, so peripheral squares max out dimmer instead of
+       already fades on, so peripheral hexes max out dimmer instead of
        hitting the same full brightness as central ones */
     --peak: 1;
-    animation-name: heroCellBlink;
-    animation-timing-function: linear;
+    animation-name: heroCellFlip;
+    animation-timing-function: cubic-bezier(.22,.85,.3,1.1);
     animation-fill-mode: forwards;
 }
-/* old-fluorescent-tube startup: a couple of stuttering flickers, then a slow
-   climb up to fully lit (fully lit = --peak, not always 1), a hold, then it
-   drops off */
-@keyframes heroCellBlink {
-    0%   { opacity: 0; }
-    4%   { opacity: calc(var(--peak) * 0.55); }
-    7%   { opacity: calc(var(--peak) * 0.05); }
-    11%  { opacity: calc(var(--peak) * 0.45); }
-    15%  { opacity: calc(var(--peak) * 0.05); }
-    21%  { opacity: calc(var(--peak) * 0.65); }
-    27%  { opacity: calc(var(--peak) * 0.1); }
-    32%  { opacity: calc(var(--peak) * 0.2); }
-    65%  { opacity: var(--peak); }
-    88%  { opacity: var(--peak); }
-    100% { opacity: 0; }
+/* flips in edge-on like a tile rotating into place (Advanced Warfare
+   loading-screen style), overshoots slightly, settles, holds, drops out */
+@keyframes heroCellFlip {
+    0%   { opacity: 0; transform: rotateY(-100deg) scale(0.4); }
+    35%  { opacity: var(--peak); transform: rotateY(20deg) scale(1.08); }
+    55%  { transform: rotateY(0deg) scale(1); }
+    82%  { opacity: var(--peak); }
+    100% { opacity: 0; transform: scale(0.85); }
 }
 /* a short comet-like segment that sweeps the FULL length of its line, fast —
    script.js sets --travel to the line's actual pixel length and starts the
@@ -989,6 +988,8 @@ footer a:hover { color: var(--white); }
 .mbb-col-head.orange .mbb-num { background: rgba(255,104,0,0.18); color: var(--human-orange); }
 .mbb-col-head.blue .mbb-num { background: rgba(16,169,244,0.18); color: var(--agent-blue); }
 .mbb-col-head h4 { color: #fff; font-size: 0.92rem; font-weight: 700; margin: 0; }
+.mbb-col-caption { color: rgba(255,255,255,0.6); font-size: 0.72rem; line-height: 1.5; margin: 0 0 14px; }
+.mbb-drop-arrow { text-align: center; color: var(--human-orange); opacity: 0.6; font-size: 0.85rem; margin-bottom: 4px; }
 
 /* shared node/chip styling */
 .mbb-node, .mbb-chip {
@@ -1002,64 +1003,29 @@ footer a:hover { color: var(--white); }
 
 /* ===== Column 1: vertical signal -> chain ===== */
 .mbb-signal { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 10px; font-size: 0.68rem; color: rgba(255,255,255,0.7); }
-.mbb-icon-circle {
-    width: 32px; height: 32px;
-    background: rgba(255,104,0,0.18);
-    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
-    display: flex; align-items: center; justify-content: center;
-}
+.mbb-icon-circle { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--human-orange); display: flex; align-items: center; justify-content: center; }
 .mbb-icon-circle .mbb-icon { color: var(--human-orange); width: 15px; height: 15px; }
-
-/* icon badges: hexagon-clipped, and "folded in" with a 3D flip the moment
-   the diagram's section scrolls into view (script.js wraps every .mbb-icon
-   in one of these and staggers the delay) */
-.mbb-icon-hex, .mbb-icon-circle {
-    perspective: 300px;
-    transform-style: preserve-3d;
-    opacity: 0;
-    transform: rotateY(-100deg) scale(0.5);
-}
-.mbb-icon-hex {
-    width: 22px; height: 22px;
-    background: rgba(16,169,244,0.16);
-    clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0% 50%);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0;
-}
-.mbb-node.highlight .mbb-icon-hex, .mbb-chip.highlight .mbb-icon-hex { background: rgba(255,104,0,0.22); }
-.mbb-node.highlight .mbb-icon-hex .mbb-icon, .mbb-chip.highlight .mbb-icon-hex .mbb-icon { color: var(--human-orange); }
-#outcomes.is-visible .mbb-icon-hex,
-#outcomes.is-visible .mbb-icon-circle {
-    animation: mbbHexFlip 0.65s cubic-bezier(.22,.85,.3,1.1) forwards;
-    animation-delay: var(--hex-delay, 0s);
-}
-@keyframes mbbHexFlip {
-    0%   { opacity: 0; transform: rotateY(-100deg) scale(0.45); }
-    55%  { opacity: 1; transform: rotateY(18deg) scale(1.08); }
-    100% { opacity: 1; transform: rotateY(0deg) scale(1); }
-}
-@media (prefers-reduced-motion: reduce) {
-    .mbb-icon-hex, .mbb-icon-circle { opacity: 1; transform: none; animation: none; }
-}
 .mbb-chain { position: relative; display: flex; flex-direction: column; gap: 6px; padding-left: 14px; margin-bottom: 12px; }
 .mbb-chain::before { content: ''; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 1px; background: rgba(16,169,244,0.3); }
 .mbb-chain .mbb-node { position: relative; }
 .mbb-chain .mbb-node::before { content: ''; position: absolute; left: -14px; top: 50%; width: 10px; height: 1px; background: rgba(16,169,244,0.3); transform: translateY(-50%); }
 
 /* ===== Column 2: inputs -> agents -> exception ===== */
-.mbb-grid-flow { display: flex; gap: 8px; margin-bottom: 12px; flex: 1; }
-.mbb-inputs { display: flex; flex-direction: column; gap: 5px; flex: 0 0 34%; }
+.mbb-grid-flow { display: flex; align-items: center; gap: 4px; margin-bottom: 12px; flex: 1; }
+.mbb-inputs { display: flex; flex-direction: column; gap: 5px; flex: 0 0 30%; }
 .mbb-inputs div { display: flex; align-items: center; gap: 6px; font-size: 0.62rem; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.04); border-radius: 5px; padding: 5px 7px; }
 .mbb-agents { display: flex; flex-direction: column; gap: 5px; flex: 1; }
-.mbb-exception { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex: 0 0 30%; border-left: 1px dashed rgba(255,104,0,0.35); padding-left: 8px; }
-.mbb-exception-label { display: flex; align-items: center; gap: 4px; font-size: 0.6rem; color: var(--human-orange); font-family: var(--font-mono); }
+.mbb-exception { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex: 0 0 26%; }
+.mbb-exception-label { display: flex; align-items: center; gap: 4px; font-size: 0.6rem; color: var(--human-orange); font-family: var(--font-mono); text-align: center; }
+.mbb-arrow-col { flex: 0 0 auto; color: var(--agent-blue); font-size: 0.9rem; opacity: 0.6; }
 
 /* ===== Column 3: sequential vs parallel ===== */
 .mbb-compare-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.5); margin: 8px 0 6px; text-transform: uppercase; }
-.mbb-row-flow { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 4px; }
+.mbb-row-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 5px; margin-bottom: 4px; }
 .mbb-row-flow .mbb-chip { flex: 1 1 auto; justify-content: center; text-align: center; }
-.mbb-parallel { display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px; }
-.mbb-parallel-agents { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.mbb-arrow-row { flex: 0 0 auto; color: var(--agent-blue); font-size: 0.85rem; opacity: 0.6; }
+.mbb-parallel { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 12px; }
+.mbb-parallel-agents { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; flex: 1 1 140px; }
 
 /* ===== bottom stat strips (all columns) ===== */
 .mbb-stats { display: flex; flex-wrap: wrap; gap: 5px 10px; margin-top: auto; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08); }

@@ -168,7 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            grid = { verticalLines, horizontalLines, cells, width: rect.width, height: rect.height };
+            const cellByKey = new Map(cells.map((c) => [c.col + ',' + c.row, c]));
+            grid = { verticalLines, horizontalLines, cells, cellByKey, width: rect.width, height: rect.height };
         };
         buildGrid();
         window.addEventListener('resize', buildGrid);
@@ -194,9 +195,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return 0.1; // floor so far-edge squares still faintly show, rather than spawning invisibly
             };
 
-            const spawnCell = () => {
-                if (!grid.cells.length) return;
-                const cell = pick(grid.cells);
+            // one hex flips in, then 1–2 of its neighbors flip in shortly after,
+            // and THEIR neighbors after that (capped depth) — a small cluster
+            // grows outward from the origin tile instead of every hex being an
+            // independent, isolated pick
+            const renderHex = (cell) => {
                 const el = document.createElement('span');
                 el.className = 'hero-cell';
                 el.dataset.cellId = cell.id;
@@ -206,6 +209,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.style.animationDuration = rand(3.5, 5.5) + 's';
                 el.addEventListener('animationend', () => el.remove());
                 heroField.appendChild(el);
+            };
+            const NEIGHBOR_OFFSETS = [[-1,0],[1,0],[0,-1],[0,1],[-1,-1],[1,1]];
+            const spawnCluster = (cell, depth, visited) => {
+                renderHex(cell);
+                if (depth >= 2) return;
+                const spreadCount = randInt(1, 2);
+                const offsets = [...NEIGHBOR_OFFSETS].sort(() => Math.random() - 0.5);
+                let spread = 0;
+                for (const [dx, dy] of offsets) {
+                    if (spread >= spreadCount) break;
+                    const key = (cell.col + dx) + ',' + (cell.row + dy);
+                    if (visited.has(key)) continue;
+                    const neighbor = grid.cellByKey.get(key);
+                    if (!neighbor) continue;
+                    visited.add(key);
+                    spread++;
+                    setTimeout(() => spawnCluster(neighbor, depth + 1, visited), rand(140, 260));
+                }
+            };
+            const spawnCell = () => {
+                if (!grid.cells.length) return;
+                const origin = pick(grid.cells);
+                spawnCluster(origin, 0, new Set([origin.col + ',' + origin.row]));
             };
 
             // short segments, not full-length lines — travel along a random
@@ -250,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const scheduleCell = () => {
                 spawnCell();
-                setTimeout(scheduleCell, rand(450, 1300));
+                setTimeout(scheduleCell, rand(700, 1700));
             };
             const scheduleStreak = () => {
                 spawnStreak();
@@ -265,24 +291,6 @@ document.addEventListener('DOMContentLoaded', () => {
             scheduleLight();
         }
     }
-
-    /* ---------- Three-outcomes diagram: hexagon icon badges that flip in ----------
-       Wraps every bare .mbb-icon svg in a .mbb-icon-hex badge (so the HTML doesn't
-       need ~50 manual wrapper divs), then staggers each one's flip-in delay in
-       document order. The actual animation plays via CSS once #outcomes gets
-       .is-visible from the data-reveal observer above — this just sets up the
-       wrappers and delays ahead of time. */
-    document.querySelectorAll('.mbb .mbb-icon').forEach((icon, i) => {
-        if (icon.closest('.mbb-icon-circle')) {
-            icon.closest('.mbb-icon-circle').style.setProperty('--hex-delay', (i * 0.03) + 's');
-            return;
-        }
-        const wrap = document.createElement('span');
-        wrap.className = 'mbb-icon-hex';
-        wrap.style.setProperty('--hex-delay', (i * 0.03) + 's');
-        icon.parentNode.insertBefore(wrap, icon);
-        wrap.appendChild(icon);
-    });
 
     /* ---------- Simple submit-state UX for lead forms (FormSubmit-backed) ---------- */
     document.querySelectorAll('form[data-lead-form]').forEach((form) => {
