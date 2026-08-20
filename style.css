@@ -1080,10 +1080,12 @@ footer a:hover { color: var(--white); }
 .mbb-signal { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 10px; font-size: 0.68rem; color: rgba(255,255,255,0.7); }
 .mbb-icon-circle { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--human-orange); display: flex; align-items: center; justify-content: center; }
 .mbb-icon-circle .mbb-icon { color: var(--human-orange); width: 15px; height: 15px; }
-.mbb-chain { position: relative; display: flex; flex-direction: column; gap: 6px; padding-left: 14px; margin-bottom: 12px; }
-.mbb-chain::before { content: ''; position: absolute; left: 4px; top: 4px; bottom: 4px; width: 1px; background: rgba(16,169,244,0.3); }
-.mbb-chain .mbb-node { position: relative; }
-.mbb-chain .mbb-node::before { content: ''; position: absolute; left: -14px; top: 50%; width: 10px; height: 1px; background: rgba(16,169,244,0.3); transform: translateY(-50%); }
+/* explicit arrows between every box (.mbb-arrow-down, inserted in the
+   markup) do the connecting now — a passive spine line used to sit here
+   instead, but a faint sideways tick doesn't read as "connects to" the way
+   an actual arrow does */
+.mbb-chain { display: flex; flex-direction: column; gap: 2px; margin-bottom: 12px; }
+.mbb-arrow-down { text-align: center; color: var(--agent-blue); opacity: 0.6; font-size: 0.8rem; line-height: 1; }
 
 /* ===== Column 2: inputs -> agents -> exception ===== */
 .mbb-grid-flow { display: flex; align-items: center; gap: 4px; margin-bottom: 12px; flex: 1; }
