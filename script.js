@@ -179,6 +179,21 @@ document.addEventListener('DOMContentLoaded', () => {
             // every cell is the same fixed size (CELL x CELL); duration is
             // deliberately long so the flicker-then-slow-on keyframe (see
             // heroCellBlink in style.css) has room to play out
+            // mirrors the CSS mask-image on .hero-field-grid — same center,
+            // same ellipse, same three stops — so a square's max brightness
+            // fades the same way the background grid already fades, instead
+            // of every square hitting full opacity regardless of position
+            const lerp = (a, b, t) => a + (b - a) * t;
+            const peakForPoint = (x, y) => {
+                const cx = grid.width * 0.5, cy = grid.height * 0.42;
+                const rx = grid.width * 0.70, ry = grid.height * 0.78;
+                const t = Math.sqrt(Math.pow((x - cx) / rx, 2) + Math.pow((y - cy) / ry, 2));
+                if (t <= 0.15) return 1;
+                if (t <= 0.45) return lerp(1, 0.35, (t - 0.15) / 0.30);
+                if (t <= 0.78) return lerp(0.35, 0, (t - 0.45) / 0.33);
+                return 0.1; // floor so far-edge squares still faintly show, rather than spawning invisibly
+            };
+
             const spawnCell = () => {
                 if (!grid.cells.length) return;
                 const cell = pick(grid.cells);
@@ -187,14 +202,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 el.dataset.cellId = cell.id;
                 el.style.left = cell.x + 'px';
                 el.style.top = cell.y + 'px';
+                el.style.setProperty('--peak', peakForPoint(cell.x, cell.y).toFixed(2));
                 el.style.animationDuration = rand(3.5, 5.5) + 's';
                 el.addEventListener('animationend', () => el.remove());
                 heroField.appendChild(el);
             };
 
             // short segments, not full-length lines — travel along a random
-            // line but only cover STREAK_LEN px of it, at a random offset
-            const STREAK_LEN = 90;
+            // a short comet starts at the line's origin and sweeps the FULL
+            // length of that line (--travel = the line's actual pixel
+            // length) fast, instead of sitting static partway along it
             const spawnStreak = () => {
                 const vertical = Math.random() < 0.55;
                 const line = vertical ? pick(grid.verticalLines) : pick(grid.horizontalLines);
@@ -202,15 +219,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 const el = document.createElement('span');
                 el.className = 'hero-streak ' + (vertical ? 'hero-streak-v' : 'hero-streak-h');
                 el.dataset.lineId = line.id;
-                el.style.animationDuration = rand(0.6, 1.1) + 's';
+                el.style.animationDuration = rand(0.35, 0.6) + 's';
                 if (vertical) {
                     el.style.left = line.x + 'px';
-                    el.style.height = STREAK_LEN + 'px';
-                    el.style.top = rand(0, Math.max(0, grid.height - STREAK_LEN)) + 'px';
+                    el.style.setProperty('--travel', grid.height + 'px');
                 } else {
                     el.style.top = line.y + 'px';
-                    el.style.width = STREAK_LEN + 'px';
-                    el.style.left = rand(0, Math.max(0, grid.width - STREAK_LEN)) + 'px';
+                    el.style.setProperty('--travel', grid.width + 'px');
                 }
                 el.addEventListener('animationend', () => el.remove());
                 heroField.appendChild(el);
@@ -235,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const scheduleCell = () => {
                 spawnCell();
-                setTimeout(scheduleCell, rand(250, 900));
+                setTimeout(scheduleCell, rand(450, 1300));
             };
             const scheduleStreak = () => {
                 spawnStreak();

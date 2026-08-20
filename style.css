@@ -387,47 +387,69 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
     background: rgba(16, 169, 244, 0.3);
     opacity: 0;
     pointer-events: none;
+    /* --peak is set per-cell by script.js, based on how far the cell sits
+       from the field's center — the same falloff the background grid/mask
+       already fades on, so peripheral squares max out dimmer instead of
+       hitting the same full brightness as central ones */
+    --peak: 1;
     animation-name: heroCellBlink;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
 }
 /* old-fluorescent-tube startup: a couple of stuttering flickers, then a slow
-   climb up to fully lit, a hold, then it drops off */
+   climb up to fully lit (fully lit = --peak, not always 1), a hold, then it
+   drops off */
 @keyframes heroCellBlink {
     0%   { opacity: 0; }
-    4%   { opacity: 0.55; }
-    7%   { opacity: 0.05; }
-    11%  { opacity: 0.45; }
-    15%  { opacity: 0.05; }
-    21%  { opacity: 0.65; }
-    27%  { opacity: 0.1; }
-    32%  { opacity: 0.2; }
-    65%  { opacity: 1; }
-    88%  { opacity: 1; }
+    4%   { opacity: calc(var(--peak) * 0.55); }
+    7%   { opacity: calc(var(--peak) * 0.05); }
+    11%  { opacity: calc(var(--peak) * 0.45); }
+    15%  { opacity: calc(var(--peak) * 0.05); }
+    21%  { opacity: calc(var(--peak) * 0.65); }
+    27%  { opacity: calc(var(--peak) * 0.1); }
+    32%  { opacity: calc(var(--peak) * 0.2); }
+    65%  { opacity: var(--peak); }
+    88%  { opacity: var(--peak); }
     100% { opacity: 0; }
 }
-/* short, fast light segments instead of full-length lines */
+/* a short comet-like segment that sweeps the FULL length of its line, fast —
+   script.js sets --travel to the line's actual pixel length and starts the
+   streak at that line's origin (top:0 for verticals, left:0 for horizontals) */
 .hero-streak {
     position: absolute;
     opacity: 0;
     pointer-events: none;
-    animation-name: heroStreakBlink;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
+    --travel: 0px;
 }
 .hero-streak-v {
+    top: 0;
     width: 1px;
+    height: 90px;
     background: linear-gradient(to bottom, transparent, rgba(16, 169, 244, 0.85) 50%, transparent);
+    animation-name: heroStreakSweepV;
 }
 .hero-streak-h {
+    left: 0;
     height: 1px;
+    width: 90px;
     background: linear-gradient(to right, transparent, rgba(16, 169, 244, 0.85) 50%, transparent);
+    animation-name: heroStreakSweepH;
 }
-@keyframes heroStreakBlink {
-    0% { opacity: 0; }
-    25% { opacity: 1; }
-    75% { opacity: 1; }
-    100% { opacity: 0; }
+.hero-streak-v, .hero-streak-h {
+    animation-timing-function: ease-in;
+    animation-fill-mode: forwards;
+}
+@keyframes heroStreakSweepV {
+    0%   { opacity: 0; transform: translateY(0); }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { opacity: 0; transform: translateY(var(--travel)); }
+}
+@keyframes heroStreakSweepH {
+    0%   { opacity: 0; transform: translateX(0); }
+    12%  { opacity: 1; }
+    88%  { opacity: 1; }
+    100% { opacity: 0; transform: translateX(var(--travel)); }
 }
 /* small blinking lights sitting right on the grid-line intersections */
 .hero-light {
