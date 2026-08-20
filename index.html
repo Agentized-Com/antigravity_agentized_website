@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=23">
+    <link rel="stylesheet" href="style.css?v=24">
 </head>
 
 <body>
@@ -108,10 +108,11 @@
                          together, reading as a disconnected fuzzy patch instead of a glow. Crisp
                          lines only, and they carry a bit more contrast to compensate. -->
                     <g fill="none" stroke="#10A9F4" stroke-width="2" opacity="0.85">
-                        <!-- objective fans out to each agent -->
-                        <path class="hf-line l1" d="M320,76 C355,76 355,64 390,64" />
-                        <path class="hf-line l1" d="M320,76 C355,76 355,188 390,188" />
-                        <path class="hf-line l1" d="M320,76 C355,76 355,312 390,312" />
+                        <!-- objective fans out to each agent — straight elbow connectors:
+                             out from the box edge, turn, straight into the next box edge -->
+                        <path class="hf-line l1" d="M320,76 H355 V64 H390" />
+                        <path class="hf-line l1" d="M320,76 H355 V188 H390" />
+                        <path class="hf-line l1" d="M320,76 H355 V312 H390" />
                         <!-- agents converge into the human gate on the right via a shared trunk (no crossing) -->
                         <path class="hf-line l2" d="M660,64 H680" />
                         <path class="hf-line l2" d="M660,188 H680" />
@@ -712,7 +713,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=23"></script>
+    <script src="script.js?v=24"></script>
 </body>
 
 </html>

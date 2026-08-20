@@ -705,14 +705,19 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
     .handoff-anim .hf-node.n4 { animation-delay: 1.1s; }
     .handoff-anim .hf-node.n5 { animation-delay: 1.5s; }
     .handoff-anim .hf-node.n6 { animation-delay: 1.9s; }
-    .handoff-anim .hf-line { stroke-dasharray: 220; stroke-dashoffset: 220; animation: hfLine 0.6s ease forwards; }
+    /* plain opacity fade, not a stroke-dasharray "draw-in" — the old fixed
+       dasharray (220) was shorter than several of these paths' actual
+       lengths (the trunk is ~248 units, the Compliance fan-out ~306), which
+       left a literal invisible gap partway down those lines after the
+       animation finished. A fade can't do that: every path is either fully
+       drawn or not, never partially. */
+    .handoff-anim .hf-line { opacity: 0; animation: hfIn 0.5s ease forwards; }
     .handoff-anim .hf-line.l1 { animation-delay: 0.35s; }
     .handoff-anim .hf-line.l2 { animation-delay: 0.6s; }
     .handoff-anim .hf-line.l3 { animation-delay: 0.85s; }
     .handoff-anim .hf-line.l4 { animation-delay: 1.3s; }
 }
 @keyframes hfIn { to { opacity: 1; } }
-@keyframes hfLine { to { stroke-dashoffset: 0; } }
 
 .diagram-caption { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); text-align: right; margin-top: var(--space-2); }
 .bg-ink .diagram-caption, .bg-midnight .diagram-caption { color: rgba(247,245,240,0.4); }
