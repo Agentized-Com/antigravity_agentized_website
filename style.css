@@ -1085,16 +1085,14 @@ footer a:hover { color: var(--white); }
    instead, but a faint sideways tick doesn't read as "connects to" the way
    an actual arrow does */
 .mbb-chain { display: flex; flex-direction: column; gap: 2px; margin-bottom: 12px; }
-.mbb-arrow-down { text-align: center; color: var(--agent-blue); opacity: 0.6; font-size: 0.8rem; line-height: 1; }
+.mbb-arrow-down { display: block; text-align: center; color: var(--agent-blue); opacity: 0.7; font-size: 0.8rem; line-height: 1.6; font-family: var(--font-mono); }
 
 /* ===== Column 2: inputs -> agents -> exception ===== */
-.mbb-grid-flow { display: flex; align-items: center; gap: 4px; margin-bottom: 12px; flex: 1; }
-.mbb-inputs { display: flex; flex-direction: column; gap: 5px; flex: 0 0 30%; }
-.mbb-inputs div { display: flex; align-items: center; gap: 6px; font-size: 0.62rem; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.04); border-radius: 5px; padding: 5px 7px; }
-.mbb-agents { display: flex; flex-direction: column; gap: 5px; flex: 1; }
-.mbb-exception { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; flex: 0 0 26%; }
+/* the six input types are parallel sources, not a sequence — a wrapped row
+   of small tags feeding one funnel, not a vertical chain with arrows */
+.mbb-inputs-row { display: flex; flex-wrap: wrap; gap: 5px; }
+.mbb-inputs-row div { display: flex; align-items: center; gap: 6px; font-size: 0.62rem; color: rgba(255,255,255,0.65); background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 5px; padding: 5px 8px; }
 .mbb-exception-label { display: flex; align-items: center; gap: 4px; font-size: 0.6rem; color: var(--human-orange); font-family: var(--font-mono); text-align: center; }
-.mbb-arrow-col { flex: 0 0 auto; color: var(--agent-blue); font-size: 0.9rem; opacity: 0.6; }
 
 /* ===== Column 3: sequential vs parallel ===== */
 .mbb-compare-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.04em; color: rgba(255,255,255,0.5); margin: 8px 0 6px; text-transform: uppercase; }

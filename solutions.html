@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=49">
+    <link rel="stylesheet" href="style.css?v=50">
 </head>
 
 <body>
@@ -201,8 +201,9 @@
                             <p class="mbb-col-caption">Every input type routes through the same five-agent line.
                                 Whatever an agent can't resolve on its own escalates to a person, instead of
                                 shipping wrong.</p>
-                            <div class="mbb-grid-flow">
-                                <div class="mbb-inputs">
+                            <div class="mbb-stage">
+                                <span class="mbb-stage-label">1 · Six input types arrive</span>
+                                <div class="mbb-inputs-row">
                                     <div><svg class="mbb-icon"><use href="#ic-doc"/></svg>Documents</div>
                                     <div><svg class="mbb-icon"><use href="#ic-mail"/></svg>Requests</div>
                                     <div><svg class="mbb-icon"><use href="#ic-box"/></svg>Cases</div>
@@ -210,18 +211,27 @@
                                     <div><svg class="mbb-icon"><use href="#ic-dollar"/></svg>Invoices</div>
                                     <div><svg class="mbb-icon"><use href="#ic-trending"/></svg>Reports</div>
                                 </div>
-                                <div class="mbb-arrow-col">→</div>
-                                <div class="mbb-agents">
-                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-filter"/></svg>Classification Agent</div>
-                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
-                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-gear"/></svg>Processing Agent</div>
-                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-file-check"/></svg>QA Agent</div>
-                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Reporting Agent</div>
+                            </div>
+                            <div class="mbb-drop-arrow">↓</div>
+                            <div class="mbb-stage">
+                                <span class="mbb-stage-label">2 · Routed through five agents, in order</span>
+                                <div class="mbb-chain">
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-filter"/></svg>Classification Agent</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-gear"/></svg>Processing Agent</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-file-check"/></svg>QA Agent</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Reporting Agent</div>
                                 </div>
-                                <div class="mbb-arrow-col">→</div>
-                                <div class="mbb-exception">
-                                    <div class="mbb-node highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Intervention</div>
-                                    <span class="mbb-exception-label"><svg class="mbb-icon"><use href="#ic-warning"/></svg>Exceptions only</span>
+                            </div>
+                            <div class="mbb-drop-arrow">↓</div>
+                            <div class="mbb-stage">
+                                <span class="mbb-stage-label">3 · Anything uncertain escalates</span>
+                                <div class="mbb-chain">
+                                    <div class="mbb-node highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Intervention<span class="mbb-node-tag">exceptions only</span></div>
                                 </div>
                             </div>
                             <div class="mbb-stats">
@@ -237,34 +247,38 @@
                             <div class="mbb-col-head"><span class="mbb-num">03</span><h4>Move Faster</h4></div>
                             <p class="mbb-col-caption">Same seven steps, done by four agents at once instead of one
                                 person in sequence. Cycle time compresses; a person still makes the final call.</p>
-                            <div class="mbb-compare-label">Traditional (Sequential) — one step at a time</div>
-                            <div class="mbb-row-flow">
-                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research</div>
-                                <span class="mbb-arrow-row">→</span>
-                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-users"/></svg>Meeting</div>
-                                <span class="mbb-arrow-row">→</span>
-                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Draft</div>
-                                <span class="mbb-arrow-row">→</span>
-                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-eye"/></svg>Review</div>
-                                <span class="mbb-arrow-row">→</span>
-                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-edit"/></svg>Revision</div>
-                                <span class="mbb-arrow-row">→</span>
-                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-check-user"/></svg>Approval</div>
-                                <span class="mbb-arrow-row">→</span>
-                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-box"/></svg>Delivery</div>
-                            </div>
-                            <div class="mbb-compare-label">Agentized (Parallel) — four at once, then one decision</div>
-                            <div class="mbb-parallel">
-                                <div class="mbb-parallel-agents">
-                                    <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
-                                    <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-edit"/></svg>Drafting Agent</div>
-                                    <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Analysis Agent</div>
-                                    <div class="mbb-chip sm"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Preparation Agent</div>
+                            <div class="mbb-stage">
+                                <span class="mbb-stage-label">Traditional — one step at a time</span>
+                                <div class="mbb-chain">
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-users"/></svg>Meeting</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Draft</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-eye"/></svg>Review</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-edit"/></svg>Revision</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-check-user"/></svg>Approval</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node end"><svg class="mbb-icon"><use href="#ic-box"/></svg>Delivery<span class="mbb-node-tag">outcome</span></div>
                                 </div>
-                                <span class="mbb-arrow-row">→</span>
-                                <div class="mbb-chip highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Decision</div>
-                                <span class="mbb-arrow-row">→</span>
-                                <div class="mbb-chip"><svg class="mbb-icon"><use href="#ic-box"/></svg>Delivery</div>
+                            </div>
+                            <div class="mbb-stage" style="margin-top: 14px;">
+                                <span class="mbb-stage-label">Agentized — four agents at once, then one decision</span>
+                                <div class="mbb-parallel-agents">
+                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-search"/></svg>Research Agent</div>
+                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-edit"/></svg>Drafting Agent</div>
+                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Analysis Agent</div>
+                                    <div class="mbb-node sm"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Preparation Agent</div>
+                                </div>
+                                <div class="mbb-chain" style="margin-top: 2px;">
+                                    <span class="mbb-arrow-down">↓ all four, at once</span>
+                                    <div class="mbb-node highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Decision</div>
+                                    <span class="mbb-arrow-down">↓</span>
+                                    <div class="mbb-node end"><svg class="mbb-icon"><use href="#ic-box"/></svg>Delivery<span class="mbb-node-tag">outcome</span></div>
+                                </div>
                             </div>
                             <div class="mbb-stats">
                                 <div><svg class="mbb-icon"><use href="#ic-clock"/></svg>Compressed Cycle Time</div>
@@ -338,7 +352,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=49"></script>
+    <script src="script.js?v=50"></script>
 </body>
 
 </html>
