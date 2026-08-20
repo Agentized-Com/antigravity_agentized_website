@@ -81,39 +81,47 @@ document.addEventListener('DOMContentLoaded', () => {
        Each block starts as a rolling cascade of small hexagons flipping in
        one after another, covering the box — then that hex mosaic resolves
        into the full solid block (mosaic fades out right as the real block
-       fades in on top of it). */
-    const handoff = document.querySelector('.handoff-svg');
-    if (handoff) {
-        const SVG_NS = 'http://www.w3.org/2000/svg';
-        const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+       fades in on top of it).
 
-        const hexPoints = (cx, cy, r) => {
-            const pts = [];
-            for (let i = 0; i < 6; i++) {
-                const ang = (Math.PI / 180) * (60 * i - 30);
-                pts.push((cx + r * Math.cos(ang)).toFixed(1) + ',' + (cy + r * Math.sin(ang)).toFixed(1));
-            }
-            return pts.join(' ');
-        };
+       Runs identically against both the desktop SVG (.handoff-svg) and the
+       mobile SVG (.handoff-svg-mobile) — whichever one is actually visible
+       (display != none) is the only one whose IntersectionObserver can ever
+       fire, since a display:none element never intersects the viewport, so
+       this doesn't need to detect screen size itself. */
+    const SVG_NS = 'http://www.w3.org/2000/svg';
+    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-        // hex centers tiling a box (x,y,w,h) at tile radius tr, slightly
-        // overflowing the edges (fine — the whole mosaic is transient)
-        const tileCenters = (x, y, w, h, tr) => {
-            const hexw = Math.sqrt(3) * tr, hexh = 2 * tr, vstep = hexh * 0.75;
-            const centers = [];
-            let row = 0, yy = y - hexh / 2;
-            while (yy < y + h + hexh / 2) {
-                const xoff = (row % 2) ? hexw / 2 : 0;
-                let xx = x - hexw / 2 + xoff;
-                while (xx < x + w + hexw / 2) { centers.push([xx, yy]); xx += hexw; }
-                yy += vstep;
-                row++;
-            }
-            return centers;
-        };
+    const hexPoints = (cx, cy, r) => {
+        const pts = [];
+        for (let i = 0; i < 6; i++) {
+            const ang = (Math.PI / 180) * (60 * i - 30);
+            pts.push((cx + r * Math.cos(ang)).toFixed(1) + ',' + (cy + r * Math.sin(ang)).toFixed(1));
+        }
+        return pts.join(' ');
+    };
+
+    // hex centers tiling a box (x,y,w,h) at tile radius tr, slightly
+    // overflowing the edges (fine — the whole mosaic is transient)
+    const tileCenters = (x, y, w, h, tr) => {
+        const hexw = Math.sqrt(3) * tr, hexh = 2 * tr, vstep = hexh * 0.75;
+        const centers = [];
+        let row = 0, yy = y - hexh / 2;
+        while (yy < y + h + hexh / 2) {
+            const xoff = (row % 2) ? hexw / 2 : 0;
+            let xx = x - hexw / 2 + xoff;
+            while (xx < x + w + hexw / 2) { centers.push([xx, yy]); xx += hexw; }
+            yy += vstep;
+            row++;
+        }
+        return centers;
+    };
+
+    const initHandoffAnimation = (svgSelector, steps) => {
+        const svg = document.querySelector(svgSelector);
+        if (!svg) return;
 
         const revealNode = async (nodeClass, x, y, w, h, tr, color) => {
-            const node = handoff.querySelector('.hf-node.' + nodeClass);
+            const node = svg.querySelector('.hf-node.' + nodeClass);
             if (!node) return;
             const content = node.querySelector('.hf-node-content');
 
@@ -123,7 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const group = document.createElementNS(SVG_NS, 'g');
             group.setAttribute('class', 'hf-tile-group');
             group.setAttribute('clip-path', 'url(#clip-' + nodeClass + ')');
-            handoff.insertBefore(group, node);
+            svg.insertBefore(group, node);
             const centers = tileCenters(x, y, w, h, tr);
             const spawnSpread = 280; // ms across which tiles land
             centers.forEach(([cx, cy], i) => {
@@ -149,24 +157,20 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const revealLine = async (lineClass) => {
-            const line = handoff.querySelector('.hf-line.' + lineClass);
+            const line = svg.querySelector('.hf-line.' + lineClass);
             if (line) line.classList.add('is-in');
             await wait(350);
         };
 
         const playSequence = async () => {
-            handoff.classList.add('handoff-anim');
-            await revealNode('n1', 20, 26, 300, 100, 26, '#FF6800');
-            await revealLine('to-r');
-            await revealNode('n2', 390, 26, 270, 76, 22, '#10A9F4');
-            await revealLine('to-p');
-            await revealNode('n3', 390, 150, 270, 76, 22, '#10A9F4');
-            await revealLine('to-c');
-            await revealNode('n4', 390, 274, 270, 76, 22, '#10A9F4');
-            await revealLine('to-gate');
-            await revealNode('n5', 700, 257, 260, 110, 24, '#FF6800');
-            await revealLine('to-outcome');
-            await revealNode('n6', 700, 387, 260, 130, 26, '#10A9F4');
+            svg.classList.add('handoff-anim');
+            for (const step of steps) {
+                if (step.type === 'node') {
+                    await revealNode(step.id, step.x, step.y, step.w, step.h, step.tr, step.color);
+                } else {
+                    await revealLine(step.id);
+                }
+            }
         };
 
         const playOnce = new IntersectionObserver((entries) => {
@@ -177,8 +181,38 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }, { threshold: 0.3 });
-        playOnce.observe(handoff);
-    }
+        playOnce.observe(svg);
+    };
+
+    initHandoffAnimation('.handoff-svg', [
+        { type: 'node', id: 'n1', x: 20, y: 26, w: 300, h: 100, tr: 26, color: '#FF6800' },
+        { type: 'line', id: 'to-r' },
+        { type: 'node', id: 'n2', x: 390, y: 26, w: 270, h: 76, tr: 22, color: '#10A9F4' },
+        { type: 'line', id: 'to-p' },
+        { type: 'node', id: 'n3', x: 390, y: 150, w: 270, h: 76, tr: 22, color: '#10A9F4' },
+        { type: 'line', id: 'to-c' },
+        { type: 'node', id: 'n4', x: 390, y: 274, w: 270, h: 76, tr: 22, color: '#10A9F4' },
+        { type: 'line', id: 'to-gate' },
+        { type: 'node', id: 'n5', x: 700, y: 257, w: 260, h: 110, tr: 24, color: '#FF6800' },
+        { type: 'line', id: 'to-outcome' },
+        { type: 'node', id: 'n6', x: 700, y: 387, w: 260, h: 130, tr: 26, color: '#10A9F4' },
+    ]);
+
+    initHandoffAnimation('.handoff-svg-mobile', [
+        { type: 'node', id: 'n1', x: 10, y: 14, w: 320, h: 96, tr: 22, color: '#FF6800' },
+        { type: 'line', id: 'l1' },
+        { type: 'node', id: 'n2', x: 10, y: 144, w: 320, h: 72, tr: 20, color: '#10A9F4' },
+        { type: 'line', id: 'l2' },
+        { type: 'node', id: 'n3', x: 10, y: 250, w: 320, h: 72, tr: 20, color: '#10A9F4' },
+        { type: 'line', id: 'l3' },
+        { type: 'node', id: 'n4', x: 10, y: 356, w: 320, h: 72, tr: 20, color: '#10A9F4' },
+        { type: 'line', id: 'l4' },
+        { type: 'node', id: 'n5', x: 10, y: 462, w: 320, h: 96, tr: 22, color: '#FF6800' },
+        { type: 'line', id: 'l5' },
+        { type: 'node', id: 'n6', x: 10, y: 592, w: 320, h: 106, tr: 24, color: '#B9C6D2' },
+        { type: 'line', id: 'l6' },
+        { type: 'node', id: 'n7', x: 10, y: 732, w: 320, h: 78, tr: 20, color: '#10A9F4' },
+    ]);
 
     /* ---------- Hero ambient field ----------
        Builds an explicit grid model — a labeled object per vertical line, per
