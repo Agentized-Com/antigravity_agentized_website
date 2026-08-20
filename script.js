@@ -78,77 +78,18 @@ document.addEventListener('DOMContentLoaded', () => {
        sequence that conveys the actual flow order (unlike the looping
        ambient background effects below, which do respect that setting).
 
-       Each node "builds" from real hexagon tiles — actual <polygon> elements
-       created and appended to the DOM one at a time on a timer, then removed
-       — the exact same technique as the .hero-cell background squares, which
-       is known to render. Previous attempt pre-rendered ~200 tiles into the
-       SVG source with CSS animation-delay chains timing when they became
-       visible; if that never fires for any reason, nothing is visibly wrong
-       until you look closely. Spawning real elements on a timer can't fail
-       silently the same way — either the element exists on the timeline or
-       it doesn't. */
+       Plain solid boxes, no hex-tile texture — that was tried (a few ways)
+       and didn't land, so this is back to simple: each node just fades in,
+       in flow order, with a line fading in between each one. */
     const handoff = document.querySelector('.handoff-svg');
     if (handoff) {
-        const SVG_NS = 'http://www.w3.org/2000/svg';
         const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-        const hexPoints = (cx, cy, r) => {
-            const pts = [];
-            for (let i = 0; i < 6; i++) {
-                const ang = (Math.PI / 180) * (60 * i - 30);
-                pts.push((cx + r * Math.cos(ang)).toFixed(1) + ',' + (cy + r * Math.sin(ang)).toFixed(1));
-            }
-            return pts.join(' ');
-        };
-
-        // hex centers covering a box (x,y,w,h) at tile radius tr, slightly
-        // overflowing the edges (fine — tiles are on screen for ~0.3s each)
-        const tileCenters = (x, y, w, h, tr) => {
-            const hexw = Math.sqrt(3) * tr, hexh = 2 * tr, vstep = hexh * 0.75;
-            const centers = [];
-            let row = 0, yy = y - hexh / 2;
-            while (yy < y + h + hexh / 2) {
-                const xoff = (row % 2) ? hexw / 2 : 0;
-                let xx = x - hexw / 2 + xoff;
-                while (xx < x + w + hexw / 2) { centers.push([xx, yy]); xx += hexw; }
-                yy += vstep;
-                row++;
-            }
-            return centers;
-        };
-
-        // spawns a box's hex-tile mosaic tile by tile, waits for it to
-        // finish, fades the tiles out while fading the real node in, removes
-        // the tile elements once they're no longer needed
-        // tiles land in that node's own .hf-tile-slot (clipped to its
-        // rounded-rect shape, so nothing pokes past the corners) at full
-        // opacity and STAY — every box's permanent surface is the hex
-        // mosaic itself, not a flourish that resolves into a flat fill.
-        const assembleNode = async (nodeClass, x, y, w, h, tr, color) => {
+        const revealNode = async (nodeClass) => {
             const node = handoff.querySelector('.hf-node.' + nodeClass);
             if (!node) return;
-            const rect = node.querySelector('rect');
-            const content = node.querySelector('.hf-node-content');
-            const group = node.querySelector('.hf-tile-slot.' + nodeClass + '-slot');
-            if (!group) return;
-
-            if (rect) rect.classList.add('is-in'); // border appears right as this node's build starts
-
-            const centers = tileCenters(x, y, w, h, tr);
-            const spawnSpread = 260; // ms across which tiles land
-            centers.forEach(([cx, cy], i) => {
-                setTimeout(() => {
-                    const poly = document.createElementNS(SVG_NS, 'polygon');
-                    poly.setAttribute('points', hexPoints(cx, cy, tr));
-                    poly.setAttribute('fill', color);
-                    poly.setAttribute('stroke', color);
-                    poly.setAttribute('class', 'hf-tile-live');
-                    group.appendChild(poly);
-                }, (i / Math.max(centers.length - 1, 1)) * spawnSpread);
-            });
-
-            await wait(spawnSpread + 320); // last tile spawned + its own flip duration
-            if (content) content.classList.add('is-in');
+            node.classList.add('is-in');
+            await wait(350);
         };
 
         const revealLine = async (lineClass) => {
@@ -159,17 +100,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const playSequence = async () => {
             handoff.classList.add('handoff-anim');
-            await assembleNode('n1', 20, 26, 300, 100, 26, '#FF6800');
+            await revealNode('n1');
             await revealLine('to-r');
-            await assembleNode('n2', 390, 26, 270, 76, 22, '#10A9F4');
+            await revealNode('n2');
             await revealLine('to-p');
-            await assembleNode('n3', 390, 150, 270, 76, 22, '#10A9F4');
+            await revealNode('n3');
             await revealLine('to-c');
-            await assembleNode('n4', 390, 274, 270, 76, 22, '#10A9F4');
+            await revealNode('n4');
             await revealLine('to-gate');
-            await assembleNode('n5', 700, 257, 260, 110, 24, '#FF6800');
+            await revealNode('n5');
             await revealLine('to-outcome');
-            await assembleNode('n6', 700, 387, 260, 130, 26, '#B9C6D2');
+            await revealNode('n6');
         };
 
         const playOnce = new IntersectionObserver((entries) => {

@@ -679,40 +679,13 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 .handoff-node-stroke { stroke: rgba(16,169,244,0.5); }
 
 /* This one-time hero intro (plays once, when the diagram scrolls into view)
-   is driven entirely by script.js — real DOM elements get created on a
-   timer, same technique as the .hero-cell background squares. Nothing about
-   a node is visible — not even its border — until that node's turn in the
-   sequence starts; the border and the hex tiles appear together, then the
-   icon+text fades in once the mosaic finishes building. */
-.handoff-anim .hf-node rect,
-.handoff-anim .hf-node-content,
+   is driven by script.js. Plain fade — no hex-tile texture; that was tried
+   a few different ways and didn't land. Each node just fades in as a
+   whole, in flow order, with a line fading in between. */
+.handoff-anim .hf-node,
 .handoff-anim .hf-line { opacity: 0; }
-.handoff-anim .hf-node rect.is-in,
-.handoff-anim .hf-node-content.is-in,
-.handoff-anim .hf-line.is-in { opacity: 1; transition: opacity 0.2s ease; }
-
-/* one tile per polygon JS creates. Every node's mosaic is now permanent —
-   full opacity, never faded or removed, IS the block's surface. A thin
-   grout-line stroke keeps the honeycomb pattern visible as a pattern
-   instead of adjacent same-color tiles blending into one flat block. */
-/* outline-only hexagons — a solid fill made every tile in a box blend into
-   one flat color block regardless of the grout line; an open honeycomb
-   line actually reads as a hexagon pattern. JS sets `stroke` per node's
-   accent color and leaves `fill: none`. */
-.hf-tile-live {
-    opacity: 0;
-    fill-opacity: 0.14;
-    stroke-width: 1.1;
-    stroke-opacity: 0.28;
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: hfTileFlip 0.3s cubic-bezier(.22,.85,.3,1.1) forwards;
-}
-@keyframes hfTileFlip {
-    0%   { opacity: 0; transform: scale(0) rotate(18deg); }
-    60%  { opacity: 1; transform: scale(1.15) rotate(-5deg); }
-    100% { opacity: 1; transform: scale(1) rotate(0deg); }
-}
+.handoff-anim .hf-node.is-in,
+.handoff-anim .hf-line.is-in { opacity: 1; transition: opacity 0.35s ease; }
 
 .diagram-caption { font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--slate); text-align: right; margin-top: var(--space-2); }
 .bg-ink .diagram-caption, .bg-midnight .diagram-caption { color: rgba(247,245,240,0.4); }
