@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=34">
+    <link rel="stylesheet" href="style.css?v=35">
 </head>
 
 <body>
@@ -108,6 +108,13 @@
                          together, reading as a disconnected fuzzy patch instead of a glow. Crisp
                          lines only, and they carry a bit more contrast to compensate. -->
                     <defs>
+                        <!-- clips each node's hex-tile mosaic to that node's own rounded-rect
+                             silhouette, so tiles never poke out past the box's edges/corners -->
+                        <clipPath id="clip-n1"><rect x="20" y="26" width="300" height="100" rx="12"/></clipPath>
+                        <clipPath id="clip-n2"><rect x="390" y="26" width="270" height="76" rx="10"/></clipPath>
+                        <clipPath id="clip-n3"><rect x="390" y="150" width="270" height="76" rx="10"/></clipPath>
+                        <clipPath id="clip-n4"><rect x="390" y="274" width="270" height="76" rx="10"/></clipPath>
+                        <clipPath id="clip-n5"><rect x="700" y="257" width="260" height="110" rx="10"/></clipPath>
                     </defs>
                     <g fill="none" stroke="#10A9F4" stroke-width="2" opacity="0.85">
                         <!-- objective fans out to each agent — each gets its own class so the
@@ -125,7 +132,9 @@
 
                     <!-- Human Objective: bullseye instead of a plain plus -->
                                         <g class="hf-node n1">
-                        <rect x="20" y="26" width="300" height="100" rx="12" fill="#0B2239" stroke="#FF6800" stroke-width="2"/>
+                        <rect x="20" y="26" width="300" height="100" rx="12" fill="none" stroke="#FF6800" stroke-width="2"/>
+                        <g class="hf-tile-slot n1-slot" clip-path="url(#clip-n1)"></g>
+                        <g class="hf-node-content">
                         <circle cx="52" cy="60" r="17" fill="#FF6800"/>
                         <circle cx="52" cy="60" r="9" fill="none" stroke="#0B2239" stroke-width="2.2"/>
                         <circle cx="52" cy="60" r="3" fill="#0B2239"/>
@@ -133,35 +142,45 @@
                         <text x="82" y="76" font-size="17" font-weight="700" fill="#F7F5F0">Increase proposal win rate</text>
                         <text x="52" y="104" font-size="12.5" fill="#8CA0B3">Owner: Chief Revenue Officer</text>
                     </g>
+                    </g>
 
                     <!-- Research Agent: magnifying glass -->
                                         <g class="hf-node n2">
-                        <rect x="390" y="26" width="270" height="76" rx="10" fill="#0B2239" stroke="#10A9F4" stroke-width="1.5"/>
+                        <rect x="390" y="26" width="270" height="76" rx="10" fill="none" stroke="#10A9F4" stroke-width="1.5"/>
+                        <g class="hf-tile-slot n2-slot" clip-path="url(#clip-n2)"></g>
+                        <g class="hf-node-content">
                         <circle cx="422" cy="64" r="16" fill="#10A9F4"/>
                         <circle cx="417" cy="63" r="5" fill="none" stroke="#FFFFFF" stroke-width="2"/>
                         <path d="M421,67 L426,72" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
                         <text x="450" y="55" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1" fill="#7FCBFA">RESEARCH AGENT</text>
                         <text x="450" y="76" font-size="15.5" fill="#F7F5F0">Account research</text>
                     </g>
+                    </g>
 
                     <!-- Proposal Agent: draft document -->
                                         <g class="hf-node n3">
-                        <rect x="390" y="150" width="270" height="76" rx="10" fill="#0B2239" stroke="#10A9F4" stroke-width="1.5"/>
+                        <rect x="390" y="150" width="270" height="76" rx="10" fill="none" stroke="#10A9F4" stroke-width="1.5"/>
+                        <g class="hf-tile-slot n3-slot" clip-path="url(#clip-n3)"></g>
+                        <g class="hf-node-content">
                         <circle cx="422" cy="188" r="16" fill="#10A9F4"/>
                         <rect x="414" y="180" width="16" height="16" rx="2" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
                         <path d="M417,185 H427 M417,190 H424" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round"/>
                         <text x="450" y="179" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1" fill="#7FCBFA">PROPOSAL AGENT</text>
                         <text x="450" y="200" font-size="15.5" fill="#F7F5F0">Draft + assemble</text>
                     </g>
+                    </g>
 
                     <!-- Compliance Agent: shield with a check -->
                                         <g class="hf-node n4">
-                        <rect x="390" y="274" width="270" height="76" rx="10" fill="#0B2239" stroke="#10A9F4" stroke-width="1.5"/>
+                        <rect x="390" y="274" width="270" height="76" rx="10" fill="none" stroke="#10A9F4" stroke-width="1.5"/>
+                        <g class="hf-tile-slot n4-slot" clip-path="url(#clip-n4)"></g>
+                        <g class="hf-node-content">
                         <circle cx="422" cy="312" r="16" fill="#10A9F4"/>
                         <path d="M422,302 L430,305 V312 C430,317 426,320 422,322 C418,320 414,317 414,312 V305 Z" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"/>
                         <path d="M418,313 L421,316 L427,309" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                         <text x="450" y="303" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1" fill="#7FCBFA">COMPLIANCE AGENT</text>
                         <text x="450" y="324" font-size="15.5" fill="#F7F5F0">Review + flag</text>
+                    </g>
                     </g>
 
                     <!-- Human Gate: third column, on the right, now dropped down to sit level
@@ -169,20 +188,25 @@
                          (Proposal) row — the trunk still collects all three agents, it just exits
                          into the gate lower down, at the Compliance row -->
                                         <g class="hf-node n5">
-                        <rect x="700" y="257" width="260" height="110" rx="10" fill="#0B2239" stroke="#FF6800" stroke-width="2"/>
+                        <rect x="700" y="257" width="260" height="110" rx="10" fill="none" stroke="#FF6800" stroke-width="2"/>
+                        <g class="hf-tile-slot n5-slot" clip-path="url(#clip-n5)"></g>
+                        <g class="hf-node-content">
                         <circle cx="734" cy="312" r="17" fill="#FF6800"/>
                         <path d="M725,312 L732,320 L747,302" fill="none" stroke="#0B2239" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
                         <text x="762" y="301" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1" fill="#FFB27A">HUMAN GATE</text>
                         <text x="762" y="323" font-size="17" font-weight="700" fill="#F7F5F0">Final approval</text>
                         <text x="762" y="343" font-size="12" fill="#8CA0B3">Exceptions escalate</text>
                     </g>
+                    </g>
 
                     <!-- Measured outcome: one level further down, below the relocated gate -->
                                         <g class="hf-node n6">
                         <rect x="700" y="387" width="260" height="130" rx="10" fill="#F7F5F0"/>
+                        <g class="hf-node-content">
                         <text x="726" y="422" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1" fill="#687586">MEASURED OUTCOME</text>
                         <text x="726" y="456" font-size="23" font-weight="800" fill="#07182B">Faster. Better.</text>
                         <text x="726" y="481" font-size="13" fill="#687586">Cycle time / quality / win rate</text>
+                    </g>
                     </g>
 
                     <!-- Governance bar: pushed down to clear the taller right-hand column -->
@@ -848,7 +872,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=34"></script>
+    <script src="script.js?v=35"></script>
 </body>
 
 </html>

@@ -679,27 +679,39 @@ h3 { font-size: 1.25rem; margin-bottom: var(--space-2); }
 .handoff-node-stroke { stroke: rgba(16,169,244,0.5); }
 
 /* This one-time hero intro (plays once, when the diagram scrolls into view)
-   is driven entirely by script.js now — real DOM elements get created and
-   removed on a timer, same technique as the .hero-cell background squares,
-   instead of a giant pre-rendered SVG blob timed with CSS animation-delay
-   chains. CSS here just does two things: hide nodes/lines until JS marks
-   them .is-in, and style whatever hex tiles JS creates. */
-.handoff-anim .hf-node,
+   is driven entirely by script.js — real DOM elements get created on a
+   timer, same technique as the .hero-cell background squares. The box
+   outline (rect) and hex-tile mosaic are always present/visible — only the
+   icon+text (.hf-node-content) waits for the tiles to finish before it
+   fades in, so text never renders on top of an unfinished mosaic. */
+.handoff-anim .hf-node-content,
 .handoff-anim .hf-line { opacity: 0; }
-.handoff-anim .hf-node.is-in,
+.handoff-anim .hf-node-content.is-in,
 .handoff-anim .hf-line.is-in { opacity: 1; transition: opacity 0.35s ease; }
 
-/* one tile per polygon JS creates, mid-flip on arrival, settling to flat */
+/* one tile per polygon JS creates, mid-flip on arrival. Persistent tiles
+   (n1–n5, the process nodes) settle at a translucent resting opacity and
+   STAY — they're the block's permanent surface texture, not a flourish.
+   Transient tiles (n6, the light "result" card, where dark text needs a
+   plain light background to stay legible) settle at full opacity and are
+   removed by script.js once the real card is ready. */
 .hf-tile-live {
     opacity: 0;
     transform-box: fill-box;
     transform-origin: center;
     animation: hfTileFlip 0.3s cubic-bezier(.22,.85,.3,1.1) forwards;
 }
+.hf-tile-live.persist { animation-name: hfTileFlipSettle; }
 @keyframes hfTileFlip {
     0%   { opacity: 0; transform: scale(0) rotate(18deg); }
     60%  { opacity: 1; transform: scale(1.15) rotate(-5deg); }
     100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+@keyframes hfTileFlipSettle {
+    0%   { opacity: 0; transform: scale(0) rotate(18deg); }
+    55%  { opacity: 1; transform: scale(1.15) rotate(-5deg); }
+    80%  { transform: scale(1) rotate(0deg); }
+    100% { opacity: 0.3; transform: scale(1) rotate(0deg); }
 }
 .hf-tile-group { transition: opacity 0.25s ease; }
 
