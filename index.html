@@ -113,13 +113,10 @@
                         <path class="hf-line to-r" d="M320,76 H355 V64 H390" />
                         <path class="hf-line to-p" d="M320,76 H355 V188 H390" />
                         <path class="hf-line to-c" d="M320,76 H355 V312 H390" />
-                        <!-- agents converge into the human gate via a shared trunk (no crossing) —
-                             appears together, once, after all three agents are on screen -->
-                        <path class="hf-line to-gate" d="M660,64 H680" />
-                        <path class="hf-line to-gate" d="M660,188 H680" />
-                        <path class="hf-line to-gate" d="M660,312 H680" />
-                        <path class="hf-line to-gate" d="M680,64 V312" />
-                        <path class="hf-line to-gate" d="M680,312 H700" />
+                        <!-- Compliance sits level with the Gate now, so it's the only agent
+                             with a direct visible line into it — Research and Proposal's work
+                             is understood to feed Compliance's review, not draw separately -->
+                        <path class="hf-line to-gate" d="M660,312 H700" />
                         <!-- gate to measured outcome -->
                         <path class="hf-line to-outcome" d="M830,367 V387" />
                     </g>
@@ -139,8 +136,8 @@
                     <g class="hf-node n2">
                         <rect x="390" y="26" width="270" height="76" rx="10" fill="#0B2239" stroke="#10A9F4" stroke-width="1.5"/>
                         <circle cx="422" cy="64" r="16" fill="#10A9F4"/>
-                        <circle cx="419" cy="61" r="5" fill="none" stroke="#FFFFFF" stroke-width="2"/>
-                        <path d="M423,65 L428,70" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
+                        <circle cx="417" cy="63" r="5" fill="none" stroke="#FFFFFF" stroke-width="2"/>
+                        <path d="M421,67 L426,72" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"/>
                         <text x="450" y="55" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1" fill="#7FCBFA">RESEARCH AGENT</text>
                         <text x="450" y="76" font-size="15.5" fill="#F7F5F0">Account research</text>
                     </g>
@@ -159,8 +156,8 @@
                     <g class="hf-node n4">
                         <rect x="390" y="274" width="270" height="76" rx="10" fill="#0B2239" stroke="#10A9F4" stroke-width="1.5"/>
                         <circle cx="422" cy="312" r="16" fill="#10A9F4"/>
-                        <path d="M422,300 L430,303 V310 C430,315 426,318 422,320 C418,318 414,315 414,310 V303 Z" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"/>
-                        <path d="M418,311 L421,314 L427,307" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M422,302 L430,305 V312 C430,317 426,320 422,322 C418,320 414,317 414,312 V305 Z" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linejoin="round"/>
+                        <path d="M418,313 L421,316 L427,309" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                         <text x="450" y="303" font-family="IBM Plex Mono, monospace" font-size="10.5" letter-spacing="1" fill="#7FCBFA">COMPLIANCE AGENT</text>
                         <text x="450" y="324" font-size="15.5" fill="#F7F5F0">Review + flag</text>
                     </g>
