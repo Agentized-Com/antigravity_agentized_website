@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // rounded-rect shape, so nothing pokes past the corners) at full
         // opacity and STAY — every box's permanent surface is the hex
         // mosaic itself, not a flourish that resolves into a flat fill.
-        const assembleNode = async (nodeClass, x, y, w, h, tr, strokeColor) => {
+        const assembleNode = async (nodeClass, x, y, w, h, tr, color) => {
             const node = handoff.querySelector('.hf-node.' + nodeClass);
             if (!node) return;
             const rect = node.querySelector('rect');
@@ -140,7 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(() => {
                     const poly = document.createElementNS(SVG_NS, 'polygon');
                     poly.setAttribute('points', hexPoints(cx, cy, tr));
-                    poly.setAttribute('stroke', strokeColor);
+                    poly.setAttribute('fill', color);
+                    poly.setAttribute('stroke', color);
                     poly.setAttribute('class', 'hf-tile-live');
                     group.appendChild(poly);
                 }, (i / Math.max(centers.length - 1, 1)) * spawnSpread);
