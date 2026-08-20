@@ -30,7 +30,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="style.css?v=45">
+    <link rel="stylesheet" href="style.css?v=47">
 </head>
 
 <body>
@@ -541,6 +541,15 @@
                         <p>Three business outcomes, each with an illustrative agent workflow.</p>
                     </div>
 
+                    <!-- shared key so every icon/box style means the same thing in all three
+                         columns below — read top to bottom, left to right in each column -->
+                    <div class="mbb-legend">
+                        <span><i class="mbb-legend-swatch agent"></i>AI agent — does a task</span>
+                        <span><i class="mbb-legend-swatch human"></i>Human decision point</span>
+                        <span><i class="mbb-legend-swatch system"></i>System of record (not an agent)</span>
+                        <span><i class="mbb-legend-arrow">→</i>Order work moves in</span>
+                    </div>
+
                     <div class="mbb-cols">
                         <!-- ===== 01 Grow Revenue — a linear chain from signal to revenue ===== -->
                         <div class="mbb-col">
@@ -556,8 +565,8 @@
                                 <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-trending"/></svg>Sales Agent</div>
                                 <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-doc"/></svg>Proposal Agent</div>
                                 <div class="mbb-node highlight"><svg class="mbb-icon"><use href="#ic-person"/></svg>Human Approval</div>
-                                <div class="mbb-node"><svg class="mbb-icon"><use href="#ic-database"/></svg>CRM</div>
-                                <div class="mbb-node end"><svg class="mbb-icon"><use href="#ic-users"/></svg>Customer / Revenue</div>
+                                <div class="mbb-node system"><svg class="mbb-icon"><use href="#ic-database"/></svg>CRM<span class="mbb-node-tag">system</span></div>
+                                <div class="mbb-node end"><svg class="mbb-icon"><use href="#ic-users"/></svg>Customer / Revenue<span class="mbb-node-tag">outcome</span></div>
                             </div>
                             <div class="mbb-stats">
                                 <div><svg class="mbb-icon"><use href="#ic-filter"/></svg>Pipeline</div>
@@ -872,7 +881,7 @@
         </div>
     </footer>
 
-    <script src="script.js?v=45"></script>
+    <script src="script.js?v=47"></script>
 </body>
 
 </html>

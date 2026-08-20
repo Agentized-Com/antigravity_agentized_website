@@ -830,6 +830,28 @@ footer a:hover { color: var(--white); }
     .offer-item { text-align: left; }
     .footer-grid { grid-template-columns: 1fr; }
     .cta-row .btn { width: 100%; }
+
+    /* The hero handoff diagram has fixed-size text baked into its SVG
+       viewBox — shrinking the whole thing to fit a ~335px phone width
+       (from a 980-unit-wide diagram) renders that text at a few pixels
+       tall, illegible. Same fix as the data tables: let it scroll
+       horizontally at a real, readable size instead of shrinking to fit. */
+    .hero-visual { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+    .handoff-svg { width: 640px; max-width: none; }
+
+    /* Chaos-diagram and three-outcomes diagram: cut the side padding, which
+       was eating a third of the available width on a phone screen */
+    .cvad { padding: 24px 16px 20px; }
+    .mbb { padding: 20px 14px 16px; }
+
+    /* Column 2 of the three-outcomes diagram (inputs | agents | exception)
+       is a 3-part horizontal row that has no room to breathe at phone
+       widths — stack it vertically instead, same pattern column 1 already
+       uses for its signal-to-chain flow */
+    .mbb-grid-flow { flex-direction: column; align-items: stretch; }
+    .mbb-inputs, .mbb-agents, .mbb-exception { flex: 1 1 auto; }
+    .mbb-arrow-col { align-self: center; transform: rotate(90deg); }
+    .mbb-exception { border-top: 1px dashed rgba(255,104,0,0.3); padding-top: 8px; margin-top: 4px; }
 }
 
 
@@ -996,6 +1018,23 @@ footer a:hover { color: var(--white); }
 .mbb-head h3 { color: #fff; font-size: clamp(1.2rem, 2.2vw, 1.7rem); font-weight: 800; margin: 0 0 4px; }
 .mbb-head p { color: rgba(255,255,255,0.55); font-size: 0.88rem; margin: 0; }
 
+/* one shared key for what every icon/box color means, so all three columns
+   below read with the same visual grammar instead of each needing to be
+   puzzled out separately */
+.mbb-legend {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 20px;
+    margin: 14px auto 22px; padding: 10px 16px;
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 8px;
+    background: rgba(255,255,255,0.03);
+    font-size: 0.7rem; color: rgba(255,255,255,0.7);
+}
+.mbb-legend span { display: flex; align-items: center; gap: 6px; }
+.mbb-legend-swatch { width: 10px; height: 10px; border-radius: 3px; flex-shrink: 0; }
+.mbb-legend-swatch.agent { background: rgba(16,169,244,0.25); border: 1px solid rgba(16,169,244,0.6); }
+.mbb-legend-swatch.human { background: rgba(255,104,0,0.25); border: 1px solid var(--human-orange); }
+.mbb-legend-swatch.system { background: transparent; border: 1px dashed rgba(255,255,255,0.4); }
+.mbb-legend-arrow { color: var(--agent-blue); font-style: normal; }
+
 /* columns */
 .mbb-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; align-items: stretch; }
 .mbb-col { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; }
@@ -1016,6 +1055,13 @@ footer a:hover { color: var(--white); }
 .mbb-node.highlight, .mbb-chip.highlight { background: rgba(255,104,0,0.14); border-color: var(--human-orange); color: #FFD9B3; font-weight: 600; }
 .mbb-node.sm, .mbb-chip.sm { font-size: 0.66rem; padding: 6px 8px; }
 .mbb-node.end { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.06); }
+/* CRM is a system, not an agent doing work — dashed border, no fill, matches
+   the "system" swatch in the legend so it doesn't read as another agent */
+.mbb-node.system { background: transparent; border: 1px dashed rgba(255,255,255,0.35); color: rgba(255,255,255,0.75); }
+.mbb-node-tag {
+    margin-left: auto; font-family: var(--font-mono); font-size: 0.56rem; text-transform: uppercase;
+    letter-spacing: 0.04em; color: rgba(255,255,255,0.4); flex-shrink: 0;
+}
 
 /* ===== Column 1: vertical signal -> chain ===== */
 .mbb-signal { display: flex; flex-direction: column; align-items: center; gap: 6px; margin-bottom: 10px; font-size: 0.68rem; color: rgba(255,255,255,0.7); }
