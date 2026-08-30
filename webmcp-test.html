@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentized — WebMCP Test</title>
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            max-width: 640px;
+            margin: 48px auto;
+            padding: 0 20px;
+            color: #1a1a1a;
+            line-height: 1.5;
+        }
+        h1 { font-size: 1.4rem; margin-bottom: 4px; }
+        #status {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 3px 9px;
+            border-radius: 999px;
+            margin-bottom: 24px;
+        }
+        #status.unsupported { background: #fde2e2; color: #a11; }
+        #status.supported { background: #dcf5e3; color: #187a3b; }
+        section {
+            border: 1px solid #e3e3e3;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+        }
+        h2 { font-size: 1rem; margin: 0 0 8px; }
+        code {
+            background: #f4f4f4;
+            padding: 1px 5px;
+            border-radius: 4px;
+            font-size: 0.85em;
+        }
+        #log {
+            font-family: "IBM Plex Mono", monospace;
+            font-size: 0.8rem;
+            background: #0f1115;
+            color: #9ee6a6;
+            padding: 12px;
+            border-radius: 8px;
+            height: 140px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        #cart { list-style: none; padding: 0; margin: 0; }
+        #cart li {
+            padding: 6px 0;
+            border-bottom: 1px dashed #e3e3e3;
+            font-size: 0.9rem;
+        }
+        #cart:empty::after { content: "(empty)"; color: #999; }
+    </style>
+</head>
+
+<body>
+    <h1>Agentized WebMCP Test</h1>
+    <div id="status" class="unsupported">checking support…</div>
+
+    <section>
+        <h2>Registered tools</h2>
+        <p style="font-size:0.9rem; color:#555;">
+            <code>search_catalogue(query)</code> — read-only, searches the demo catalogue below.<br>
+            <code>add_to_cart(sku, quantity)</code> — state-changing, adds an item to the cart on this page.
+        </p>
+    </section>
+
+    <section>
+        <h2>Demo catalogue</h2>
+        <ul>
+            <li><code>MT2</code> — Widget A — $45</li>
+            <li><code>BPC157</code> — Widget B — $39</li>
+            <li><code>CJC1295</code> — Widget C — $52 (out of stock)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Cart (live — updated by the tool call)</h2>
+        <ul id="cart"></ul>
+    </section>
+
+    <section>
+        <h2>Call log</h2>
+        <div id="log"></div>
+    </section>
+
+    <script>
+        const catalogue = {
+            mt2: { name: 'Widget A', price: 45, available: true, sku: 'MT2' },
+            bpc157: { name: 'Widget B', price: 39, available: true, sku: 'BPC157' },
+            cjc1295: { name: 'Widget C', price: 52, available: false, sku: 'CJC1295' },
+        };
+        const cart = [];
+
+        const statusEl = document.getElementById('status');
+        const cartEl = document.getElementById('cart');
+        const logEl = document.getElementById('log');
+
+        function log(line) {
+            const time = new Date().toLocaleTimeString();
+            logEl.textContent += `[${time}] ${line}\n`;
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+
+        function renderCart() {
+            cartEl.innerHTML = cart
+                .map(item => `<li>${item.quantity} × ${item.name} (${item.sku})</li>`)
+                .join('');
+        }
+
+        async function registerTools() {
+            if (typeof document.modelContext?.registerTool !== 'function') {
+                statusEl.textContent = 'WebMCP not supported in this browser';
+                statusEl.className = 'unsupported';
+                log('document.modelContext.registerTool is not available. Open this page in the ChatGPT desktop app\'s built-in browser (GPT-5.6 Sol/Terra) to test.');
+                return;
+            }
+
+            statusEl.textContent = 'WebMCP supported — tools registered';
+            statusEl.className = 'supported';
+
+            await document.modelContext.registerTool({
+                name: 'search_catalogue',
+                description: 'Search the Agentized demo product catalogue by name or SKU. Omit query to list everything.',
+                inputSchema: {
+                    type: 'object',
+                    properties: {
+                        query: { type: 'string', description: 'Search term, e.g. "MT2". Omit to list all products.' },
+                    },
+                    additionalProperties: false,
+                },
+                annotations: { readOnlyHint: true },
+                execute: async ({ query }) => {
+                    const q = (query || '').trim().toLowerCase();
+                    const results = q
+                        ? [catalogue[q]].filter(Boolean)
+                        : Object.values(catalogue);
+                    log(`search_catalogue(${JSON.stringify(query || '')}) -> ${results.length} result(s)`);
+                    return { query: q, results, count: results.length };
+                },
+            });
+
+            await document.modelContext.registerTool({
+                name: 'add_to_cart',
+                description: 'Add an item from the Agentized demo catalogue to the on-page cart.',
+                inputSchema: {
+                    type: 'object',
+                    properties: {
+                        sku: { type: 'string', description: 'Product SKU, e.g. "MT2"' },
+                        quantity: { type: 'number', description: 'Quantity to add', default: 1 },
+                    },
+                    required: ['sku'],
+                    additionalProperties: false,
+                },
+                execute: async ({ sku, quantity }) => {
+                    const key = (sku || '').trim().toLowerCase();
+                    const product = catalogue[key];
+                    if (!product) {
+                        log(`add_to_cart(${sku}) -> error: unknown SKU`);
+                        return { success: false, error: `Unknown SKU: ${sku}` };
+                    }
+                    if (!product.available) {
+                        log(`add_to_cart(${sku}) -> error: out of stock`);
+                        return { success: false, error: `${product.name} is out of stock` };
+                    }
+                    const qty = Number(quantity) || 1;
+                    cart.push({ sku: product.sku, name: product.name, quantity: qty });
+                    renderCart();
+                    log(`add_to_cart(${sku}, ${qty}) -> added ${product.name}`);
+                    return { success: true, cart };
+                },
+            });
+
+            log('Tools registered: search_catalogue, add_to_cart');
+        }
+
+        registerTools();
+    </script>
+</body>
+
+</html>
