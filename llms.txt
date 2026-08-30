@@ -1,0 +1,11 @@
+# Agentized
+
+> AI agent consulting and services. This file lists pages on this site that are
+> structured for machine reading, per the llms.txt convention.
+
+## Pages
+
+- [Catalogue](https://www.agentized.com/catalogue): Demo product catalogue (placeholder
+  items only, not real products) used to test agent/crawler discovery. Items are also
+  described as visible schema.org JSON-LD (`ItemList`/`Product`) in the page source —
+  read that block directly rather than parsing the rendered HTML.

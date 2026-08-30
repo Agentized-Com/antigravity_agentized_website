@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue (Demo) | Agentized™</title>
+    <meta name="description" content="Demo product catalogue used to test AI-agent discovery and structured data on the Agentized site. Items listed here are placeholders, not real products for sale.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css?v=53">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        nav { top: 0 !important; background: #f59e0b !important; border-bottom: none !important; }
+        nav .container { display: flex; justify-content: space-between; align-items: center; }
+        nav .logo { color: #fff; }
+        nav .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; margin: 0; }
+        nav .nav-links a { color: #fff; font-weight: 500; text-decoration: none; font-size: 0.9rem; }
+        nav .nav-links a:hover { color: rgba(255,255,255,0.75); }
+        body { background: #f7f7f8; color: #111; }
+
+        .cat-hero { margin-top: 70px; padding: 64px 0 32px; background: #f7f7f8; }
+        .cat-hero h1 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 900; margin-bottom: 12px; }
+        .cat-hero p { color: #555; font-size: 1rem; max-width: 68ch; }
+
+        .demo-banner {
+            margin: 0 0 40px;
+            background: #fff8ee; border: 1px solid #f5d990;
+            border-radius: 12px; padding: 16px 20px;
+            display: flex; align-items: flex-start; gap: 12px;
+            font-size: 0.9rem; color: #555; line-height: 1.5;
+        }
+        .demo-banner i { color: #f59e0b; margin-top: 3px; }
+        .demo-banner strong { color: #111; }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            padding-bottom: 100px;
+        }
+        .cat-card {
+            background: #fff; border: 1px solid #e5e5e5; border-radius: 14px;
+            padding: 28px 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+        }
+        .cat-card .cat-icon { font-size: 1.6rem; color: #f59e0b; margin-bottom: 14px; }
+        .cat-card h3 { font-size: 1.05rem; margin-bottom: 6px; }
+        .cat-card .cat-sku { font-size: 0.72rem; letter-spacing: 1px; text-transform: uppercase; color: #999; margin-bottom: 10px; }
+        .cat-card p { font-size: 0.88rem; color: #555; line-height: 1.6; margin-bottom: 14px; }
+        .cat-card .cat-price { font-weight: 800; font-size: 1.1rem; color: #111; }
+        .cat-card .cat-tag {
+            display: inline-block; font-size: 0.68rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.5px;
+            background: #f0e4cc; color: #92600b; border-radius: 20px;
+            padding: 3px 10px; margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">AGENTIZED™<span class="dot">.</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="catalogue.html">Catalogue</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="cat-hero">
+        <div class="container">
+            <h1>Demo Catalogue</h1>
+            <p>A sample product listing used to test how AI agents (shopping assistants, crawlers, LLM-based tools) discover and read structured catalogue data on this site.</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="demo-banner">
+            <i class="fas fa-circle-info"></i>
+            <div><strong>This is placeholder content.</strong> Every item below is a fictional dummy product for testing agent/crawler discovery. Nothing here is for sale, and none of it is Agentized's real product line.</div>
+        </div>
+
+        <div class="cat-grid" id="catalogue-items">
+            <div class="cat-card">
+                <span class="cat-tag">Demo Item</span>
+                <div class="cat-icon"><i class="fas fa-mug-hot"></i></div>
+                <h3>Ember Ceramic Mug</h3>
+                <div class="cat-sku">SKU: DEMO-0001</div>
+                <p>12oz matte-glaze ceramic mug. Placeholder item for catalogue testing only.</p>
+                <div class="cat-price">$18.00 (fake)</div>
+            </div>
+            <div class="cat-card">
+                <span class="cat-tag">Demo Item</span>
+                <div class="cat-icon"><i class="fas fa-shirt"></i></div>
+                <h3>Drift Cotton Tee</h3>
+                <div class="cat-sku">SKU: DEMO-0002</div>
+                <p>Unisex crewneck, 100% combed cotton. Placeholder item for catalogue testing only.</p>
+                <div class="cat-price">$24.00 (fake)</div>
+            </div>
+            <div class="cat-card">
+                <span class="cat-tag">Demo Item</span>
+                <div class="cat-icon"><i class="fas fa-lightbulb"></i></div>
+                <h3>Halo Desk Lamp</h3>
+                <div class="cat-sku">SKU: DEMO-0003</div>
+                <p>Dimmable LED desk lamp with USB-C base. Placeholder item for catalogue testing only.</p>
+                <div class="cat-price">$39.00 (fake)</div>
+            </div>
+            <div class="cat-card">
+                <span class="cat-tag">Demo Item</span>
+                <div class="cat-icon"><i class="fas fa-book"></i></div>
+                <h3>Notekeeper Journal</h3>
+                <div class="cat-sku">SKU: DEMO-0004</div>
+                <p>A5 dotted-grid journal, 160 pages. Placeholder item for catalogue testing only.</p>
+                <div class="cat-price">$14.00 (fake)</div>
+            </div>
+            <div class="cat-card">
+                <span class="cat-tag">Demo Item</span>
+                <div class="cat-icon"><i class="fas fa-backpack"></i></div>
+                <h3>Transit Daypack</h3>
+                <div class="cat-sku">SKU: DEMO-0005</div>
+                <p>18L water-resistant daypack with laptop sleeve. Placeholder item for catalogue testing only.</p>
+                <div class="cat-price">$59.00 (fake)</div>
+            </div>
+            <div class="cat-card">
+                <span class="cat-tag">Demo Item</span>
+                <div class="cat-icon"><i class="fas fa-headphones"></i></div>
+                <h3>Cove Wireless Earbuds</h3>
+                <div class="cat-sku">SKU: DEMO-0006</div>
+                <p>Bluetooth 5.3 earbuds, 24hr case battery. Placeholder item for catalogue testing only.</p>
+                <div class="cat-price">$79.00 (fake)</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Agentized™. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!--
+      Machine-readable pointer for AI agents / crawlers:
+      This page's items are also described below as visible JSON-LD (schema.org ItemList).
+      See also /llms.txt at the site root for a plain-text index of agent-readable pages.
+      This comment and the JSON-LD block are visible to any viewer of the page source —
+      there is no content on this page that differs between human and automated visitors.
+    -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Agentized Demo Catalogue",
+      "description": "Fictional placeholder products for testing AI-agent catalogue discovery. Not real products.",
+      "itemListElement": [
+        { "@type": "Product", "sku": "DEMO-0001", "name": "Ember Ceramic Mug", "description": "12oz matte-glaze ceramic mug (demo item, not for sale).", "offers": { "@type": "Offer", "price": "18.00", "priceCurrency": "USD" } },
+        { "@type": "Product", "sku": "DEMO-0002", "name": "Drift Cotton Tee", "description": "Unisex crewneck, 100% combed cotton (demo item, not for sale).", "offers": { "@type": "Offer", "price": "24.00", "priceCurrency": "USD" } },
+        { "@type": "Product", "sku": "DEMO-0003", "name": "Halo Desk Lamp", "description": "Dimmable LED desk lamp with USB-C base (demo item, not for sale).", "offers": { "@type": "Offer", "price": "39.00", "priceCurrency": "USD" } },
+        { "@type": "Product", "sku": "DEMO-0004", "name": "Notekeeper Journal", "description": "A5 dotted-grid journal, 160 pages (demo item, not for sale).", "offers": { "@type": "Offer", "price": "14.00", "priceCurrency": "USD" } },
+        { "@type": "Product", "sku": "DEMO-0005", "name": "Transit Daypack", "description": "18L water-resistant daypack with laptop sleeve (demo item, not for sale).", "offers": { "@type": "Offer", "price": "59.00", "priceCurrency": "USD" } },
+        { "@type": "Product", "sku": "DEMO-0006", "name": "Cove Wireless Earbuds", "description": "Bluetooth 5.3 earbuds, 24hr case battery (demo item, not for sale).", "offers": { "@type": "Offer", "price": "79.00", "priceCurrency": "USD" } }
+      ]
+    }
+    </script>
+
+    <script src="script.js?v=53"></script>
+</body>
+
+</html>

@@ -15,7 +15,8 @@
     { "source": "/resources", "destination": "/resources.html" },
     { "source": "/speaking", "destination": "/speaking.html" },
     { "source": "/about", "destination": "/about.html" },
-    { "source": "/contact", "destination": "/contact.html" }
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/catalogue", "destination": "/catalogue.html" }
   ],
   "redirects": [
     { "source": "/services", "destination": "/consulting", "permanent": true }
