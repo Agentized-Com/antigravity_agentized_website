@@ -817,6 +817,7 @@ footer a:hover { color: var(--white); }
 
 @media (max-width: 767px) {
     body { font-size: 16px; }
+    .book-hero-eyebrow { display: none; }
     .nav-links {
         display: none;
         position: fixed;
