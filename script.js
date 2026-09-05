@@ -1,23 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ---------- Announcement bar dismissal (30-day localStorage) ---------- */
-    const announcement = document.querySelector('.announcement-bar');
-    if (announcement) {
-        const DISMISS_KEY = 'agentized_announcement_dismissed_at';
-        const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
-        const dismissedAt = localStorage.getItem(DISMISS_KEY);
-        if (dismissedAt && (Date.now() - Number(dismissedAt) < THIRTY_DAYS)) {
-            announcement.style.display = 'none';
-        }
-        const closeBtn = announcement.querySelector('.announcement-close');
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                announcement.style.display = 'none';
-                localStorage.setItem(DISMISS_KEY, String(Date.now()));
-            });
-        }
-    }
-
     /* ---------- Mobile menu toggle ---------- */
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navLinks = document.querySelector('.nav-links');
