@@ -20,23 +20,8 @@
     <style>
         .page-content {
             padding-top: 40px;
-            max-width: 720px;
+            max-width: 760px;
             margin: 0 auto;
-            color: var(--graphite);
-            font-family: var(--font-editorial);
-            font-size: 1.08rem;
-        }
-
-        .page-content p { margin-bottom: 1.4rem; max-width: none; }
-        .page-content ul { margin-bottom: 1.5rem; padding-left: 1.5rem; }
-        .page-content li { margin-bottom: 0.6rem; list-style-type: disc; }
-        .page-content .definition {
-            font-family: var(--font-body);
-            background: var(--cool-white);
-            border-left: 3px solid var(--human-orange);
-            padding: 1.2rem 1.5rem;
-            margin: 2rem 0;
-            font-size: 1rem;
         }
         .back-link {
             display: inline-block;
@@ -45,89 +30,13 @@
             font-weight: 600;
             font-family: var(--font-body);
         }
-
-        /* Typeset chapter treatment, matching the print layout */
-        .chapter-kicker {
-            display: block;
-            text-align: center;
-            font-family: var(--font-display);
-            font-size: 0.78rem;
-            font-weight: 700;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--human-orange);
-            margin-bottom: 0.5rem;
+        .intro-pages { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+        .intro-pages img {
+            width: 100%;
+            max-width: 700px;
+            box-shadow: 0 4px 24px rgba(7,24,43,0.12);
+            border-radius: 4px;
         }
-        .page-content h1.chapter-title {
-            text-align: center;
-            font-family: var(--font-editorial);
-            font-weight: 600;
-            color: var(--agentized-ink);
-            font-size: clamp(2.2rem, 4.5vw, 3.2rem);
-            line-height: 1.15;
-            margin: 0 0 1.2rem;
-        }
-        .chapter-byline {
-            text-align: center;
-            font-style: italic;
-            color: var(--slate);
-            font-family: var(--font-display);
-            font-size: 0.95rem;
-            margin: -0.6rem 0 2.5rem;
-        }
-        .chapter-divider {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 0 0 2.5rem;
-        }
-        .chapter-divider span:not(.dot) { width: 40px; height: 1px; background: rgba(7,24,43,0.25); }
-        .chapter-divider .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--human-orange); }
-
-        .section-heading { text-align: center; margin: 3.5rem 0 1.8rem; }
-        .section-heading .kicker {
-            display: block;
-            font-family: var(--font-display);
-            font-size: 0.72rem;
-            font-weight: 700;
-            letter-spacing: 0.13em;
-            text-transform: uppercase;
-            color: var(--human-orange);
-            margin-bottom: 0.4rem;
-        }
-        .page-content .section-heading .title {
-            font-family: var(--font-editorial);
-            font-weight: 600;
-            color: var(--agentized-ink);
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin: 0 0 0.9rem;
-        }
-
-        .page-content p.drop-cap:first-letter {
-            font-family: var(--font-editorial);
-            font-weight: 600;
-            font-size: 3.4em;
-            line-height: 0.8;
-            float: left;
-            color: var(--human-orange);
-            padding-right: 0.09em;
-            margin-top: 0.03em;
-        }
-
-        .figure-caption { text-align: center; font-style: italic; color: var(--slate); font-size: 0.92rem; margin: 1rem 0 0.4rem; }
-        .figure-label {
-            display: block;
-            text-align: center;
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            letter-spacing: 0.08em;
-            color: var(--human-orange);
-            text-transform: uppercase;
-            margin-bottom: 2.5rem;
-        }
-
-        .lead-label { color: var(--human-orange); font-weight: 700; }
     </style>
     <link rel="stylesheet" href="style.css?v=53">
 </head>
@@ -159,196 +68,24 @@
         <div class="container page-content">
             <a href="/book" class="back-link">&larr; Back to the Book</a>
 
-            <span class="chapter-kicker">Introduction</span>
-            <h1 class="chapter-title">The Rising Water</h1>
-            <div class="chapter-divider"><span></span><span class="dot"></span><span></span></div>
-            <p class="chapter-byline">From AGENT SHOCK: Surviving and Profiting from the Rise of AI Agents and Robots, by Jas Dhillon &amp; Mark Fidelman</p>
-
-            <p class="drop-cap">Sarah Chen got to the factory floor at 6:40 on a Tuesday morning and found that the night had done a
-                day's work without her.</p>
-
-            <p>The scheduling agent her team had switched on three weeks earlier had run all night. It had caught a
-                maintenance conflict on Line 2, reshuffled two shifts around a late materials delivery, and left a
-                tidy log explaining every choice — the kind of log her best supervisor would write if her best
-                supervisor never slept. John Martinez, twenty-two years on that floor, read it over her shoulder and
-                said the thing everyone in American business is going to say, in one form or another, within the
-                next few years:</p>
-
-            <p>"So what exactly do you need me for?"</p>
-
-            <p>This book is our answer to John's question — and to Sarah's, which is harder: <em>what do I do with a
-                workforce that suddenly includes machines that work while we sleep?</em></p>
-
-            <p>Here is the answer in one image. Machine capability is rising like a tide. It has already covered the
-                routine cognitive work — the drafting, the reconciling, the answering — and it is not going to stop.
-                It will rise in four surges we call the Four Shocks: digital agents (that was Sarah's Tuesday
-                morning), Physical AI, AGI-class systems, and, somewhere past the horizon we can honestly see,
-                superintelligence. You cannot vote on the water. Neither could the factory owners who met
-                electricity, or the retailers who met the internet.</p>
-
-            <p>What you control is your altitude. Above the waterline is a ladder — Tasks, Workflows, Fleets,
-                Direction, and at the top, Purpose &amp; Trust — and everything in this book is about climbing it
-                one rung ahead of the water, then turning around and putting boats to work on the rungs you've left
-                behind. Because here is the secret the panic headlines never print: a flooded rung is not a loss. It
-                is the cheapest, most tireless workforce in history — if you own the boats.</p>
-
-            <p>John Martinez, by the end of this book, will be running three of them.</p>
-
-            <div class="definition">
-                <strong>Agentized</strong> (adj.): <em>equipped with autonomous AI agents across processes and
-                culture so that humans, robots and AI operate as a single, coordinated team — every human one rung
-                ahead of the machines, every machine accountable to a human.</em>
+            <div class="intro-pages">
+                <img src="Images/intro-pages/page-01.png" alt="Introduction: The Rising Water, chapter opener">
+                <img src="Images/intro-pages/page-02.png" alt="Introduction page 2">
+                <img src="Images/intro-pages/page-03.png" alt="Introduction page 3">
+                <img src="Images/intro-pages/page-04.png" alt="Figure 0.1, One Rung Ahead">
+                <img src="Images/intro-pages/page-05.png" alt="Introduction page 5, The Water We Saw Coming">
+                <img src="Images/intro-pages/page-06.png" alt="Introduction page 6">
+                <img src="Images/intro-pages/page-07.png" alt="Introduction page 7, The Feeling Has A Name">
+                <img src="Images/intro-pages/page-08.png" alt="Introduction page 8">
+                <img src="Images/intro-pages/page-09.png" alt="Introduction page 9, The Climb Ahead">
+                <img src="Images/intro-pages/page-10.png" alt="Introduction page 10">
+                <img src="Images/intro-pages/page-11.png" alt="Figure 0.2, The Four Shocks and Their Corrections">
+                <img src="Images/intro-pages/page-12.png" alt="Introduction page 12, Executive Fast Read">
+                <img src="Images/intro-pages/page-13.png" alt="Introduction page 13">
+                <img src="Images/intro-pages/page-14.png" alt="Introduction page 14, Field Notes From the Front">
             </div>
 
-            <div class="section-heading" style="margin-top: 3rem;">
-                <span class="kicker">Figure 0.1</span>
-                <div class="title">One Rung Ahead</div>
-            </div>
-            <div class="chapter-divider"><span></span><span class="dot"></span><span></span></div>
-            <div class="figure-frame" style="max-width: 480px; margin: 0 auto;">
-                <img src="Images/figure-0-1-one-rung-ahead.png" alt="Figure 0.1 — One Rung Ahead: the five-rung Waterline Ladder from Tasks to Purpose &amp; Trust, with the Four Shocks marked at the waterline and boats working below it">
-            </div>
-            <p class="figure-caption">Stay one rung ahead of the waterline — and put boats on every rung below you.</p>
-            <span class="figure-label">AgentShock · Visual 01</span>
-
-            <div class="section-heading">
-                <span class="kicker">The Water</span>
-                <div class="title">We Saw Coming</div>
-            </div>
-            <p class="drop-cap">One of us saw this water coming twenty-three years ago. In March 2003, Jas Dhillon presented a U.S.
-                defense modernization command with an architecture of goal-driven intelligent agents that could
-                reason over incoming data, collaborate in communities, and act or escalate to human controllers. The
-                technology of the day could not yet deliver those ideas; they had to wait. In the years since, he has
-                kept building the coordination systems those ideas pointed toward: a marketplace connecting the
-                sustainable aviation fuel supply chain from feedstock to flight, automation deployments for financial
-                and professional-services firms, and systems that compress multi-hour financial-operations processes
-                into minutes. What changed in this decade was not the idea of software that acts. It was that the
-                technology finally caught up to it.</p>
-
-            <p>Mark Fidelman built his career on the other side of the water, marketing and growth, always the early
-                adopter while others clung to old playbooks. In 2012 he publicly predicted machine intelligence would
-                cross into autonomy within a generation, a claim that drew more eye-rolls than agreement, and he
-                spent the following decade inside the industry that prediction implied, from AI podcasting to AI
-                infrastructure. When we sat down to write <em>AgentShock</em>, we thought we were writing a book
-                about AI. Halfway through, we realized we were also writing a book about ourselves because adoption
-                of AI is personal before it is organizational. It forces us to confront our habits, our fears, and
-                our vision of what meaningful work should be.</p>
-
-            <p>And it forces companies like Sarah's. Chen Innovations is a precision-manufacturing company in Ohio —
-                the kind of unglamorous, essential business that quietly makes the parts the modern world runs on.
-                When this book opens, her revenue is steady, her margins are thinning, her competitors are
-                experimenting loudly, and her veteran workforce is proud, skilled, and anxious. Sarah has read the
-                breathless headlines and the doomsday ones. What she can't find is a map, a way to bring intelligent
-                agents into her business that compounds her people's strengths instead of discarding them. Her
-                mantra, printed on a poster above the factory floor, sets the bar: <em>Innovation with Heart.</em>
-                John Martinez is watching to see whether the mantra survives contact with the machines.</p>
-
-            <p>This book is the map Sarah was looking for. You will meet her again at the end of it, and by then the
-                crossroads will look very different.</p>
-
-            <div class="section-heading">
-                <span class="kicker">The Feeling</span>
-                <div class="title">Has A Name</div>
-            </div>
-            <p class="drop-cap">If some of this makes your chest tighten, good — that reaction has a name, and naming it is the first
-                step. We call it <strong>AgentShock</strong>: the disorientation you feel when the water reaches
-                <em>your</em> rung, when innovations arrive faster than you can absorb them and your playbook goes
-                stale in real time. Most books treat that feeling as a problem to soothe. We treat it as an
-                instrument to read. AgentShock is a signal, not a siren: it is your own personal tide gauge telling
-                you exactly which rung you're standing on. This book will teach you to read it that way, and then to
-                act on it. There are specific routines in Part III for regaining footing, and a chapter in Part II
-                on what leaders owe the people feeling it.</p>
-
-            <p>What does it mean, practically, to become agentized? It means redesigning your organization and, for
-                many readers, your career around the ladder. Humans hold direction, connection, judgment,
-                relationships, and ethics: the rungs machines cannot occupy. Agents execute, learn, and scale: boats
-                on every rung the water has taken. The result is not the same work done slightly faster. It is a
-                step-change, an organization that moves at machine speed on its flooded rungs while its people do the
-                climbing work: creativity, strategy, and the human touch.</p>
-
-            <p>Whether you lead an enterprise, manage a team, or are charting your own path, the tide will reach you.
-                For CEOs, the mandate is strategic: read the gates, align the boats to the value engine, set the
-                guardrails, and lead the climb. For managers, the mandate is operational: redesign the workflows,
-                coach hybrid human-and-agent teams, and measure what the boats actually earn. For individual
-                contributors, the mandate is personal: find your own waterline, climb one deliberate rung at a time,
-                and launch a fleet of your own.</p>
-
-            <div class="section-heading">
-                <span class="kicker">The</span>
-                <div class="title">Climb Ahead</div>
-            </div>
-            <p class="drop-cap">This book climbs the ladder, Part by Part, with the water rising one Shock at each Part opener:</p>
-            <p><span class="lead-label">Chapter 1 — One Rung Ahead</span> gives you the whole frame in one sitting: the tide,
-                the ladder, the boats, the rule.</p>
-            <p><span class="lead-label">Part I — Read the Water</span> teaches the sailor's first skill: where agents already
-                do business with agents (and why your website is becoming a legacy interface), and how to read
-                what's coming without believing a single prediction — gates, not dates.</p>
-            <p><span class="lead-label">Part II — The Workflows Rung</span> is the first climb: redesigning work rather than
-                sprinkling agents on the org chart, answering AgentShock with a ladder and a compact instead of
-                reassurance, and putting papers on every boat — an owner, a passport, autonomy earned through
-                evidence.</p>
-            <p><span class="lead-label">Part III — Your Own Ladder</span> sets the company aside: your personal waterline
-                audit, your climb, your first fleet of five boats, and how to rent machine muscle and mind
-                without letting the crutch become a leg you no longer have.</p>
-            <p><span class="lead-label">Part IV — The Fleets Rung</span> is scale: the shipyard that separates paying pilots
-                from pilot theater, four public crossings that prove the pattern in every kind of water, and the
-                honest ledger on the water growing hands — Physical AI, timesheets over backflips.</p>
-            <p><span class="lead-label">Part V — The Top Rungs</span> finishes the climb: the night a machine answered the CEO
-                question and handed back the only part it couldn't hold, what the view costs whoever holds the
-                top rung, and the factory floor where John Martinez gets his answer.</p>
-
-            <div class="section-heading" style="margin-top: 3rem;">
-                <span class="kicker">Figure 0.2</span>
-                <div class="title">The Four Shocks &amp; Their Corrections</div>
-            </div>
-            <div class="chapter-divider"><span></span><span class="dot"></span><span></span></div>
-            <div class="figure-frame" style="max-width: 620px; margin: 0 auto;">
-                <img src="Images/figure-0-2-four-shocks-corrections.png" alt="Figure 0.2 — The Four Shocks and Their Corrections: what rises, what rung floods, and the Agentized correction for each of Shock I through Shock IV">
-            </div>
-            <p class="figure-caption">Each Shock floods a rung; each rung has its Agentized response; each response turns the flood into a fleet.</p>
-            <span class="figure-label">AgentShock · Visual 02</span>
-
-            <div class="section-heading">
-                <span class="kicker">Executive Fast Read</span>
-                <div class="title">The Strategy In 90 Seconds</div>
-            </div>
-            <p class="drop-cap"><span class="lead-label">Why now:</span> The gate on Shock I is open — agents complete hours of real work
-                unattended, which changes the unit economics of work itself: latency, cycle time and 24/7
-                throughput on everything routine. The advantage compounds; waiting doesn't.</p>
-            <p><span class="lead-label">What to do first:</span> Sound your own water. Pick the one workflow where the water
-                is provably highest, sort its steps onto the ladder — agent-led, human-led, genuinely shared —
-                and launch one papered boat with a single accountable owner and a written gate for what
-                "graduates" means.</p>
-            <p><span class="lead-label">How to govern:</span> Papers before scale. Every boat gets an owner, a passport, and
-                autonomy it earns through logged evidence — with human tripwires wherever the water is deep. An
-                unowned agent is a liability you have already incurred.</p>
-            <p><span class="lead-label">How to measure:</span> A simple triad — time-to-complete, right-first-time quality,
-                cost-per-case — plus one human metric (time returned to teams), so you can prove you are
-                compounding talent, not corroding it. Watch the timesheets, not the demos.</p>
-            <p><span class="lead-label">What to expect:</span> Early wins range from meaningful cycle-time cuts to measurable
-                service gains — magnitude varies by task. The bigger prize is positional: the capability to turn
-                any workflow into a boat, which compounds while tools commoditize. Efficiency is the opening
-                move, altitude is the game.</p>
-
-            <div class="section-heading">
-                <span class="kicker">Field Notes</span>
-                <div class="title">From The Front</div>
-            </div>
-            <p class="drop-cap">Three notes from the water's edge as we write, each expanded later in the book. <em>Enterprise
-                platforms now ship agents, not chat:</em> the major vendors' platforms let ordinary teams build
-                domain-specific autonomous agents inside their existing CRM and service flows, thousands were built
-                within weeks of general availability. <em>Agents now act in real software:</em> the newest systems
-                operate applications directly, even steering a web browser when no API exists, which quietly expands
-                the universe of automatable work far beyond what most process maps assume. <em>The strategy houses
-                have caught up:</em> independent research now frames agents as a CEO-level pivot, beyond pilots,
-                toward custom agents aligned to end-to-end processes with governance built in, which is precisely
-                the shipyard this book will teach you to run.</p>
-
-            <p style="margin-top: 2.5rem; font-style: italic;">The water is not waiting for consensus, and neither
-                should you. Your altitude is the only variable you control. Let's find out what rung you're standing
-                on.</p>
-
-            <p style="margin-top: 2rem;"><a href="/resources" class="back-link" style="margin-bottom: 0;">Explore
+            <p style="margin: 2rem 0;"><a href="/resources" class="back-link" style="margin-bottom: 0;">Explore
                 the reader resources &rarr;</a></p>
         </div>
     </section>
