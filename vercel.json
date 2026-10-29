@@ -19,6 +19,7 @@
     { "source": "/catalogue", "destination": "/catalogue.html" }
   ],
   "redirects": [
-    { "source": "/services", "destination": "/consulting", "permanent": true }
+    { "source": "/services", "destination": "/consulting", "permanent": true },
+    { "source": "/services.html", "destination": "/consulting", "permanent": true }
   ]
 }

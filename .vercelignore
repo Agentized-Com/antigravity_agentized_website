@@ -1,0 +1,68 @@
+# Allow-list: Vercel deploys ONLY what is re-included below.
+# Everything else in this repo (manuscripts, drafts, REJECT/fabricated/
+# UNVERIFIED images, zips, source docs) stays out of the public site.
+# When a page starts using a new file, add it here or it will 404 in production.
+/*
+
+# Config
+!/vercel.json
+
+# Pages (services.html is retired: /services and /services.html redirect to /consulting)
+!/index.html
+!/about.html
+!/assessment.html
+!/book.html
+!/card-positioner.html
+!/catalogue.html
+!/consulting.html
+!/contact.html
+!/governance.html
+!/insights.html
+!/introduction.html
+!/platform.html
+!/resources.html
+!/results.html
+!/solutions.html
+!/solutions-margin-capacity.html
+!/solutions-revenue.html
+!/solutions-speed-delivery.html
+!/speaking.html
+!/thanks.html
+!/webmcp-test.html
+
+# Site assets
+!/style.css
+!/script.js
+!/robots.txt
+!/sitemap.xml
+!/llms.txt
+!/og-image.png
+!/favicon.svg
+!/favicon.ico
+!/favicon-16.png
+!/favicon-32.png
+!/favicon-192.png
+!/favicon-512.png
+!/apple-touch-icon.png
+!/HERO.png
+!/Jas Dhillon Photo July 22.PNG
+!/Mark Fidelman.jpeg
+
+# Images actually used by live pages
+!/Images
+/Images/*
+!/Images/book-cover-agent-shock.jpg
+!/Images/deliverable-agentic-opportunity-map_GOOD.png
+!/Images/deliverable-agentic-value-assessment-mockup_GOOD.png
+!/Images/diagram-12-month-agentization-roadmap_GOOD.png
+!/Images/diagram-agentized-agent-architecture_GOOD.png
+!/Images/diagram-grow-revenue-workflow-detailed_EXCELLENT.png
+!/Images/diagram-margin-capacity-workflow-detailed_EXCELLENT.png
+!/Images/figure-0-1-one-rung-ahead.png
+!/Images/ladder-all-rungs.jpg
+!/Images/part-1-read-the-water-chapter-opener.png
+!/Images/part-2-the-workflows-rung-chapter-opener.png
+!/Images/part-3-your-own-ladder-chapter-opener.png
+!/Images/part-4-the-fleets-rung-chapter-opener.png
+!/Images/spec-figure6-command-dashboard-source_APPROVED-labeled.png
+!/Images/intro-pages
