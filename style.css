@@ -1099,3 +1099,9 @@ footer a:hover { color: var(--white); }
 @media (max-width: 900px) {
     .mbb-cols { grid-template-columns: 1fr; }
 }
+
+/* ---------- FAQ (answer-first Q&A blocks, mirrored in FAQPage JSON-LD) ---------- */
+.faq-list { margin-top: var(--space-5); border-top: 1px solid rgba(23, 32, 42, 0.1); }
+.faq-item { padding: var(--space-5) 0; border-bottom: 1px solid rgba(23, 32, 42, 0.1); }
+.faq-item h3 { font-size: 1.125rem; }
+.faq-item p { margin: 0; color: var(--slate); }

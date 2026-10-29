@@ -1,11 +1,42 @@
 # Agentized
 
-> AI agent consulting and services. This file lists pages on this site that are
-> structured for machine reading, per the llms.txt convention.
+> Agentized helps mid-market companies redesign high-value revenue and operating
+> workflows around governed AI agents, then build, integrate and measure the result.
+> Founded by Jas Dhillon and Mark Fidelman, authors of the book AGENT SHOCK:
+> Surviving and Profiting from the Rise of AI Agents and Robots.
 
-## Pages
+Key facts:
+- Engagements begin with a paid Agentic Value Assessment (4–6 weeks, six stages:
+  Align, Map, Quantify, Design, Prioritize, Decide).
+- The assessment is designed for companies with roughly $25M+ in revenue or a
+  comparably complex operating environment, and an executive sponsor.
+- Engagement ladder: Agentic Value Assessment → 90-Day Agentic Value Pilot →
+  Enterprise Agentization Program → Managed Agentic Operations → Board and CEO Advisory.
+- Method: the Agentized Value System — Diagnose, Redesign, Deploy, Prove, Scale.
+- Agentized publishes no client testimonials or results until a client approves them.
 
-- [Catalogue](https://www.agentized.com/catalogue): Demo product catalogue (placeholder
-  items only, not real products) used to test agent/crawler discovery. Items are also
-  described as visible schema.org JSON-LD (`ItemList`/`Product`) in the page source —
-  read that block directly rather than parsing the rendered HTML.
+## Services
+
+- [Agentic AI Consulting](https://www.agentized.com/consulting): The engagement ladder, the Agentized Value System, how value is measured, and an FAQ.
+- [Agentic Value Assessment](https://www.agentized.com/assessment): The paid 4–6 week diagnostic: stages, fit criteria, application, and an FAQ.
+- [Solutions](https://www.agentized.com/solutions): Agentic revenue systems, operations (margin and capacity) and execution speed.
+- [Agentized Command](https://www.agentized.com/platform): Proposed agent governance and value-management layer; pre-product, design-partner stage.
+- [Governance](https://www.agentized.com/governance): Authority, access, evaluation, human escalation and audit for agentic AI.
+- [Results](https://www.agentized.com/results): How Agentized separates expected value from realized value.
+
+## Book: AGENT SHOCK
+
+- [AGENT SHOCK](https://www.agentized.com/book): Core concepts (the Waterline and the Ladder, the Four Shocks, Agent Passports, AgentShock, gates not dates), contents, authors, and an FAQ.
+- [Introduction](https://www.agentized.com/introduction): The book's introduction.
+- [Reader Resources](https://www.agentized.com/resources): Companion tools referenced in the book.
+
+## Company
+
+- [About](https://www.agentized.com/about): Founders Jas Dhillon and Mark Fidelman, and operating principles.
+- [Speaking](https://www.agentized.com/speaking): Keynotes, board briefings and executive workshops.
+- [Insights](https://www.agentized.com/insights): Research and executive guidance.
+- [Contact](https://www.agentized.com/contact): Briefing, partnership, media and general inquiries.
+
+## Optional
+
+- [Catalogue](https://www.agentized.com/catalogue): Demo product catalogue (placeholder items, not real products) used to test agent discovery; items are described in schema.org JSON-LD in the page source.
