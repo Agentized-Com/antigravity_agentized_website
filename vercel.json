@@ -1,25 +1,96 @@
 {
   "rewrites": [
-    { "source": "/solutions", "destination": "/solutions.html" },
-    { "source": "/solutions/revenue", "destination": "/solutions-revenue.html" },
-    { "source": "/solutions/margin-capacity", "destination": "/solutions-margin-capacity.html" },
-    { "source": "/solutions/speed-delivery", "destination": "/solutions-speed-delivery.html" },
-    { "source": "/consulting", "destination": "/consulting.html" },
-    { "source": "/assessment", "destination": "/assessment.html" },
-    { "source": "/platform", "destination": "/platform.html" },
-    { "source": "/results", "destination": "/results.html" },
-    { "source": "/insights", "destination": "/insights.html" },
-    { "source": "/governance", "destination": "/governance.html" },
-    { "source": "/book", "destination": "/book.html" },
-    { "source": "/introduction", "destination": "/introduction.html" },
-    { "source": "/resources", "destination": "/resources.html" },
-    { "source": "/speaking", "destination": "/speaking.html" },
-    { "source": "/about", "destination": "/about.html" },
-    { "source": "/contact", "destination": "/contact.html" },
-    { "source": "/catalogue", "destination": "/catalogue.html" }
+    {
+      "source": "/solutions",
+      "destination": "/solutions.html"
+    },
+    {
+      "source": "/solutions/revenue",
+      "destination": "/solutions-revenue.html"
+    },
+    {
+      "source": "/solutions/margin-capacity",
+      "destination": "/solutions-margin-capacity.html"
+    },
+    {
+      "source": "/solutions/speed-delivery",
+      "destination": "/solutions-speed-delivery.html"
+    },
+    {
+      "source": "/consulting",
+      "destination": "/consulting.html"
+    },
+    {
+      "source": "/assessment",
+      "destination": "/assessment.html"
+    },
+    {
+      "source": "/platform",
+      "destination": "/platform.html"
+    },
+    {
+      "source": "/results",
+      "destination": "/results.html"
+    },
+    {
+      "source": "/insights",
+      "destination": "/insights.html"
+    },
+    {
+      "source": "/governance",
+      "destination": "/governance.html"
+    },
+    {
+      "source": "/book",
+      "destination": "/book.html"
+    },
+    {
+      "source": "/introduction",
+      "destination": "/introduction.html"
+    },
+    {
+      "source": "/resources",
+      "destination": "/resources.html"
+    },
+    {
+      "source": "/speaking",
+      "destination": "/speaking.html"
+    },
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/catalogue",
+      "destination": "/catalogue.html"
+    },
+    {
+      "source": "/best-ai-consulting-firms-mid-size-companies",
+      "destination": "/best-ai-consulting-firms-mid-size-companies.html"
+    },
+    {
+      "source": "/best-ai-consultants-small-business",
+      "destination": "/best-ai-consultants-small-business.html"
+    },
+    {
+      "source": "/services/mid-size-companies",
+      "destination": "/services-mid-size-companies.html"
+    }
   ],
   "redirects": [
-    { "source": "/services", "destination": "/consulting", "permanent": true },
-    { "source": "/services.html", "destination": "/consulting", "permanent": true }
+    {
+      "source": "/services",
+      "destination": "/consulting",
+      "permanent": true
+    },
+    {
+      "source": "/services.html",
+      "destination": "/consulting",
+      "permanent": true
+    }
   ]
 }
