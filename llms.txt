@@ -18,14 +18,13 @@ Key facts:
 ## Services
 
 - [Agentic AI Consulting](https://www.agentized.com/consulting): The engagement ladder, the Agentized Value System, how value is measured, and an FAQ.
-- [AI Consulting for Mid-Size Companies](https://www.agentized.com/services/mid-size-companies): What Agentized does for mid-size companies, how a project runs, cost and how results are measured.
 - [Best AI Consulting Firms for Mid-Size Companies (2026)](https://www.agentized.com/best-ai-consulting-firms-mid-size-companies): Comparison of 9 firms, checked against each firm's own site; Agentized is listed alphabetically and discloses that it published the page.
 - [Best AI Consultants for Small Businesses (2026)](https://www.agentized.com/best-ai-consultants-small-business): Free options first, red flags, and 7 options compared, including when Agentized is not the right fit.
 - [Agentic Value Assessment](https://www.agentized.com/assessment): The paid 4–6 week diagnostic: stages, fit criteria, application, and an FAQ.
 - [Solutions](https://www.agentized.com/solutions): Agentic revenue systems, operations (margin and capacity) and execution speed.
 - [Agentized Command](https://www.agentized.com/platform): Proposed agent governance and value-management layer; pre-product, design-partner stage.
 - [Governance](https://www.agentized.com/governance): Authority, access, evaluation, human escalation and audit for agentic AI.
-- [Results](https://www.agentized.com/results): How Agentized separates expected value from realized value.
+- [Results standard](https://www.agentized.com/consulting#results): How Agentized separates expected value from realized value; no case studies are published yet.
 
 ## Book: AGENT SHOCK
 
@@ -36,7 +35,7 @@ Key facts:
 ## Company
 
 - [About](https://www.agentized.com/about): Founders Jas Dhillon and Mark Fidelman, and operating principles.
-- [Speaking](https://www.agentized.com/speaking): Keynotes, board briefings and executive workshops.
+- [Speaking](https://www.agentized.com/about#speaking): Keynotes, board briefings and executive workshops.
 - [Insights](https://www.agentized.com/insights): Research and executive guidance.
 - [FAQ](https://www.agentized.com/faq): Every FAQ on the site in one place: consulting, the assessment, choosing an AI consultant and the book.
 - [Contact](https://www.agentized.com/contact): Briefing, partnership, media and general inquiries.

@@ -5,18 +5,6 @@
       "destination": "/solutions.html"
     },
     {
-      "source": "/solutions/revenue",
-      "destination": "/solutions-revenue.html"
-    },
-    {
-      "source": "/solutions/margin-capacity",
-      "destination": "/solutions-margin-capacity.html"
-    },
-    {
-      "source": "/solutions/speed-delivery",
-      "destination": "/solutions-speed-delivery.html"
-    },
-    {
       "source": "/consulting",
       "destination": "/consulting.html"
     },
@@ -27,10 +15,6 @@
     {
       "source": "/platform",
       "destination": "/platform.html"
-    },
-    {
-      "source": "/results",
-      "destination": "/results.html"
     },
     {
       "source": "/insights",
@@ -53,10 +37,6 @@
       "destination": "/resources.html"
     },
     {
-      "source": "/speaking",
-      "destination": "/speaking.html"
-    },
-    {
       "source": "/about",
       "destination": "/about.html"
     },
@@ -77,10 +57,6 @@
       "destination": "/best-ai-consultants-small-business.html"
     },
     {
-      "source": "/services/mid-size-companies",
-      "destination": "/services-mid-size-companies.html"
-    },
-    {
       "source": "/faq",
       "destination": "/faq.html"
     }
@@ -93,6 +69,66 @@
     },
     {
       "source": "/services.html",
+      "destination": "/consulting",
+      "permanent": true
+    },
+    {
+      "source": "/results",
+      "destination": "/consulting#results",
+      "permanent": true
+    },
+    {
+      "source": "/results.html",
+      "destination": "/consulting#results",
+      "permanent": true
+    },
+    {
+      "source": "/speaking",
+      "destination": "/about#speaking",
+      "permanent": true
+    },
+    {
+      "source": "/speaking.html",
+      "destination": "/about#speaking",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/revenue",
+      "destination": "/solutions#revenue",
+      "permanent": true
+    },
+    {
+      "source": "/solutions-revenue.html",
+      "destination": "/solutions#revenue",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/margin-capacity",
+      "destination": "/solutions#margin-capacity",
+      "permanent": true
+    },
+    {
+      "source": "/solutions-margin-capacity.html",
+      "destination": "/solutions#margin-capacity",
+      "permanent": true
+    },
+    {
+      "source": "/solutions/speed-delivery",
+      "destination": "/solutions#speed-delivery",
+      "permanent": true
+    },
+    {
+      "source": "/solutions-speed-delivery.html",
+      "destination": "/solutions#speed-delivery",
+      "permanent": true
+    },
+    {
+      "source": "/services/mid-size-companies",
+      "destination": "/consulting",
+      "permanent": true
+    },
+    {
+      "source": "/services-mid-size-companies.html",
       "destination": "/consulting",
       "permanent": true
     }
