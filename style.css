@@ -775,6 +775,16 @@ footer a:hover { color: var(--white); }
 /* =====================
    Responsive
    ===================== */
+/* Nine nav links + CTA: tighten the desktop nav before it overflows (mobile menu takes over below 768px). */
+@media (min-width: 768px) and (max-width: 1279px) {
+    .nav-links { gap: clamp(10px, 1.6vw, 24px); }
+    .nav-links a { font-size: 0.86rem; }
+    .navbar .nav-cta { padding-left: 14px; padding-right: 14px; font-size: 0.86rem; white-space: nowrap; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .navbar .nav-cta { display: none; }
+}
+
 @media (max-width: 1023px) {
     .hero { min-height: auto; padding: var(--space-8) 0; }
     .hero-grid { flex-direction: column; }

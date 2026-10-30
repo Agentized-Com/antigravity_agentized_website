@@ -38,6 +38,7 @@ Key facts:
 - [About](https://www.agentized.com/about): Founders Jas Dhillon and Mark Fidelman, and operating principles.
 - [Speaking](https://www.agentized.com/speaking): Keynotes, board briefings and executive workshops.
 - [Insights](https://www.agentized.com/insights): Research and executive guidance.
+- [FAQ](https://www.agentized.com/faq): Every FAQ on the site in one place: consulting, the assessment, choosing an AI consultant and the book.
 - [Contact](https://www.agentized.com/contact): Briefing, partnership, media and general inquiries.
 
 ## Optional

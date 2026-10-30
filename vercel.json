@@ -79,6 +79,10 @@
     {
       "source": "/services/mid-size-companies",
       "destination": "/services-mid-size-companies.html"
+    },
+    {
+      "source": "/faq",
+      "destination": "/faq.html"
     }
   ],
   "redirects": [
