@@ -22,7 +22,7 @@ Key facts:
 - [Best AI Consultants for Small Businesses (2026)](https://www.agentized.com/best-ai-consultants-small-business): Free options first, red flags, and 7 options compared, including when Agentized is not the right fit.
 - [Agentic Value Assessment](https://www.agentized.com/assessment): The paid 4–6 week diagnostic: stages, fit criteria, application, and an FAQ.
 - [Solutions](https://www.agentized.com/solutions): Agentic revenue systems, operations (margin and capacity) and execution speed.
-- [Agentized Command](https://www.agentized.com/platform): Proposed agent governance and value-management layer; pre-product, design-partner stage.
+- [Agentized Command](https://www.agentized.com/platform): The dashboard Agentized clients use to run their agents; tracks cost, owner, approvals and ROI for every agent.
 - [Governance](https://www.agentized.com/governance): Authority, access, evaluation, human escalation and audit for agentic AI.
 - [Results standard](https://www.agentized.com/consulting#results): How Agentized separates expected value from realized value; no case studies are published yet.
 
